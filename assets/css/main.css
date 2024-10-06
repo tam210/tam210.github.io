@@ -7,6 +7,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -72,10 +73,28 @@ input, select, textarea {
 	appearance: none;
 }
 
+/* Overlay text*/
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: left;
+    z-index: 2;
+    padding: 20px;
+	background: none;
+    border-radius: 10px;
+}
+
+
+
 /* Basic */
 
 	html {
 		box-sizing: border-box;
+		scroll-behavior: smooth;
 	}
 
 	*, *:before, *:after {
@@ -1785,7 +1804,7 @@ input, select, textarea {
 	}
 
 	header.major h2 {
-		color: rgb(9, 21, 61);
+		color: rgb(43, 6, 68);
 		font-size: 3.5em;
 	}
 
@@ -1848,7 +1867,7 @@ input, select, textarea {
 		input[type="email"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: rgb(9, 21, 61);
+			border-color: rgb(43, 6, 68);
 		}
 
 	select {
@@ -1953,7 +1972,7 @@ input, select, textarea {
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
-			border-color: rgb(9, 21, 61);
+			border-color: rgb(43, 6, 68);
 			
 		}
 
@@ -2203,6 +2222,8 @@ input, select, textarea {
 			display: block;
 			height: 20em;
 			border-radius: 0;
+			position: relative;
+			overflow: hidden;
 		}
 
 			.image.main img {
@@ -2403,7 +2424,7 @@ input, select, textarea {
 			}
 
 			ul.feature-icons li:before {
-				background:rgb(9, 21, 61);
+				background:rgb(206, 93, 93);
 				border-radius: 100%;
 				color: #ffffff;
 				display: block;
@@ -2619,7 +2640,7 @@ input, select, textarea {
 		input[type="reset"].primary,
 		input[type="button"].primary,
 		.button.primary {
-			background-color:rgb(9, 21, 61);
+			background-color:rgb(43, 6, 68);
 			color: #ffffff !important;
 		}
 
@@ -2649,6 +2670,13 @@ input, select, textarea {
 			color: #fff !important;
 			cursor: default;
 			opacity: 0.25;
+		}
+
+		.button.tech {
+    		font-size: 0.7em; /* Ajusta el tamaño de la fuente para hacerlo más pequeño */
+			pointer-events: none; /* Desactiva la interacción */
+			background-color:rgb(206, 93, 93);
+			color: #ffffff !important;
 		}
 
 /* Features */
@@ -2701,7 +2729,7 @@ input, select, textarea {
 		-webkit-justify-content: space-between;
 		-ms-justify-content: space-between;
 		justify-content: space-between;
-		background: rgb(9, 21, 61);
+		background: rgb(43, 6, 68);
 		color: #d2f2e9;
 		height: 100%;
 		overflow-y: auto;
@@ -3031,7 +3059,7 @@ input, select, textarea {
 				top: 0;
 				width: 100%;
 				z-index: 10001;
-				background: rgb(9, 21, 61);;
+				background: rgb(43, 6, 68);
 				color: #fff;
 				min-width: 320px;
 			}
@@ -3077,7 +3105,7 @@ input, select, textarea {
 					}
 
 					#titleBar .toggle:before {
-						background: rgb(9, 21, 61);
+						background: rgb(43, 6, 68);
 						color: #ffffff;
 						content: '\f0c9';
 						display: block;
