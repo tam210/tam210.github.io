@@ -2228,6 +2228,7 @@ input, select, textarea {
 
 			.image.main img {
 				border-radius: 0;
+				filter: brightness(40%) contrast(120%);
 			}
 
 /* List */
