@@ -47,6 +47,295 @@ blockquote, q {
 		content: none;
 	}
 
+/* ---- Custom subtle enhancements (appended) ---- */
+:root {
+	--brand: #0f172a; /* deep slate */
+	--brand-2: #2563eb; /* blue 600 */
+	--accent: #22d3ee; /* cyan 400 */
+	--muted: #eaeaea;
+	--card-bg: #ffffff;
+	--shadow-sm: 0 4px 10px rgba(0,0,0,0.06);
+	--shadow-md: 0 10px 24px rgba(0,0,0,0.10);
+}
+
+/* Palette application overrides */
+a:hover { color: var(--accent) !important; }
+header.major h2 { color: var(--brand) !important; }
+#header { background: var(--brand) !important; }
+#header > nav ul li { border-top-color: rgba(34,211,238,0.35) !important; }
+#header > nav ul li a.active { color: var(--accent) !important; }
+#titleBar { background: var(--brand) !important; }
+#titleBar .toggle:before { background: var(--brand) !important; }
+ul.feature-icons li:before { background: var(--brand-2) !important; }
+.button.tech { background-color: var(--brand-2) !important; }
+
+/* Nav underline micro-interaction */
+#header > nav ul li a,
+#header > nav ul li a.active { position: relative; }
+
+#header > nav ul li a:after {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 50%;
+	bottom: 0.6em;
+	width: 0;
+	height: 2px;
+	background: linear-gradient(90deg, var(--accent), var(--brand-2));
+	transition: width 220ms ease, left 220ms ease;
+}
+
+#header > nav ul li a:hover:after,
+#header > nav ul li a.active:after {
+	left: 15%;
+	width: 70%;
+}
+
+/* Section headings accent bar */
+header.major h2 { letter-spacing: 0.2px; }
+header.major h2:after {
+	content: '';
+	display: block;
+	width: 64px;
+	height: 4px;
+	margin-top: 0.5em;
+	border-radius: 2px;
+	background: linear-gradient(90deg, var(--brand), var(--accent));
+}
+
+/* Card polish and hover */
+.features article {
+	background: var(--card-bg);
+	border-radius: 12px;
+	box-shadow: var(--shadow-sm);
+	transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.features article:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-md);
+}
+
+.features article .image img {
+	transition: transform 320ms ease;
+	transform-origin: center;
+}
+
+.features article:hover .image img { transform: scale(1.03); }
+
+/* Avatar subtle ring */
+.image.avatar img {
+	box-shadow: 0 0 0 4px rgba(255,255,255,0.25), 0 10px 24px rgba(0,0,0,0.15);
+}
+
+/* Buttons: slight elevation; primary gradient */
+.button { box-shadow: var(--shadow-sm); }
+.button.primary {
+	background-image: linear-gradient(135deg, var(--brand-2), #ffb15c);
+}
+.button.primary:hover {
+	filter: brightness(0.96) saturate(1.05);
+	transform: translateY(-1px);
+	box-shadow: var(--shadow-md);
+}
+.button.primary:active { transform: translateY(0); }
+
+/* Tech tags as pills */
+.button.tech {
+	border-radius: 999px;
+	padding: 0 0.9em;
+	margin-right: 0.35em;
+	margin-top: 0.35em;
+}
+
+/* Social icons hover */
+ul.icons li a { transition: transform 200ms ease, color 200ms ease; }
+ul.icons li a:hover { transform: translateY(-2px) scale(1.05); }
+
+/* Refined blockquote */
+blockquote {
+	position: relative;
+	background: #fff;
+	border-left: none;
+	padding-left: 2.25em;
+	box-shadow: var(--shadow-sm);
+}
+blockquote:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.5em;
+	width: 6px;
+	height: calc(100% - 1em);
+	border-radius: 6px;
+	background: linear-gradient(180deg, var(--accent), var(--brand));
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+	* { transition: none !important; animation: none !important; }
+}
+
+/* Timeline */
+.timeline {
+	position: relative;
+	margin: 2.5em 0 0 0;
+	padding-left: 1.25em;
+}
+
+.timeline:before {
+	content: '';
+	position: absolute;
+	left: 0.5em;
+	top: 0.25em;
+	bottom: 0;
+	width: 2px;
+	background: linear-gradient(180deg, var(--accent), var(--brand));
+	opacity: 0.35;
+}
+
+.timeline-item {
+	position: relative;
+	margin: 0 0 2em 0;
+	padding-left: 1.5em;
+}
+
+.timeline-item:before {
+	content: '';
+	position: absolute;
+	left: 0em;
+	top: 0.35em;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: var(--brand-2);
+	box-shadow: 0 0 0 3px #fff;
+}
+
+.timeline-content {
+	background: var(--card-bg);
+	border-radius: 10px;
+	box-shadow: var(--shadow-sm);
+	padding: 2.5em 1.25em 0.9em;
+	position: relative;
+}
+
+.timeline-content .timeline-title {
+	margin-top: 0.5em;
+}
+
+.timeline-company {
+	position: absolute;
+	top: 0.75em;
+	left: 0.9em;
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+	text-decoration: none;
+	color: inherit;
+	transition: transform 200ms ease, opacity 200ms ease;
+	z-index: 1;
+}
+
+.timeline-company:hover {
+	transform: translateY(-2px);
+	opacity: 0.85;
+}
+
+.company-logo-wrapper {
+	width: 16px !important;
+	height: 16px !important;
+	min-width: 16px !important;
+	min-height: 16px !important;
+	max-width: 16px !important;
+	max-height: 16px !important;
+	flex-shrink: 0;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden !important;
+	box-sizing: border-box;
+	position: relative;
+}
+
+/* Estilos específicos para logos - funciona con png, jpg, jpeg, webp */
+.timeline-company .company-logo-wrapper img,
+.timeline-company .company-logo-wrapper .company-logo,
+.company-logo-wrapper img,
+.company-logo-wrapper .company-logo,
+.company-logo {
+	width: 16px !important;
+	height: 16px !important;
+	max-width: 16px !important;
+	max-height: 16px !important;
+	min-width: 0 !important;
+	min-height: 0 !important;
+	object-fit: contain !important;
+	object-position: center !important;
+	border-radius: 2px;
+	display: block !important;
+	box-sizing: border-box !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.company-name {
+	font-size: 0.75em;
+	font-weight: 600;
+	color: var(--brand);
+	white-space: nowrap;
+}
+
+.timeline-year {
+	position: absolute;
+	top: 0.75em;
+	right: 0.9em;
+	background: var(--brand-2);
+	color: #ffffff;
+	font-size: 0.7em;
+	font-weight: 700;
+	padding: 0.35em 0.7em;
+	border-radius: 999px;
+	box-shadow: var(--shadow-sm);
+}
+
+.timeline-title {
+	margin-bottom: 0.5em;
+	color: var(--brand);
+}
+
+.timeline-tags { margin-top: 0.5em; }
+.timeline-tags .button.tech { margin-top: 0.25em; }
+
+@media screen and (max-width: 736px) {
+	.timeline { padding-left: 1em; }
+	.timeline:before { left: 0.4em; }
+	.timeline-item { padding-left: 1.25em; }
+	.timeline-company { 
+		top: 0.6em;
+		left: 0.7em;
+		gap: 0.4em;
+	}
+	.company-logo-wrapper {
+		width: 14px !important;
+		height: 14px !important;
+		min-width: 14px !important;
+		min-height: 14px !important;
+		max-width: 14px !important;
+		max-height: 14px !important;
+	}
+	
+	.company-logo-wrapper img,
+	.company-logo-wrapper .company-logo {
+		width: 14px !important;
+		height: 14px !important;
+		max-width: 14px !important;
+		max-height: 14px !important;
+	}
+	.company-name { font-size: 0.7em; }
+	.timeline-year { top: 0.6em; right: 0.7em; font-size: 0.65em; }
+}
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
