@@ -2520,6 +2520,13 @@ input, select, textarea {
 				filter: brightness(40%) contrast(120%);
 			}
 
+
+
+			.imagen-con-sombra img {
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Efecto de sombra */
+			}
+			
+
 /* List */
 
 	ol {
