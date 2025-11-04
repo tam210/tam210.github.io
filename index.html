@@ -1,947 +1,406 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tamara Ossandón - Desarrolladora Full Stack</title>
-    <meta name="description" content="Tamara Ossandón, Desarrolladora Full Stack especializada en soluciones web modernas, automatización de procesos y arquitecturas escalables.">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --bg-accent: #eff6ff;
-            --border-color: #e5e7eb;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--bg-primary);
-        }
-
-        /* Header & Navigation */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: var(--shadow);
-        }
-
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-secondary) 100%);
-            padding: 0 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23667eea" stop-opacity="0.1"/><stop offset="100%" stop-color="%23667eea" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="150" fill="url(%23a)"/><circle cx="800" cy="300" r="100" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
-            z-index: 0;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-        }
-
-        .hero-text .subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: center;
-        }
-
-        .profile-card {
-            background: var(--bg-primary);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            text-align: center;
-            max-width: 300px;
-            border: 1px solid var(--border-color);
-        }
-
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 1rem;
-            border: 4px solid var(--primary-color);
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            font-weight: bold;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            padding: 0.75rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Sections */
-        .section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: var(--bg-primary);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            position: relative;
-        }
-
-        .project-image.power-apps { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
-        .project-image.cv-app { background: linear-gradient(135deg, #4834d4, #686de0); }
-        .project-image.mining { background: linear-gradient(135deg, #ff9ff3, #f368e0); }
-        .project-image.ecommerce { background: linear-gradient(135deg, #3742fa, #2f3542); }
-        .project-image.inventory { background: linear-gradient(135deg, #7bed9f, #70a1ff); }
-        .project-image.bot { background: linear-gradient(135deg, #ffa502, #ff6348); }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tech-tag {
-            background: var(--bg-accent);
-            color: var(--primary-color);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .project-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            text-decoration: underline;
-            transform: translateX(5px);
-        }
-
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-category {
-            background: var(--bg-primary);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .skill-category h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .skill-list li:hover {
-            color: var(--primary-color);
-            transform: translateX(5px);
-        }
-
-        .skill-list li::before {
-            content: "✓";
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--bg-secondary);
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .contact-link:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            color: var(--primary-color);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--text-primary);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .quote {
-            background: var(--bg-accent);
-            padding: 3rem 2rem;
-            margin: 3rem 0;
-            border-radius: 12px;
-            text-align: center;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            background: var(--bg-primary);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: block;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Loading animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-    </style>
-</head>
-<body>
+<html>
+  <head>
+    <title>Mi portafolio</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="is-preload">
     <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <a href="#" class="logo">Tamara Ossandón</a>
-            <ul class="nav-links">
-                <li><a href="#about">Sobre mí</a></li>
-                <li><a href="#projects">Proyectos</a></li>
-                <li><a href="#skills">Stack Técnico</a></li>
-                <li><a href="#contact">Contacto</a></li>
+    <section id="header">
+      <header>
+        <span class="image avatar"><img src="images/pf1.jpeg" alt="" /></span>
+        <h1 id="logo"><a href="#">Tamara de los Ángeles Ossandón Vergara</a></h1>
+        <p>Ingeniera Civil en Computación e Informática y Licenciada en Ciencias de la Ingeniería</p>
+      </header>
+      <nav id="nav">
+        <ul>
+          <li><a href="#one" class="active">Sobre mí</a></li>
+          <li><a href="#two">Mis habilidades</a></li>
+          <li><a href="#three">Experiencia</a></li>
+        </ul>
+      </nav>
+      <footer>
+        <ul class="icons">
+          <li>
+            <a href="https://github.com/tam210" target="_blank" rel="noopener noreferrer" class="icon brands fa-github"
+              ><span class="label">Github</span></a
+            >
+          </li>
+          <li>
+			<a href="https://mail.google.com/mail/?view=cm&fs=1&to=ossandon.t20@gmail.com&su=Hola!%20Me%20gustaría%20saber%20más%20sobre%20tu%20trabajo" class="icon solid fa-envelope" target="_blank" rel="noopener noreferrer">
+
+			<span class="label">Email</span></a
+            >
+          </li>
+        </ul>
+      </footer>
+    </section>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Main -->
+      <div id="main">
+        <!-- One -->
+        <section id="one">
+          <div class="image main" data-position="center">
+            <img src="images/portada.jpeg" alt="" />
+          
+<!--           
+            <div class="container text-overlay">
+              <header class="major">
+                <h2>Mi portafolio</h2>
+                <p>Un vistazo a mi experiencia en el rubro TI ;)<br /></p>
+              </header> -->
+            </div>
+          </div>
+
+
+
+
+          <div class="container">
+            <header class="major">
+              <br>
+              <h2>Mi portafolio</h2>
+              <p>Un vistazo a mi experiencia en el rubro TI ;)<br /></p>
+            </header>
+
+            <p>
+              ¡Hola! Soy Ingeniera Civil en Computación e
+              Informática de la Universidad Católica del Norte, y me apasiona la
+              tecnología en todas sus formas. A lo largo de mi carrera, he
+              tenido el placer de trabajar en una variedad de proyectos
+              desafiantes, desde universidades hasta pymes, municipios y
+              multinacionales. Cada uno de estos entornos me ha permitido
+              aprender, crecer y dejar mi huella.
+
+              <br /><br />Para mí, no hay nada más emocionante que convertir una
+              idea en una solución tecnológica que realmente haga la diferencia.
+              Siempre estoy lista para el próximo reto y dispuesta a seguir
+              explorando nuevas fronteras en el mundo tech >;)
+            </p>
+          </div>
+        </section>
+
+        <!-- Two -->
+        <section id="two">
+          <div class="container">
+            <h2>Mis habilidades</h2>
+            <p>
+              Tengo aptitudes técnicas orientadas al desarrollo de software,
+              análisis de datos, soporte de sistemas, inteligencia de negocios,
+              entre otros. Los proyectos que he realizado en estas áreas me han
+              ayudado bastante a fortalecer mis habilidades técnicas, siendo las
+              principales:
+            </p>
+            <ul class="feature-icons">
+              <li class="icon solid fa-code">
+                <strong>Lenguajes de programación</strong>: Java, C#, Python y
+                Golang
+              </li>
+              <li class="icon solid fa-laptop-code">
+                <strong>Frameworks</strong>: Flask, NestJS, Angular
+              </li>
+              <li class="icon solid fa-bolt">
+                <strong>Plataformas de automatización</strong>: Power BI, Power
+                Apps, Power Automate y Microsoft Copilot Studio
+              </li>
+              <li class="icon solid fa-filter">
+                <strong>Protocolos y APIs</strong>: gRPC, RESTful, GraphQL
+              </li>
+              <li class="icon solid fa-database">
+                <strong>Bases de datos</strong>: MySQL, PostgreSQL, SQLite,
+                MongoDB
+              </li>
+              <li class="icon solid fa-cube">
+                <strong>Manejo de datos</strong>: KNIME, procesos ETL, Apache
+                Spark y librerías como Pandas y Numpy
+              </li>
+              <li class="icon solid fa-briefcase">
+                <strong>Metodologías y herramientas de gestión</strong>: Scrum, Kanban, Jira, Trello, Microsoft Planner
+              </li>
+              <li class="icon solid fa-terminal">
+                <strong>Control de versiones y contenedores</strong>: Git, Github, Gitlab, Docker
+              </li>
+              <li class="icon solid fa-language">
+                <strong>Idiomas</strong>: Español (Nativo), Inglés (Intermedio) 
+              </li>
+              <li class="icon solid fa-laptop">
+                <strong>Sistemas operativos</strong>: Linux, Windows 
+              </li>
             </ul>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Desarrolladora Full Stack</h1>
-                <p class="subtitle">Especializada en soluciones web modernas y arquitecturas escalables</p>
-                <p>Ingeniera Civil en Computación e Informática con experiencia en desarrollo de aplicaciones web, automatización de procesos empresariales y análisis de datos. Me enfoco en crear soluciones tecnológicas robustas que optimizan operaciones y generan valor real para las organizaciones.</p>
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-code"></i>
-                        Ver Proyectos
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i>
-                        Contactar
-                    </a>
+			<p>Además de poseer ciertas habilidades técnicas, la eficiencia en la comunicación y la filosofía del trabajo es bastante importante a la hora de asumir un desafío. Entre las habilidades personales que poseo se encuentran:</p>
+			<ul class="feature-icons">
+
+				<li class="icon solid fa-arrow-up">
+					<strong>Proactividad</strong>
+				</li>
+				<li class="icon solid fa-users">
+					<strong>Capacidad de liderazgo</strong>
+				</li>
+				<li class="icon solid fa-bolt">
+					<strong>Adaptabilidad al cambio</strong>
+				</li>
+				<li class="icon solid fa-check-double">
+					<strong>Resolución de problemas</strong>
+				  </li>
+				  <li class="icon solid fa-comments">
+					<strong>Comunicación efectiva</strong>
+				  </li>
+				  <li class="icon solid fa-battery-full">
+					<strong>Desempeño óptimo bajo condiciones de presión</strong>
+				  </li>
+				  <li class="icon solid fa-brain">
+					<strong>Pensamiento crítico y analítico</strong>
+				  </li>
+				  <li class="icon solid fa-lightbulb">
+					<strong>Creatividad e Innovación</strong>
+				  </li>
+				  <li class="icon solid fa-clock">
+					<strong>Gestión del tiempo y prioridades</strong>
+				  </li>
+			  </ul>
+		</div>
+        </section>
+
+        <!-- Three -->
+        <section id="three">
+          <div class="container">
+            <h2>Experiencia</h2>
+            <p>Una línea temporal de cargos y logros, con el stack usado en cada hito.</p>
+
+            <ul class="timeline">
+              <li class="timeline-item">
+                <div class="timeline-content">
+                  <a href="#" class="timeline-company" target="_blank" rel="noopener noreferrer">
+                    <div class="company-logo-wrapper">
+                      <img src="images/duffco-logo.jpeg" alt="Logo Duffco" class="company-logo">
+                    </div>
+                    <span class="company-name">Duffco</span>
+                  </a>
+                  <span class="timeline-year">2025</span>
+                  <h4 class="timeline-title">Full‑stack Developer — Aplicación SaaS multiplataforma</h4>
+                  <p>
+                    Desarrollé de forma integral (end-to-end) una aplicación multiplataforma SaaS empresarial, desde la definición de requerimientos y diseño de arquitectura hasta el desarrollo, pruebas, despliegue en la nube y capacitación de usuarios. Implementé soluciones escalables orientadas a optimizar procesos internos, mejorar la trazabilidad de datos y fortalecer la gestión tecnológica de la organización.
+                  </p>
+                  <div class="timeline-tags">
+                    <span class="button tech">Laravel</span>
+                    <span class="button tech">Google Cloud Platform</span>
+                    <span class="button tech">MySQL</span>
+                    <span class="button tech">VueJS</span>
+                    <span class="button tech">React</span>
+                    <span class="button tech">Tailwind</span>
+                  </div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <div class="profile-card">
-                    <div class="profile-img">TO</div>
-                    <h3>Tamara de los Ángeles Ossandón Vergara</h3>
-                    <p>Ingeniera Civil en Computación e Informática</p>
-                    <p style="color: var(--primary-color); font-weight: 600;">Disponible para nuevos desafíos</p>
+              </li>
+
+              <li class="timeline-item">
+                <div class="timeline-content">
+                  <a href="#" class="timeline-company" target="_blank" rel="noopener noreferrer">
+                    <div class="company-logo-wrapper">
+                      <img src="images/stracon-tech-logo.jpeg" alt="Logo Stracon Tech" class="company-logo">
+                    </div>
+                    <span class="company-name">Stracon Tech</span>
+                  </a>
+                  <span class="timeline-year">2024</span>
+                  <h4 class="timeline-title">Power Platform Developer — Automatización pase de visita a faena</h4>
+                  <p>
+                    Desarrollé una aplicación completa vinculada al entorno de Microsoft Teams para automatizar el proceso de solicitudes de visita a faenas mineras. La solución permitió que los empleados emitieran solicitudes de visita de forma autónoma mediante una interfaz intuitiva, mientras que el sistema gestionaba automáticamente el flujo de aprobaciones correspondientes en un entorno centralizado. Implementé workflows complejos que integraban múltiples sistemas, mejorando significativamente la eficiencia operativa y reduciendo tiempos de procesamiento en más del 60%.
+                  </p>
+                  <div class="timeline-tags">
+                    <span class="button tech">Power Apps</span>
+                    <span class="button tech">Power Automate</span>
+                    <span class="button tech">Azure</span>
+                    <span class="button tech">Microsoft Lists</span>
+                  </div>
                 </div>
-            </div>
+              </li>
+
+              <li class="timeline-item">
+                <div class="timeline-content">
+                  <a href="#" class="timeline-company" target="_blank" rel="noopener noreferrer">
+                    <div class="company-logo-wrapper">
+                      <img src="images/stracon-tech-logo.jpeg" alt="Logo Stracon Tech" class="company-logo">
+                    </div>
+                    <span class="company-name">Stracon Tech</span>
+                  </a>
+                  <span class="timeline-year">2024</span>
+                  <h4 class="timeline-title">Conversational AI Builder — Bot en Microsoft Teams</h4>
+                  <p>
+                    Desarrollé un asistente virtual inteligente alimentado con información empresarial completa, construido en Microsoft Copilot Studio. El bot fue capaz de obtener y presentar tareas de proyectos directamente desde Microsoft Planner, eventos próximos desde Outlook, e información específica de la empresa en un entorno de chat conversacional vía Microsoft Teams. Configuré integraciones con Microsoft Graph API y diseñé diálogos naturales que mejoraron la productividad del equipo, permitiendo acceso rápido a información crítica sin salir de la plataforma colaborativa.
+                  </p>
+                  <div class="timeline-tags">
+                    <span class="button tech">Microsoft Copilot Studio</span>
+                    <span class="button tech">Power Automate</span>
+                    <span class="button tech">Microsoft Graph API</span>
+                    <span class="button tech">Azure</span>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-item">
+                <div class="timeline-content">
+                  <a href="#" class="timeline-company" target="_blank" rel="noopener noreferrer">
+                    <div class="company-logo-wrapper">
+                      <img src="images/dem-logo.jpg" alt="Logo DEM" class="company-logo">
+                    </div>
+                    <span class="company-name">DEM</span>
+                  </a>
+                  <span class="timeline-year">2023</span>
+                  <h4 class="timeline-title">Backend Engineer — E‑commerce de microservicios</h4>
+                  <p>
+                    Arquitecturé y desarrollé una plataforma e‑commerce completa y minimalista construida sobre una arquitectura de microservicios escalable. La solución integró sistemas de pago con Transbank, gestionando transacciones de forma segura y eficiente. Diseñé la comunicación entre servicios mediante mensajería asíncrona, implementé APIs RESTful bien documentadas, y aseguré la alta disponibilidad del sistema. El proyecto demostró dominio en diseño de sistemas distribuidos y buenas prácticas de desarrollo backend moderno.
+                  </p>
+                  <div class="timeline-tags">
+                    <span class="button tech">Golang</span>
+                    <span class="button tech">NodeJS</span>
+                    <span class="button tech">JavaScript</span>
+                    <span class="button tech">GORM</span>
+                    <span class="button tech">GraphQL</span>
+                    <span class="button tech">RabbitMQ</span>
+                    <span class="button tech">Docker</span>
+                    <span class="button tech">MySQL</span>
+                    <span class="button tech">NestJS</span>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-item">
+                <div class="timeline-content">
+                  <a href="#" class="timeline-company" target="_blank" rel="noopener noreferrer">
+                    <div class="company-logo-wrapper">
+                      <img src="images/dem-logo.jpg" alt="Logo DEM" class="company-logo">
+                    </div>
+                    <span class="company-name">DEM</span>
+                  </a>
+                  <span class="timeline-year">2023</span>
+                  <h4 class="timeline-title">Full‑stack Developer — Portal de gestión de ofertas y candidatos</h4>
+                  <p>
+                    Construí un portal web privado integral que facilitó la administración, seguimiento y evaluación completa de candidatos postulantes a ofertas de trabajo. El sistema incorporó indicadores gráficos interactivos para visualizar el estado de cada candidato en la convocatoria, paneles de visualización avanzados para ofertas y usuarios registrados, y una funcionalidad clave de análisis automatizado de currículum vitae que permitió extraer y categorizar habilidades, experiencia y formación.
+                  </p>
+                  <div class="timeline-tags">
+                    <span class="button tech">Python</span>
+                    <span class="button tech">Flask</span>
+                    <span class="button tech">SQLite</span>
+                    <span class="button tech">ORMs</span>
+                    <span class="button tech">HTML</span>
+                    <span class="button tech">CSS</span>
+                    <span class="button tech">JavaScript</span>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-item">
+                <div class="timeline-content">
+                  <a href="#" class="timeline-company" target="_blank" rel="noopener noreferrer">
+                    <div class="company-logo-wrapper">
+                      <img src="images/dem-logo.jpg" alt="Logo DEM" class="company-logo">
+                    </div>
+                    <span class="company-name">DEM</span>
+                  </a>
+                  <span class="timeline-year">2023</span>
+                  <h4 class="timeline-title">Web Developer — Herramienta Test de Zulliger</h4>
+                  <p>
+                    Creé una página web intuitiva y funcional para psicólogos que facilitaba la obtención rápida de información acerca de la terminología asociada al Test de Zulliger. La aplicación permitía realizar un seguimiento activo de los pacientes, facilitando significativamente la interpretación del test mediante la visualización automática de imágenes de las zonas representativas de las figuras, las cuales se generaban dinámicamente según los códigos ingresados por el profesional. El sistema optimizó los tiempos de análisis y mejoró la precisión en la evaluación psicológica.
+                  </p>
+                  <div class="timeline-tags">
+                    <span class="button tech">PHP</span>
+                    <span class="button tech">JavaScript</span>
+                    <span class="button tech">HTML</span>
+                    <span class="button tech">CSS</span>
+                    <span class="button tech">MySQL</span>
+                    <span class="button tech">Ampps</span>
+                    <span class="button tech">Git</span>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-item">
+                <div class="timeline-content">
+                  <a href="#" class="timeline-company" target="_blank" rel="noopener noreferrer">
+                    <div class="company-logo-wrapper">
+                      <img src="images/agrofamily-logo.png" alt="Logo AgroFamily" class="company-logo">
+                    </div>
+                    <span class="company-name">AgroFamily</span>
+                  </a>
+                  <span class="timeline-year">2022</span>
+                  <h4 class="timeline-title">Desarrolladora de software — Sistema de inventario</h4>
+                  <p>
+                    Diseñé y desarrollé un software completo de gestión de inventario con indicadores económicos avanzados para mejorar la toma de decisiones gerenciales. El sistema incluyó un módulo de caja integrado para registrar ventas de productos, conectado en tiempo real con el inventario registrado. Implementé funcionalidades de control de stock, alertas automáticas de productos críticos, generación de reportes financieros y análisis de tendencias de ventas, proporcionando visibilidad completa del negocio para optimizar la operación comercial.
+                  </p>
+                  <div class="timeline-tags">
+                    <span class="button tech">C#</span>
+                    <span class="button tech">WPF</span>
+                    <span class="button tech">MySQL</span>
+                    <span class="button tech">Git</span>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-item">
+                <div class="timeline-content">
+                  <a href="#" class="timeline-company" target="_blank" rel="noopener noreferrer">
+                    <div class="company-logo-wrapper">
+                      <img src="images/stracon-tech-logo.jpeg" alt="Logo Stracon Tech" class="company-logo">
+                    </div>
+                    <span class="company-name">Stracon Tech</span>
+                  </a>
+                  <span class="timeline-year">2021</span>
+                  <h4 class="timeline-title">Full‑stack / ETL Engineer — Reportes mineros</h4>
+                  <p>
+                    Diseñé y desarrollé una página web completa para monitorear el movimiento de materiales en el área minera. La plataforma permitía descargar reportes detallados en Excel con vistas diarias, semanales, mensuales y anuales, incluyendo diversos KPIs (Indicadores Clave de Desempeño) basados en los datos obtenidos de las minas. Implementé procesos ETL robustos para procesar grandes volúmenes de información, un sistema de roles con dos niveles de acceso (administradores con permisos de modificación y usuarios con acceso de solo lectura), y dashboards interactivos que facilitaron la toma de decisiones estratégicas en tiempo real.
+                  </p>
+                  <div class="timeline-tags">
+                    <span class="button tech">TypeScript</span>
+                    <span class="button tech">NestJS</span>
+                    <span class="button tech">React</span>
+                    <span class="button tech">PostgreSQL</span>
+                    <span class="button tech">Procesos ETL</span>
+                    <span class="button tech">Python</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+
+        <!-- Four -->
+	<br>
+        <section id="four">
+          <div class="container">
+            <blockquote>
+              "El mejor modo de predecir el futuro es inventarlo." <br /><br />
+              — Alan Kay, informático y pionero en la programación orientada a
+              objetos.
+            </blockquote>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <section id="footer">
+        <div class="container">
+          <ul class="copyright">
+            <li>&copy; Todos los derechos reservados.</li>
+          </ul>
         </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- About Section -->
-    <section class="section" id="about">
-        <h2 class="section-title">Perfil Profesional</h2>
-        <p class="section-subtitle">
-            Desarrolladora con sólida formación en ingeniería de software y experiencia práctica en proyectos que abarcan desde aplicaciones empresariales hasta sistemas de análisis de datos. Mi enfoque se centra en la implementación de soluciones técnicas eficientes y escalables.
-        </p>
-        
-        <div class="stats">
-            <div class="stat-card">
-                <span class="stat-number">6+</span>
-                <span class="stat-label">Proyectos Desarrollados</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">10+</span>
-                <span class="stat-label">Tecnologías Implementadas</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">100%</span>
-                <span class="stat-label">Compromiso con la Calidad</span>
-            </div>
-        </div>
-        
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section" id="projects">
-        <h2 class="section-title">Proyectos Destacados</h2>
-        <p class="section-subtitle">
-            Portfolio de aplicaciones que demuestran competencias en diferentes tecnologías, arquitecturas y dominios de negocio
-        </p>
-        
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image power-apps">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Sistema de Gestión de Visitas Empresariales</h3>
-                    <p class="project-description">
-                        Aplicación empresarial integrada con Microsoft Teams para automatizar el flujo de solicitudes de visitas a faenas mineras. 
-                        Implementa workflows de aprobación, notificaciones automáticas y gestión centralizada de permisos con integración completa al ecosistema Microsoft 365.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Power Apps</span>
-                        <span class="tech-tag">Power Automate</span>
-                        <span class="tech-tag">Azure</span>
-                        <span class="tech-tag">Microsoft Lists</span>
-                    </div>
-                    <a href="https://github.com/tam210/Visita-Faena-App" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                        Ver Repositorio
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image cv-app">
-                    <i class="fas fa-user-tie"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Portal de Gestión de Talento</h3>
-                    <p class="project-description">
-                        Plataforma web para optimizar procesos de reclutamiento con análisis automático de CVs mediante procesamiento de lenguaje natural. 
-                        Incluye dashboard de métricas, seguimiento de candidatos y generación de reportes analíticos para la toma de decisiones en RRHH.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Flask</span>
-                        <span class="tech-tag">SQLite</span>
-                        <span class="tech-tag">NLP</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/tam210/CV-Web-Analysis-" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                        Ver Código Fuente
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image mining">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Sistema de Business Intelligence Minero</h3>
-                    <p class="project-description">
-                        Aplicación web para monitoreo y análisis de operaciones mineras con generación automática de reportes Excel. 
-                        Implementa procesos ETL para transformación de datos, cálculo de KPIs operacionales y sistema de roles para diferentes niveles de acceso.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">NestJS</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">ETL</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image ecommerce">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Plataforma E-commerce con Microservicios</h3>
-                    <p class="project-description">
-                        Arquitectura distribuida de comercio electrónico implementando patrones de microservicios con comunicación asíncrona. 
-                        Integración con pasarela de pagos Transbank, containerización con Docker y orquestación de servicios independientes.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Golang</span>
-                        <span class="tech-tag">NodeJS</span>
-                        <span class="tech-tag">GraphQL</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">RabbitMQ</span>
-                    </div>
-                    <a href="https://gitlab.com/uwubuntu" class="project-link" target="_blank">
-                        <i class="fab fa-gitlab"></i>
-                        Ver en GitLab
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image inventory">
-                    <i class="fas fa-boxes"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Sistema de Gestión de Inventario</h3>
-                    <p class="project-description">
-                        Aplicación desktop desarrollada en WPF con arquitectura MVVM para gestión integral de inventarios. 
-                        Incluye módulo de punto de venta, generación de indicadores financieros y reportes gerenciales para optimización de decisiones comerciales.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">WPF</span>
-                        <span class="tech-tag">MVVM</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Entity Framework</span>
-                    </div>
-                    <a href="https://github.com/tam210/AgroFamily" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                        Ver Implementación
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image bot">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Asistente Virtual Empresarial</h3>
-                    <p class="project-description">
-                        Bot conversacional inteligente desarrollado con Microsoft Copilot Studio e integrado con Microsoft Teams. 
-                        Conecta con Microsoft Graph API para acceso a datos corporativos, gestión de tareas de Planner y consulta de eventos de Outlook.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Copilot Studio</span>
-                        <span class="tech-tag">Power Automate</span>
-                        <span class="tech-tag">Microsoft Graph API</span>
-                        <span class="tech-tag">Azure Bot Service</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="section" id="skills">
-        <h2 class="section-title">Stack Técnico</h2>
-        <p class="section-subtitle">
-            Competencias técnicas desarrolladas a través de proyectos prácticos y formación continua en tecnologías modernas de desarrollo
-        </p>
-        
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3><i class="fas fa-code"></i> Lenguajes de Programación</h3>
-                <ul class="skill-list">
-                    <li>Java - Desarrollo backend y aplicaciones empresariales</li>
-                    <li>C# - Aplicaciones desktop y servicios .NET</li>
-                    <li>Python - Análisis de datos y desarrollo web</li>
-                    <li>Golang - Microservicios y APIs de alto rendimiento</li>
-                    <li>TypeScript/JavaScript - Desarrollo frontend y backend</li>
-                    <li>PHP - Aplicaciones web y sistemas legacy</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3><i class="fas fa-laptop-code"></i> Frameworks y Librerías</h3>
-                <ul class="skill-list">
-                    <li>Flask - APIs REST y aplicaciones web Python</li>
-                    <li>NestJS - Arquitecturas backend escalables</li>
-                    <li>React - Interfaces de usuario interactivas</li>
-                    <li>Angular - Aplicaciones web empresariales</li>
-                    <li>WPF - Aplicaciones desktop Windows</li>
-                    <li>.NET Framework/Core - Ecosistema Microsoft</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3><i class="fas fa-database"></i> Gestión de Datos</h3>
-                <ul class="skill-list">
-                    <li>MySQL - Bases de datos relacionales</li>
-                    <li>PostgreSQL - Sistemas de datos complejos</li>
-                    <li>SQLite - Aplicaciones embebidas</li>
-                    <li>MongoDB - Bases de datos NoSQL</li>
-                    <li>Microsoft SQL Server - Entornos empresariales</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3><i class="fas fa-cloud"></i> DevOps y Cloud</h3>
-                <ul class="skill-list">
-                    <li>Azure - Servicios cloud y deployment</li>
-                    <li>Docker - Containerización de aplicaciones</li>
-                    <li>Git/GitHub/GitLab - Control de versiones</li>
-                    <li>CI/CD - Integración y despliegue continuo</li>
-                    <li>Microservicios - Arquitecturas distribuidas</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3><i class="fas fa-robot"></i> Automatización y BI</h3>
-                <ul class="skill-list">
-                    <li>Power Platform - Automatización empresarial</li>
-                    <li>Microsoft Copilot Studio - Desarrollo de bots</li>
-                    <li>Procesos ETL - Transformación de datos</li>
-                    <li>Apache Spark - Procesamiento big data</li>
-                    <li>KNIME - Análisis de datos visual</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3><i class="fas fa-users"></i> Competencias Profesionales</h3>
-                <ul class="skill-list">
-                    <li>Trabajo colaborativo en equipos multidisciplinarios</li>
-                    <li>Comunicación técnica efectiva</li>
-                    <li>Resolución de problemas complejos</li>
-                    <li>Adaptabilidad a nuevas tecnologías</li>
-                    <li>Análisis y diseño de sistemas</li>
-                    <li>Gestión de proyectos ágiles</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section contact" id="contact">
-        <h2 class="section-title">Contacto Profesional</h2>
-        <p class="section-subtitle">
-            Abierta a oportunidades de colaboración en proyectos desafiantes y posiciones que permitan aplicar y expandir mis competencias técnicas en entornos innovadores.
-        </p>
-        
-        <div class="contact-links">
-            <a href="https://github.com/tam210" class="contact-link" target="_blank">
-                <i class="fab fa-github"></i>
-                Repositorios GitHub
-            </a>
-            <a href="mailto:ossandon.t20@gmail.com" class="contact-link">
-                <i class="fas fa-envelope"></i>
-                Contacto Email
-            </a>
-            <a href="https://linkedin.com/in/tamara-ossandon" class="contact-link" target="_blank">
-                <i class="fab fa-linkedin"></i>
-                Perfil LinkedIn
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>© 2024 Tamara Ossandón - Desarrolladora Full Stack</p>
-    </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add fade-in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('.section, .project-card, .skill-category').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-            }
-        });
-
-        // Add pulse animation to CTA buttons
-        const ctaButtons = document.querySelectorAll('.btn-primary');
-        ctaButtons.forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                btn.classList.add('pulse');
-            });
-            btn.addEventListener('mouseleave', () => {
-                btn.classList.remove('pulse');
-            });
-        });
-    </script>
-</body>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- <script src="assets/js/smooth-scroll.js"></script> -->
+  </body>
 </html>
