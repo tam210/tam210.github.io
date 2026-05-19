@@ -162,12 +162,7 @@ a:focus-visible,
 	text-align: center;
 }
 
-#header > nav ul li a:hover:after,
-#header > nav ul li a.active:after {
-	left: 50%;
-	transform: translateX(-50%);
-	width: 2.5em;
-}
+/* Nav underline: portfolio.css */
 
 #header > footer {
 	display: flex;
@@ -210,17 +205,18 @@ a:focus-visible,
 	display: block;
 	position: absolute;
 	left: 50%;
-	bottom: 0.6em;
+	bottom: 0.45em;
 	width: 0;
 	height: 2px;
-	background: linear-gradient(90deg, var(--accent), var(--brand-2));
-	transition: width 220ms ease, left 220ms ease;
+	background: var(--accent);
+	transform: translateX(-50%);
+	transition: width 0.25s ease;
 }
 
 #header > nav ul li a:hover:after,
-#header > nav ul li a.active:after {
-	left: 15%;
-	width: 70%;
+#header > nav ul li a.active:after,
+#header > nav ul li a.is-scroll-active:after {
+	width: 2em;
 }
 
 header.major h2 {
@@ -668,10 +664,11 @@ ul.icons li a:hover {
 
 .timeline-year {
 	position: static;
-	background: var(--brand-2);
-	color: #fff;
+	background: #f1f5f9;
+	color: #64748b;
+	border: 1px solid #e2e8f0;
 	font-size: 0.72em;
-	font-weight: 700;
+	font-weight: 600;
 	padding: 0.35em 0.75em;
 	border-radius: 999px;
 	flex-shrink: 0;
@@ -695,11 +692,12 @@ ul.icons li a:hover {
 	display: grid;
 	grid-template-columns: 1.35fr 0.9fr;
 	gap: 0;
-	background: linear-gradient(145deg, #0f172a 0%, #1e3a8a 52%, #0c4a6e 100%);
+	background: #0f172a;
 	border-radius: var(--radius-lg);
 	overflow: hidden;
 	box-shadow: var(--shadow-md);
 	color: rgba(255, 255, 255, 0.92);
+	border: 1px solid #1e293b;
 }
 
 .contact-panel-main {
@@ -4516,4 +4514,371 @@ input, select, textarea {
 #header > footer .icons {
 	display: flex !important;
 	justify-content: center !important;
+}
+
+/* ---- Dinamismo e interacción ---- */
+.scroll-progress {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3px;
+	z-index: 10004;
+	background: rgba(15, 23, 42, 0.08);
+	pointer-events: none;
+}
+
+.scroll-progress-bar {
+	display: block;
+	height: 100%;
+	width: 0;
+	background: linear-gradient(90deg, var(--brand-2), var(--accent));
+	transition: width 80ms linear;
+	border-radius: 0 2px 2px 0;
+}
+
+.hero-blobs {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.hero-blob {
+	position: absolute;
+	border-radius: 50%;
+	filter: blur(48px);
+	opacity: 0.45;
+	animation: blob-float 14s ease-in-out infinite;
+}
+
+.hero-blob-1 {
+	width: 220px;
+	height: 220px;
+	background: #22d3ee;
+	top: 10%;
+	left: 8%;
+}
+
+.hero-blob-2 {
+	width: 280px;
+	height: 280px;
+	background: #2563eb;
+	bottom: 5%;
+	right: 10%;
+	animation-delay: -4s;
+}
+
+.hero-blob-3 {
+	width: 180px;
+	height: 180px;
+	background: #818cf8;
+	top: 40%;
+	right: 30%;
+	animation-delay: -8s;
+}
+
+@keyframes blob-float {
+	0%,
+	100% {
+		transform: translate(0, 0) scale(1);
+	}
+	50% {
+		transform: translate(12px, -18px) scale(1.08);
+	}
+}
+
+/* Tagline sidebar: ver portfolio.css (.tagline-*) */
+
+body.is-loaded .hero-animate > * {
+	animation: hero-rise 0.7s ease backwards;
+}
+
+body.is-loaded .hero-animate .hero-eyebrow {
+	animation-delay: 0.1s;
+}
+
+body.is-loaded .hero-animate .hero-title {
+	animation-delay: 0.22s;
+}
+
+body.is-loaded .hero-animate .hero-lead {
+	animation-delay: 0.34s;
+}
+
+body.is-loaded .hero-animate .hero-actions {
+	animation-delay: 0.46s;
+}
+
+@keyframes hero-rise {
+	from {
+		opacity: 0;
+		transform: translateY(22px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.avatar-float img {
+	animation: avatar-float 5s ease-in-out infinite;
+}
+
+@keyframes avatar-float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+}
+
+.stagger-item {
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.stagger-item.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.tilt-card {
+	transform-style: preserve-3d;
+	transition: box-shadow 0.25s ease, transform 0.15s ease;
+	will-change: transform;
+}
+
+.tilt-card:hover {
+	box-shadow: var(--shadow-md);
+}
+
+.skill-card.tilt-card:hover .skill-card-title .icon:before {
+	color: var(--accent);
+	transition: color 0.2s ease;
+}
+
+.skill-tags li {
+	transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.skill-tags li:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+}
+
+.skill-tags li.skill-hot {
+	animation: hot-glow 3s ease-in-out infinite;
+}
+
+@keyframes hot-glow {
+	0%,
+	100% {
+		box-shadow: 0 1px 4px rgba(245, 158, 11, 0.15);
+	}
+	50% {
+		box-shadow: 0 2px 14px rgba(245, 158, 11, 0.28);
+	}
+}
+
+.timeline-content {
+	transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.experience-list .timeline-item.is-visible .timeline-content:hover {
+	transform: none;
+}
+
+.highlights li {
+	transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.highlights li:hover {
+	transform: translateY(-4px);
+	border-color: #93c5fd;
+	box-shadow: var(--shadow-md);
+}
+
+.button.primary {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-ripple {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	margin: -6px 0 0 -6px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.55);
+	transform: scale(0);
+	animation: ripple 0.6s ease-out forwards;
+	pointer-events: none;
+}
+
+@keyframes ripple {
+	to {
+		transform: scale(18);
+		opacity: 0;
+	}
+}
+
+.contact-fit {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.85em;
+}
+
+.closing-quote {
+	transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.closing-quote.is-visible:hover {
+	transform: translateY(-3px);
+	box-shadow: var(--shadow-md);
+}
+
+.soft-skills li {
+	transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.soft-skills li:hover {
+	transform: scale(1.04);
+	background: rgba(37, 99, 235, 0.12);
+}
+
+.image.main.hero img {
+	transition: transform 0.1s linear;
+}
+
+@media screen and (max-width: 736px) {
+	.contact-fit {
+		grid-template-columns: 1fr;
+	}
+
+	.tilt-card {
+		transform: none !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.scroll-progress,
+	.hero-blobs,
+	.tagline-word,
+	.btn-ripple {
+		display: none !important;
+	}
+
+	.stagger-item,
+	.reveal {
+		opacity: 1 !important;
+		transform: none !important;
+		animation: none !important;
+		transition: none !important;
+	}
+
+	.avatar-float img,
+	.skill-tags li.skill-hot {
+		animation: none !important;
+	}
+
+	.image.main.hero img {
+		transform: none !important;
+	}
+
+}
+
+/* Sidebar: un solo scroll (contenido principal), sin barra en panel */
+#header {
+	height: 100vh !important;
+	height: 100dvh !important;
+	max-height: 100dvh !important;
+	overflow: hidden !important;
+	overflow-y: hidden !important;
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: space-between !important;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+#header::-webkit-scrollbar {
+	display: none;
+	width: 0;
+	height: 0;
+}
+
+#header > header.sidebar-header {
+	flex-shrink: 1;
+	min-height: 0;
+	padding: clamp(1rem, 2.5vh, 3rem) clamp(1rem, 2vw, 3rem) !important;
+}
+
+#header > header .avatar {
+	width: clamp(4.25rem, 10vh, 8rem) !important;
+	margin: 0 auto clamp(0.5rem, 1.5vh, 2.25rem) auto !important;
+}
+
+.sidebar-name {
+	margin: clamp(0.35em, 1vh, 0.85em) 0 clamp(0.2em, 0.6vh, 0.4em) !important;
+	font-size: clamp(1.05em, 2.2vh, 1.35em) !important;
+}
+
+.sidebar-role {
+	font-size: clamp(0.72em, 1.6vh, 0.82em) !important;
+	line-height: 1.35 !important;
+}
+
+#header > nav {
+	flex-shrink: 1;
+	min-height: 0;
+	overflow: hidden;
+}
+
+#header > nav ul li a {
+	padding: clamp(0.45em, 1.1vh, 0.85em) 0 !important;
+}
+
+#header > footer {
+	flex-shrink: 0;
+	padding: clamp(0.85rem, 1.8vh, 2rem) !important;
+}
+
+.sidebar-cta {
+	margin-bottom: clamp(0.5em, 1vh, 1em) !important;
+	max-width: 11em;
+	font-size: 0.85em;
+	padding: 0.55em 1em !important;
+	height: auto !important;
+	min-height: 0 !important;
+	line-height: 1.3 !important;
+}
+
+@media screen and (max-width: 1024px) {
+	#header {
+		display: flex !important;
+		height: 100vh !important;
+		height: 100dvh !important;
+		overflow: hidden !important;
+		overflow-y: hidden !important;
+	}
+}
+
+@media screen and (max-height: 720px) {
+	#header > header .avatar {
+		width: 4.5rem !important;
+		margin-bottom: 0.5rem !important;
+	}
+
+	.sidebar-name {
+		font-size: 1.05em !important;
+	}
+
+	#header > nav ul li a {
+		padding: 0.4em 0 !important;
+	}
 }

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <title>Portafolio · Desarrollo full‑stack &amp; cloud</title>
+    <title>Tamara Ossandón · Full‑stack · Software operacional &amp; cloud</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Desarrollo full‑stack, SaaS, APIs, Power Platform y despliegue en GCP, AWS y Azure."
+      content="Desarrolladora full-stack especializada en software operacional, automatización, cloud y aplicaciones web/móviles en producción."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,25 +15,35 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@500&display=swap"
     />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/portfolio.css" />
   </head>
   <body class="is-preload">
+    <div class="scroll-progress" aria-hidden="true">
+      <span class="scroll-progress-bar"></span>
+    </div>
     <a class="skip-link" href="#main">Saltar al contenido</a>
 
     <section id="header" aria-label="Perfil y navegación">
       <header class="sidebar-header">
-        <span class="image avatar"
-          ><img
-            src="images/pf1.jpeg"
-            alt="Foto de perfil de Tamara Ossandón"
+        <span class="image avatar avatar-float"
+          ><img src="images/pf1.jpeg" alt="Foto de perfil de Tamara Ossandón"
         /></span>
         <h1 class="sidebar-name">Tamara Ossandón</h1>
-        <p class="sidebar-role">Full‑stack · Laravel · React · GCP</p>
+        <div class="sidebar-tagline" aria-live="polite" aria-atomic="true">
+          <span class="tagline-chip">
+            <span class="tagline-label">Construyo</span>
+            <span class="tagline-viewport">
+              <span class="tagline-track" data-words="SaaS,terreno,cloud,móvil"></span>
+            </span>
+          </span>
+        </div>
+        <p class="sidebar-role">Software operacional · Full‑stack · GCP</p>
       </header>
       <nav id="nav" aria-label="Secciones del portafolio">
         <ul>
-          <li><a href="#one" class="active">Sobre mí</a></li>
-          <li><a href="#two">Habilidades</a></li>
+          <li><a href="#one" class="active">Inicio</a></li>
           <li><a href="#three">Experiencia</a></li>
+          <li><a href="#two">Habilidades</a></li>
           <li><a href="#contact">Contacto</a></li>
         </ul>
       </nav>
@@ -41,22 +51,13 @@
         <a href="#contact" class="button primary scrolly sidebar-cta">Hablemos</a>
         <ul class="icons" aria-label="Redes y contacto">
           <li>
-            <a
-              href="https://github.com/tam210"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="icon brands fa-github"
-              aria-label="GitHub"
-              ><span class="label">Github</span></a
-            >
+            <a href="https://github.com/tam210" target="_blank" rel="noopener noreferrer" class="icon brands fa-github" aria-label="GitHub"><span class="label">Github</span></a>
           </li>
           <li>
-            <a
-              href="mailto:ossandon.t20@gmail.com"
-              class="icon solid fa-envelope"
-              aria-label="Correo electrónico"
-              ><span class="label">Email</span></a
-            >
+            <a href="https://www.linkedin.com/in/tam210" target="_blank" rel="noopener noreferrer" class="icon brands fa-linkedin" aria-label="LinkedIn"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:ossandon.t20@gmail.com" class="icon solid fa-envelope" aria-label="Correo"><span class="label">Email</span></a>
           </li>
         </ul>
       </footer>
@@ -64,423 +65,388 @@
 
     <div id="wrapper">
       <main id="main">
-        <section id="one" class="reveal is-visible">
-          <div class="image main hero" data-position="center">
-            <img
-              src="images/portada.jpeg"
-              alt="Espacio de trabajo con equipos de desarrollo"
-            />
-            <div class="hero-overlay" aria-hidden="true"></div>
-            <div class="hero-content">
-              <p class="hero-eyebrow">Lo que hago</p>
-              <h2 class="hero-title">
-                Apps web, backends y automatización que escalan en producción
-              </h2>
-              <p class="hero-lead">
-                Desarrollo end‑to‑end con Laravel, React/Vue y despliegue en la nube;
-                también flujos con Power Apps, bots en Teams y pipelines de datos.
-              </p>
-              <ul class="hero-actions">
-                <li>
-                  <a href="#three" class="button primary scrolly">Ver experiencia</a>
-                </li>
-                <li>
-                  <a href="#two" class="button scrolly">Habilidades</a>
-                </li>
-              </ul>
+        <!-- HERO -->
+        <section id="one" class="reveal is-visible section-block section-hero">
+          <div class="container">
+            <div class="hero-split hero-animate">
+              <div class="hero-copy">
+                <p class="hero-eyebrow">Full‑stack · Producto en producción</p>
+                <h2 class="hero-headline">
+                  Desarrolladora full‑stack especializada en software operacional, automatización y plataformas cloud
+                </h2>
+                <p class="hero-subtitle">
+                  Construyo aplicaciones web y móviles para digitalizar procesos reales: terreno, reportes, mantención, combustible, aprobaciones y datos empresariales.
+                </p>
+                <ul class="hero-badges" aria-label="Especialidades">
+                  <li>SaaS operacional</li>
+                  <li>Cloud GCP</li>
+                  <li>Mobile</li>
+                  <li>Automatización</li>
+                  <li>Laravel · Vue</li>
+                </ul>
+                <ul class="hero-cta-row">
+                  <li><a href="#three" class="button primary scrolly">Ver experiencia</a></li>
+                  <li><a href="#contact" class="button scrolly">Contacto</a></li>
+                </ul>
+              </div>
             </div>
-          </div>
 
-          <div class="container section-intro">
-            <header class="major">
-              <h2>Sobre mí</h2>
-              <p>Cómo trabajo y qué aporto a un equipo</p>
-            </header>
-            <p>
-              Ingeniera civil en computación (UCN). Me enfoco en llevar productos
-              de punta a punta: arquitectura, código, pruebas, despliegue y mano al
-              usuario. He entregado SaaS, portales, microservicios y automatización
-              en pymes, municipios y empresas más grandes.
-            </p>
-            <p>
-              Me interesa el código mantenible, la trazabilidad de datos y que la
-              herramienta resuelva el proceso real — no solo “que compile”.
-            </p>
-            <ul class="highlights" aria-label="Resumen profesional">
+            <ul class="metrics-strip stagger-item" aria-label="Capacidades clave">
               <li>
-                <span class="highlight-value">8+</span>
-                <span class="highlight-label">Proyectos destacados</span>
+                <span class="metric-icon icon solid fa-cloud" aria-hidden="true"></span>
+                <strong>SaaS en producción</strong>
+                <span>Despliegue y operación cloud</span>
               </li>
               <li>
-                <span class="highlight-value">Full‑stack</span>
-                <span class="highlight-label">Desarrollo end‑to‑end</span>
+                <span class="metric-icon icon solid fa-server" aria-hidden="true"></span>
+                <strong>Cloud deployment</strong>
+                <span>GCP · Cloud Run · SQL</span>
               </li>
               <li>
-                <span class="highlight-value">Cloud</span>
-                <span class="highlight-label">GCP · AWS · Azure</span>
+                <span class="metric-icon icon solid fa-mobile-alt" aria-hidden="true"></span>
+                <strong>Mobile operacional</strong>
+                <span>App de terreno</span>
+              </li>
+              <li>
+                <span class="metric-icon icon solid fa-bolt" aria-hidden="true"></span>
+                <strong>Automatización</strong>
+                <span>Procesos y aprobaciones</span>
               </li>
             </ul>
+
+            <div class="profile-block section-intro stagger-item">
+              <header class="major">
+                <h2>Perfil</h2>
+                <p>De problema operativo a producto digital</p>
+              </header>
+              <div class="profile-body">
+                <p>
+                  Ingeniera civil en computación (UCN). Diseño, desarrollo y despliego software que reemplaza planillas y procesos manuales por sistemas trazables en producción.
+                </p>
+                <p>
+                  <strong>Mi foco:</strong> entender el flujo en terreno y en oficina, construir la arquitectura correcta y entregar valor con backend, frontend, móvil y cloud — con capacitación y soporte al usuario final.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section id="two" class="reveal">
+
+        <!-- HOW I WORK -->
+        <section id="how" class="reveal section-block">
           <div class="container">
             <header class="major">
-              <h2>Habilidades</h2>
-              <p>Stack técnico y forma de trabajo</p>
+              <h2>De problema a producto</h2>
+              <p>Cómo trabajo en proyectos operacionales</p>
             </header>
-            <p class="section-lead">
-              Aptitudes orientadas al desarrollo de software, análisis de datos,
-              automatización e inteligencia de negocios, fortalecidas en proyectos
-              reales.
-            </p>
-
-            <div class="skills-grid">
-              <article class="skill-card">
-                <h3 class="skill-card-title">
-                  <span class="icon solid fa-code" aria-hidden="true"></span>
-                  Desarrollo
-                </h3>
-                <ul class="skill-tags">
-                  <li class="skill-hot" title="Habilidad destacada">PHP</li>
-                  <li>JavaScript</li>
-                  <li class="skill-hot" title="Habilidad destacada">TypeScript</li>
-                  <li>C#</li>
-                  <li>Python</li>
-                  <li>Golang</li>
-                  <li>Flask</li>
-                  <li>NestJS</li>
-                  <li>Angular</li>
-                  <li class="skill-hot" title="Habilidad destacada">Laravel</li>
-                  <li class="skill-hot" title="Habilidad destacada">Vue</li>
-                  <li class="skill-hot" title="Habilidad destacada">React</li>
-                </ul>
+            <div class="process-steps">
+              <article class="process-step stagger-item">
+                <h3>Entender el proceso</h3>
+                <p>Mapeo flujos reales en terreno y backoffice antes de escribir código.</p>
               </article>
-
-              <article class="skill-card">
-                <h3 class="skill-card-title">
-                  <span class="icon solid fa-database" aria-hidden="true"></span>
-                  Datos &amp; APIs
-                </h3>
-                <ul class="skill-tags">
-                  <li class="skill-hot" title="Habilidad destacada">MySQL</li>
-                  <li>PostgreSQL</li>
-                  <li>MongoDB</li>
-                  <li>gRPC</li>
-                  <li class="skill-hot" title="Habilidad destacada">REST</li>
-                  <li>GraphQL</li>
-                  <li class="skill-hot" title="Habilidad destacada">ETL</li>
-                  <li>KNIME</li>
-                </ul>
+              <article class="process-step stagger-item">
+                <h3>Diseñar la solución</h3>
+                <p>Arquitectura, roles, trazabilidad y experiencia usable para operadores.</p>
               </article>
-
-              <article class="skill-card">
-                <h3 class="skill-card-title">
-                  <span class="icon solid fa-bolt" aria-hidden="true"></span>
-                  Automatización &amp; BI
-                </h3>
-                <ul class="skill-tags">
-                  <li class="skill-hot" title="Habilidad destacada">Power BI</li>
-                  <li class="skill-hot" title="Habilidad destacada">Power Apps</li>
-                  <li>Power Automate</li>
-                  <li>Copilot Studio</li>
-                  <li>Microsoft Graph</li>
-                </ul>
+              <article class="process-step stagger-item">
+                <h3>Construir &amp; desplegar</h3>
+                <p>Backend, frontend, móvil y cloud con entregas iterativas en producción.</p>
               </article>
-
-              <article class="skill-card">
-                <h3 class="skill-card-title">
-                  <span class="icon solid fa-cloud" aria-hidden="true"></span>
-                  Infra &amp; gestión
-                </h3>
-                <ul class="skill-tags">
-                  <li class="skill-hot" title="Habilidad destacada">GCP</li>
-                  <li>AWS</li>
-                  <li>Azure</li>
-                  <li>Docker</li>
-                  <li class="skill-hot" title="Habilidad destacada">Git</li>
-                  <li>Scrum</li>
-                  <li>Kanban</li>
-                  <li class="skill-hot" title="Habilidad destacada">Jira</li>
-                </ul>
+              <article class="process-step stagger-item">
+                <h3>Acompañar adopción</h3>
+                <p>Capacitación, soporte y mejoras según uso real del sistema.</p>
               </article>
             </div>
-
-            <h3 class="subsection-title">Habilidades personales</h3>
-            <ul class="soft-skills">
-              <li>Proactividad</li>
-              <li>Liderazgo</li>
-              <li>Adaptabilidad</li>
-              <li>Resolución de problemas</li>
-              <li>Comunicación efectiva</li>
-              <li>Presión y prioridades</li>
-              <li>Pensamiento analítico</li>
-              <li>Creatividad</li>
-            </ul>
-
-            <p class="languages-note">
-              <strong>Idiomas:</strong> Español (nativo) · Inglés (intermedio)
-            </p>
           </div>
         </section>
 
-        <section id="three" class="reveal">
+        <!-- EXPERIENCE -->
+        <section id="three" class="reveal section-block">
           <div class="container">
             <header class="major">
               <h2>Experiencia</h2>
-              <p>Cargos, logros y tecnologías por proyecto</p>
+              <p>Problema → solución → impacto en cada proyecto</p>
             </header>
 
-            <ul class="timeline">
-              <li class="timeline-item">
-                <div class="timeline-content">
-                  <div class="timeline-meta">
+            <ul class="timeline experience-list">
+              <li class="timeline-item stagger-item">
+                <article class="timeline-content exp-card">
+                  <header class="exp-card-header">
                     <div class="timeline-company">
-                      <div class="company-logo-wrapper">
-                        <img
-                          src="images/duffco-logo.jpeg"
-                          alt=""
-                          class="company-logo"
-                        />
+                      <div class="company-logo-wrapper"><img src="images/duffco-logo.jpeg" alt="" class="company-logo" /></div>
+                      <div>
+                        <span class="company-name">Duffco</span>
+                        <span class="exp-product">ConstruckIT · SaaS operacional</span>
                       </div>
-                      <span class="company-name">Duffco</span>
                     </div>
                     <span class="timeline-year">2025</span>
+                  </header>
+                  <h4 class="timeline-title">Full‑stack Developer — Aplicación SaaS multiplataforma</h4>
+                  <div class="psi-row" role="group" aria-label="Problema, solución e impacto">
+                    <div class="psi-cell psi-cell--problem">
+                      <div class="psi-head"><span class="icon solid fa-exclamation-circle" aria-hidden="true"></span> Problema</div>
+                      <p>Procesos de terreno en planillas y canales dispersos, con baja trazabilidad entre obra, maquinaria, combustible y aprobaciones.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--solution">
+                      <div class="psi-head"><span class="icon solid fa-lightbulb" aria-hidden="true"></span> Solución</div>
+                      <p>SaaS web y móvil: reportes diarios, combustible, mantención, maquinarias, aprobaciones, usuarios y roles por obra.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--impact">
+                      <div class="psi-head"><span class="icon solid fa-chart-line" aria-hidden="true"></span> Impacto</div>
+                      <p>Datos operativos centralizados en cloud, menos Excel y mayor visibilidad para jefatura y terreno.</p>
+                    </div>
                   </div>
-                  <h4 class="timeline-title">
-                    Full‑stack Developer — Aplicación SaaS multiplataforma
-                  </h4>
-                  <p>
-                    Desarrollé de forma integral una aplicación SaaS empresarial:
-                    requerimientos, arquitectura, desarrollo, pruebas, despliegue en
-                    la nube y capacitación. Solución escalable para optimizar
-                    procesos, trazabilidad y gestión tecnológica.
-                  </p>
                   <div class="timeline-tags">
                     <span class="button tech">Laravel</span>
-                    <span class="button tech">Google Cloud</span>
+                    <span class="button tech">Vue / Inertia</span>
+                    <span class="button tech">React Native</span>
+                    <span class="button tech">GCP</span>
+                    <span class="button tech">Cloud Run</span>
+                    <span class="button tech">Cloud SQL</span>
                     <span class="button tech">MySQL</span>
-                    <span class="button tech">VueJS</span>
-                    <span class="button tech">React</span>
                     <span class="button tech">Tailwind</span>
                   </div>
-                </div>
+                </article>
               </li>
 
-              <li class="timeline-item">
-                <div class="timeline-content">
-                  <div class="timeline-meta">
+              <li class="timeline-item stagger-item">
+                <article class="timeline-content exp-card">
+                  <header class="exp-card-header">
                     <div class="timeline-company">
-                      <div class="company-logo-wrapper">
-                        <img
-                          src="images/stracon-tech-logo.jpeg"
-                          alt=""
-                          class="company-logo"
-                        />
-                      </div>
-                      <span class="company-name">Stracon Tech</span>
+                      <div class="company-logo-wrapper"><img src="images/stracon-tech-logo.jpeg" alt="" class="company-logo" /></div>
+                      <div><span class="company-name">Stracon Tech</span></div>
                     </div>
                     <span class="timeline-year">2024</span>
+                  </header>
+                  <h4 class="timeline-title">Power Platform Developer — Automatización pase de visita a faena</h4>
+                  <div class="psi-row" role="group" aria-label="Problema, solución e impacto">
+                    <div class="psi-cell psi-cell--problem">
+                      <div class="psi-head"><span class="icon solid fa-exclamation-circle" aria-hidden="true"></span> Problema</div>
+                      <p>Solicitudes de visita manuales, lentas y con aprobaciones poco trazables en faenas mineras.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--solution">
+                      <div class="psi-head"><span class="icon solid fa-lightbulb" aria-hidden="true"></span> Solución</div>
+                      <p>App en Microsoft Teams con flujos automatizados de aprobación y reglas por perfil.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--impact">
+                      <div class="psi-head"><span class="icon solid fa-chart-line" aria-hidden="true"></span> Impacto</div>
+                      <p>Reducción de tiempos de procesamiento superior al 60% y autonomía para solicitantes.</p>
+                    </div>
                   </div>
-                  <h4 class="timeline-title">
-                    Power Platform Developer — Automatización pase de visita a faena
-                  </h4>
-                  <p>
-                    App en Microsoft Teams para solicitudes de visita a faenas
-                    mineras, con flujo de aprobaciones automatizado. Reducción de
-                    tiempos de procesamiento superior al 60%.
-                  </p>
                   <div class="timeline-tags">
                     <span class="button tech">Power Apps</span>
                     <span class="button tech">Power Automate</span>
                     <span class="button tech">Azure</span>
                     <span class="button tech">Microsoft Lists</span>
                   </div>
-                </div>
+                </article>
               </li>
 
-              <li class="timeline-item">
-                <div class="timeline-content">
-                  <div class="timeline-meta">
+              <li class="timeline-item stagger-item">
+                <article class="timeline-content exp-card">
+                  <header class="exp-card-header">
                     <div class="timeline-company">
-                      <div class="company-logo-wrapper">
-                        <img
-                          src="images/stracon-tech-logo.jpeg"
-                          alt=""
-                          class="company-logo"
-                        />
-                      </div>
-                      <span class="company-name">Stracon Tech</span>
+                      <div class="company-logo-wrapper"><img src="images/stracon-tech-logo.jpeg" alt="" class="company-logo" /></div>
+                      <div><span class="company-name">Stracon Tech</span></div>
                     </div>
                     <span class="timeline-year">2024</span>
+                  </header>
+                  <h4 class="timeline-title">Conversational AI Builder — Bot en Microsoft Teams</h4>
+                  <div class="psi-row" role="group" aria-label="Problema, solución e impacto">
+                    <div class="psi-cell psi-cell--problem">
+                      <div class="psi-head"><span class="icon solid fa-exclamation-circle" aria-hidden="true"></span> Problema</div>
+                      <p>Información crítica dispersa entre Planner, Outlook y documentos internos.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--solution">
+                      <div class="psi-head"><span class="icon solid fa-lightbulb" aria-hidden="true"></span> Solución</div>
+                      <p>Asistente en Copilot Studio integrado con Microsoft Graph y diálogos de negocio.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--impact">
+                      <div class="psi-head"><span class="icon solid fa-chart-line" aria-hidden="true"></span> Impacto</div>
+                      <p>Acceso rápido a tareas y datos sin salir de Teams, mejorando productividad del equipo.</p>
+                    </div>
                   </div>
-                  <h4 class="timeline-title">
-                    Conversational AI Builder — Bot en Microsoft Teams
-                  </h4>
-                  <p>
-                    Asistente en Copilot Studio integrado con Planner, Outlook y
-                    datos empresariales vía Microsoft Graph, mejorando acceso a
-                    información crítica sin salir de Teams.
-                  </p>
                   <div class="timeline-tags">
                     <span class="button tech">Copilot Studio</span>
                     <span class="button tech">Power Automate</span>
                     <span class="button tech">Graph API</span>
                     <span class="button tech">Azure</span>
                   </div>
-                </div>
+                </article>
               </li>
 
-              <li class="timeline-item">
-                <div class="timeline-content">
-                  <div class="timeline-meta">
+              <li class="timeline-item stagger-item">
+                <article class="timeline-content exp-card">
+                  <header class="exp-card-header">
                     <div class="timeline-company">
-                      <div class="company-logo-wrapper">
-                        <img
-                          src="images/dem-logo.jpg"
-                          alt=""
-                          class="company-logo"
-                        />
-                      </div>
-                      <span class="company-name">DEM</span>
+                      <div class="company-logo-wrapper"><img src="images/dem-logo.jpg" alt="" class="company-logo" /></div>
+                      <div><span class="company-name">DEM</span></div>
                     </div>
                     <span class="timeline-year">2023</span>
+                  </header>
+                  <h4 class="timeline-title">Backend Engineer — E‑commerce de microservicios</h4>
+                  <div class="psi-row" role="group" aria-label="Problema, solución e impacto">
+                    <div class="psi-cell psi-cell--problem">
+                      <div class="psi-head"><span class="icon solid fa-exclamation-circle" aria-hidden="true"></span> Problema</div>
+                      <p>Plataforma de ventas que debía escalar con pagos seguros y servicios desacoplados.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--solution">
+                      <div class="psi-head"><span class="icon solid fa-lightbulb" aria-hidden="true"></span> Solución</div>
+                      <p>Arquitectura de microservicios con Transbank, mensajería asíncrona y APIs documentadas.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--impact">
+                      <div class="psi-head"><span class="icon solid fa-chart-line" aria-hidden="true"></span> Impacto</div>
+                      <p>Sistema modular preparado para crecer en tráfico, catálogo y nuevos servicios.</p>
+                    </div>
                   </div>
-                  <h4 class="timeline-title">
-                    Backend Engineer — E‑commerce de microservicios
-                  </h4>
-                  <p>
-                    Plataforma e‑commerce con arquitectura de microservicios,
-                    integración Transbank, mensajería asíncrona y APIs REST
-                    documentadas.
-                  </p>
                   <div class="timeline-tags">
                     <span class="button tech">Golang</span>
-                    <span class="button tech">NodeJS</span>
+                    <span class="button tech">NestJS</span>
                     <span class="button tech">GraphQL</span>
                     <span class="button tech">RabbitMQ</span>
                     <span class="button tech">Docker</span>
-                    <span class="button tech">NestJS</span>
+                    <span class="button tech">MySQL</span>
                   </div>
-                </div>
+                </article>
               </li>
 
-              <li class="timeline-item">
-                <div class="timeline-content">
-                  <div class="timeline-meta">
+              <li class="timeline-item stagger-item">
+                <article class="timeline-content exp-card">
+                  <header class="exp-card-header">
                     <div class="timeline-company">
-                      <div class="company-logo-wrapper">
-                        <img
-                          src="images/dem-logo.jpg"
-                          alt=""
-                          class="company-logo"
-                        />
-                      </div>
-                      <span class="company-name">DEM</span>
+                      <div class="company-logo-wrapper"><img src="images/dem-logo.jpg" alt="" class="company-logo" /></div>
+                      <div><span class="company-name">DEM</span></div>
                     </div>
                     <span class="timeline-year">2023</span>
+                  </header>
+                  <h4 class="timeline-title">Full‑stack Developer — Portal de ofertas y candidatos</h4>
+                  <div class="psi-row" role="group" aria-label="Problema, solución e impacto">
+                    <div class="psi-cell psi-cell--problem">
+                      <div class="psi-head"><span class="icon solid fa-exclamation-circle" aria-hidden="true"></span> Problema</div>
+                      <p>Evaluación manual de CV y seguimiento de postulaciones sin visibilidad centralizada.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--solution">
+                      <div class="psi-head"><span class="icon solid fa-lightbulb" aria-hidden="true"></span> Solución</div>
+                      <p>Portal privado con paneles, indicadores y análisis automatizado de currículum.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--impact">
+                      <div class="psi-head"><span class="icon solid fa-chart-line" aria-hidden="true"></span> Impacto</div>
+                      <p>Menor tiempo de screening y mejor trazabilidad por convocatoria.</p>
+                    </div>
                   </div>
-                  <h4 class="timeline-title">
-                    Full‑stack Developer — Portal de ofertas y candidatos
-                  </h4>
-                  <p>
-                    Portal privado con indicadores gráficos, paneles de ofertas y
-                    análisis automatizado de CV para extraer habilidades y
-                    experiencia.
-                  </p>
                   <div class="timeline-tags">
                     <span class="button tech">Python</span>
                     <span class="button tech">Flask</span>
                     <span class="button tech">SQLite</span>
                     <span class="button tech">JavaScript</span>
                   </div>
-                </div>
+                </article>
               </li>
 
-              <li class="timeline-item">
-                <div class="timeline-content">
-                  <div class="timeline-meta">
+              <li class="timeline-item stagger-item">
+                <article class="timeline-content exp-card">
+                  <header class="exp-card-header">
                     <div class="timeline-company">
-                      <div class="company-logo-wrapper">
-                        <img
-                          src="images/dem-logo.jpg"
-                          alt=""
-                          class="company-logo"
-                        />
-                      </div>
-                      <span class="company-name">DEM</span>
+                      <div class="company-logo-wrapper"><img src="images/dem-logo.jpg" alt="" class="company-logo" /></div>
+                      <div><span class="company-name">DEM</span></div>
                     </div>
                     <span class="timeline-year">2023</span>
+                  </header>
+                  <h4 class="timeline-title">Web Developer — Herramienta Test de Zulliger</h4>
+                  <div class="psi-row" role="group" aria-label="Problema, solución e impacto">
+                    <div class="psi-cell psi-cell--problem">
+                      <div class="psi-head"><span class="icon solid fa-exclamation-circle" aria-hidden="true"></span> Problema</div>
+                      <p>Interpretación del test lenta, con consultas manuales de terminología e imágenes.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--solution">
+                      <div class="psi-head"><span class="icon solid fa-lightbulb" aria-hidden="true"></span> Solución</div>
+                      <p>Web con seguimiento de pacientes e imágenes dinámicas según códigos del test.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--impact">
+                      <div class="psi-head"><span class="icon solid fa-chart-line" aria-hidden="true"></span> Impacto</div>
+                      <p>Tiempos de análisis reducidos y evaluaciones más consistentes para psicólogos.</p>
+                    </div>
                   </div>
-                  <h4 class="timeline-title">
-                    Web Developer — Herramienta Test de Zulliger
-                  </h4>
-                  <p>
-                    Web para psicólogos con seguimiento de pacientes e imágenes
-                    dinámicas según códigos del test, optimizando tiempos de
-                    análisis.
-                  </p>
                   <div class="timeline-tags">
                     <span class="button tech">PHP</span>
                     <span class="button tech">MySQL</span>
                     <span class="button tech">JavaScript</span>
                   </div>
-                </div>
+                </article>
               </li>
 
-              <li class="timeline-item">
-                <div class="timeline-content">
-                  <div class="timeline-meta">
+              <li class="timeline-item stagger-item">
+                <article class="timeline-content exp-card">
+                  <header class="exp-card-header">
                     <div class="timeline-company">
-                      <div class="company-logo-wrapper">
-                        <img
-                          src="images/agrofamily-logo.png"
-                          alt=""
-                          class="company-logo"
-                        />
-                      </div>
-                      <span class="company-name">AgroFamily</span>
+                      <div class="company-logo-wrapper"><img src="images/agrofamily-logo.png" alt="" class="company-logo" /></div>
+                      <div><span class="company-name">AgroFamily</span></div>
                     </div>
                     <span class="timeline-year">2022</span>
+                  </header>
+                  <h4 class="timeline-title">Desarrolladora de software — Sistema de inventario</h4>
+                  <div class="psi-row" role="group" aria-label="Problema, solución e impacto">
+                    <div class="psi-cell psi-cell--problem">
+                      <div class="psi-head"><span class="icon solid fa-exclamation-circle" aria-hidden="true"></span> Problema</div>
+                      <p>Control de stock y ventas sin indicadores claros para decisiones gerenciales.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--solution">
+                      <div class="psi-head"><span class="icon solid fa-lightbulb" aria-hidden="true"></span> Solución</div>
+                      <p>Software de inventario con caja, alertas de stock y reportes económicos.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--impact">
+                      <div class="psi-head"><span class="icon solid fa-chart-line" aria-hidden="true"></span> Impacto</div>
+                      <p>Visibilidad comercial en tiempo real y mejor control de productos críticos.</p>
+                    </div>
                   </div>
-                  <h4 class="timeline-title">
-                    Desarrolladora de software — Sistema de inventario
-                  </h4>
-                  <p>
-                    Software de inventario con indicadores económicos, módulo de
-                    caja y alertas de stock para decisiones gerenciales.
-                  </p>
                   <div class="timeline-tags">
                     <span class="button tech">C#</span>
                     <span class="button tech">WPF</span>
                     <span class="button tech">MySQL</span>
                   </div>
-                </div>
+                </article>
               </li>
 
-              <li class="timeline-item">
-                <div class="timeline-content">
-                  <div class="timeline-meta">
+              <li class="timeline-item stagger-item">
+                <article class="timeline-content exp-card">
+                  <header class="exp-card-header">
                     <div class="timeline-company">
-                      <div class="company-logo-wrapper">
-                        <img
-                          src="images/stracon-tech-logo.jpeg"
-                          alt=""
-                          class="company-logo"
-                        />
-                      </div>
-                      <span class="company-name">Stracon Tech</span>
+                      <div class="company-logo-wrapper"><img src="images/stracon-tech-logo.jpeg" alt="" class="company-logo" /></div>
+                      <div><span class="company-name">Stracon Tech</span></div>
                     </div>
                     <span class="timeline-year">2021</span>
+                  </header>
+                  <h4 class="timeline-title">Full‑stack / ETL Engineer — Reportes mineros</h4>
+                  <div class="psi-row" role="group" aria-label="Problema, solución e impacto">
+                    <div class="psi-cell psi-cell--problem">
+                      <div class="psi-head"><span class="icon solid fa-exclamation-circle" aria-hidden="true"></span> Problema</div>
+                      <p>Datos de movimiento de materiales difíciles de consolidar y reportar.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--solution">
+                      <div class="psi-head"><span class="icon solid fa-lightbulb" aria-hidden="true"></span> Solución</div>
+                      <p>Plataforma con ETL, KPIs, reportes Excel y roles admin/usuario.</p>
+                    </div>
+                    <span class="psi-flow" aria-hidden="true"><span class="icon solid fa-chevron-right"></span></span>
+                    <div class="psi-cell psi-cell--impact">
+                      <div class="psi-head"><span class="icon solid fa-chart-line" aria-hidden="true"></span> Impacto</div>
+                      <p>Decisiones con datos actualizados y reportes automatizados para operación minera.</p>
+                    </div>
                   </div>
-                  <h4 class="timeline-title">
-                    Full‑stack / ETL Engineer — Reportes mineros
-                  </h4>
-                  <p>
-                    Plataforma de monitoreo de materiales con reportes Excel,
-                    KPIs, procesos ETL y roles admin/usuario con dashboards
-                    interactivos.
-                  </p>
                   <div class="timeline-tags">
                     <span class="button tech">TypeScript</span>
                     <span class="button tech">NestJS</span>
@@ -488,128 +454,117 @@
                     <span class="button tech">PostgreSQL</span>
                     <span class="button tech">Python</span>
                   </div>
-                </div>
+                </article>
               </li>
             </ul>
           </div>
         </section>
 
-        <section id="contact" class="reveal">
+        <!-- SKILLS -->
+        <section id="two" class="reveal section-block">
           <div class="container">
-            <div class="contact-panel">
-              <div class="contact-panel-main">
-                <p class="contact-eyebrow">Abierta a nuevas oportunidades</p>
-                <h2>¿Buscas una desarrolladora full‑stack que entregue en producción?</h2>
-                <p class="contact-lead">
-                  Si estás armando un equipo o cubriendo una vacante, puedo aportar desde
-                  el diseño técnico hasta el despliegue: backend, frontend, base de datos y
-                  cloud. Me interesan roles con impacto real en el producto.
-                </p>
+            <header class="major">
+              <h2>Habilidades</h2>
+              <p>Stack priorizado por uso en producción</p>
+            </header>
 
-                <ul class="contact-fit" aria-label="Perfil para reclutamiento">
+            <div class="skills-tier skills-tier--primary stagger-item">
+              <h3><span class="icon solid fa-star" aria-hidden="true"></span> Stack principal</h3>
+              <ul class="skill-tags">
+                <li class="skill-hot" title="Destacado">Laravel</li>
+                <li class="skill-hot" title="Destacado">Vue</li>
+                <li class="skill-hot" title="Destacado">React Native</li>
+                <li class="skill-hot" title="Destacado">MySQL</li>
+                <li class="skill-hot" title="Destacado">GCP</li>
+                <li class="skill-hot" title="Destacado">Docker</li>
+                <li class="skill-hot" title="Destacado">Tailwind</li>
+              </ul>
+            </div>
+
+            <div class="skills-tier stagger-item">
+              <h3><span class="icon solid fa-layer-group" aria-hidden="true"></span> Experiencia complementaria</h3>
+              <ul class="skill-tags">
+                <li>NestJS</li>
+                <li>Flask</li>
+                <li class="skill-hot" title="Destacado">Power Apps</li>
+                <li class="skill-hot" title="Destacado">Power Automate</li>
+                <li>PostgreSQL</li>
+                <li>Python</li>
+                <li class="skill-hot" title="Destacado">ETL</li>
+              </ul>
+            </div>
+
+            <div class="skills-tier stagger-item">
+              <h3><span class="icon solid fa-puzzle-piece" aria-hidden="true"></span> Otros conocimientos</h3>
+              <ul class="skill-tags">
+                <li>GraphQL</li>
+                <li>RabbitMQ</li>
+                <li>Angular</li>
+                <li>React</li>
+                <li>Golang</li>
+                <li>REST</li>
+                <li>Git</li>
+                <li class="skill-hot" title="Destacado">Jira</li>
+              </ul>
+            </div>
+
+            <p class="languages-note"><strong>Idiomas:</strong> Español (nativo) · Inglés (intermedio)</p>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="reveal section-block">
+          <div class="container">
+            <div class="contact-panel tilt-card stagger-item">
+              <div class="contact-panel-main">
+                <p class="contact-eyebrow">Abierta a oportunidades</p>
+                <h2>¿Buscas perfil full‑stack con software operacional en producción?</h2>
+                <p class="contact-lead">
+                  Puedo aportar desde arquitectura hasta despliegue cloud, con foco en productos que digitalizan procesos reales de negocio.
+                </p>
+                <ul class="contact-fit" aria-label="Perfil">
                   <li>
                     <span class="contact-fit-icon icon solid fa-briefcase" aria-hidden="true"></span>
-                    <span class="contact-fit-text">
-                      <strong>Rol ideal</strong>
-                      Full‑stack, backend con foco producto, o plataformas Microsoft
-                    </span>
+                    <span class="contact-fit-text"><strong>Rol ideal</strong> Full‑stack · Producto operacional · Cloud</span>
                   </li>
                   <li>
                     <span class="contact-fit-icon icon solid fa-layer-group" aria-hidden="true"></span>
-                    <span class="contact-fit-text">
-                      <strong>Stack principal</strong>
-                      Laravel · React/Vue · MySQL · GCP · Power Platform
-                    </span>
-                  </li>
-                  <li>
-                    <span class="contact-fit-icon icon solid fa-map-marker-alt" aria-hidden="true"></span>
-                    <span class="contact-fit-text">
-                      <strong>Modalidad</strong>
-                      Remoto o híbrido · Chile (flexible según equipo)
-                    </span>
+                    <span class="contact-fit-text"><strong>Stack</strong> Laravel · Vue · React Native · GCP · MySQL</span>
                   </li>
                 </ul>
               </div>
-
-              <aside class="contact-panel-aside" aria-label="Acciones de contacto">
+              <aside class="contact-panel-aside" aria-label="Contacto">
                 <p class="contact-aside-title">Hablemos</p>
-                <p class="contact-aside-text">
-                  Escríbeme con el rol, stack o tipo de proyecto. Respondo en 24–48 h.
-                </p>
+                <p class="contact-aside-text">Escríbeme con el rol o proyecto. Respondo en 24–48 h.</p>
                 <ul class="contact-actions">
-                  <li>
-                    <a
-                      href="mailto:ossandon.t20@gmail.com?subject=Oportunidad%20laboral%20%E2%80%94%20Portafolio&body=Hola%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20conversar%20sobre..."
-                      class="button primary"
-                    >
-                      <span class="icon solid fa-envelope" aria-hidden="true"></span>
-                      Enviar correo
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://github.com/tam210"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="button"
-                    >
-                      <span class="icon brands fa-github" aria-hidden="true"></span>
-                      Ver GitHub
-                    </a>
-                  </li>
+                  <li><a href="mailto:ossandon.t20@gmail.com?subject=Oportunidad%20laboral" class="button primary"><span class="icon solid fa-envelope" aria-hidden="true"></span> Enviar correo</a></li>
                 </ul>
-                <p class="contact-email-hint">
-                  <span class="icon solid fa-envelope" aria-hidden="true"></span>
-                  ossandon.t20@gmail.com
-                </p>
-                <p class="contact-note">CV y referencias disponibles bajo solicitud.</p>
+                <p class="contact-note">CV y referencias bajo solicitud.</p>
               </aside>
             </div>
           </div>
         </section>
 
-        <section id="four" class="reveal">
+        <!-- QUOTE -->
+        <section id="four" class="reveal section-block">
           <div class="container">
             <div class="closing-panel">
-              <div class="closing-pitch">
+              <div class="closing-pitch tilt-card stagger-item">
                 <p class="closing-eyebrow">Por qué contratarme</p>
-                <h2 class="closing-title">
-                  Código que llega a producción, no solo a la demo
-                </h2>
+                <h2 class="closing-title">Software que controla la complejidad operativa</h2>
                 <ul class="closing-points">
-                  <li>
-                    <span class="icon solid fa-check" aria-hidden="true"></span>
-                    Experiencia entregando <strong>SaaS</strong>, microservicios y
-                    automatización en entornos reales
-                  </li>
-                  <li>
-                    <span class="icon solid fa-check" aria-hidden="true"></span>
-                    Perfil <strong>end‑to‑end</strong>: requerimientos, desarrollo, pruebas y
-                    despliegue en la nube
-                  </li>
-                  <li>
-                    <span class="icon solid fa-check" aria-hidden="true"></span>
-                    Comunicación clara con equipos técnicos y de negocio
-                  </li>
+                  <li><span class="icon solid fa-check" aria-hidden="true"></span> SaaS y apps móviles <strong>en producción</strong></li>
+                  <li><span class="icon solid fa-check" aria-hidden="true"></span> Perfil <strong>end‑to‑end</strong> con despliegue cloud</li>
+                  <li><span class="icon solid fa-check" aria-hidden="true"></span> Comunicación con equipos de negocio y terreno</li>
                 </ul>
-                <a
-                  href="mailto:ossandon.t20@gmail.com?subject=Oportunidad%20laboral%20%E2%80%94%20Portafolio"
-                  class="button primary"
-                >
-                  <span class="icon solid fa-paper-plane" aria-hidden="true"></span>
-                  Contactar ahora
-                </a>
+                <a href="mailto:ossandon.t20@gmail.com?subject=Oportunidad%20laboral" class="button primary"><span class="icon solid fa-paper-plane" aria-hidden="true"></span> Contactar</a>
               </div>
-
-              <blockquote class="closing-quote" cite="https://en.wikipedia.org/wiki/Alan_Kay">
-                <span class="closing-quote-mark" aria-hidden="true">“</span>
-                <p>
-                  El mejor modo de predecir el futuro es inventarlo — y en software eso
-                  significa construir, medir y mejorar lo que ya está en manos de los usuarios.
-                </p>
+              <blockquote class="closing-quote stagger-item">
+                <span class="closing-quote-mark" aria-hidden="true">"</span>
+                <p>El propósito de la ingeniería de software es controlar la complejidad, no crearla.</p>
                 <footer>
-                  <span class="closing-quote-author">Inspirado en Alan Kay</span>
-                  <span class="closing-quote-tag">Producto · Ingeniería · Impacto</span>
+                  <span class="closing-quote-author">Pamela Zave</span>
+                  <span class="closing-quote-tag">Científica de la computación · Arquitectura de sistemas</span>
                 </footer>
               </blockquote>
             </div>
@@ -618,10 +573,8 @@
       </main>
 
       <section id="footer">
-        <div class="container">
-          <ul class="copyright">
-            <li>&copy; Todos los derechos reservados.</li>
-          </ul>
+        <div class="container footer-simple">
+          <p class="copyright">&copy; Tamara Ossandón</p>
         </div>
       </section>
     </div>
@@ -633,5 +586,6 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/portfolio.js"></script>
   </body>
 </html>
