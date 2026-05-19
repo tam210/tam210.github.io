@@ -124,8 +124,7 @@
 		// Title Bar.
 			$titleBar = $(
 				'<div id="titleBar">' +
-					'<a href="#header" class="toggle"></a>' +
-					'<span class="title">' + $('#logo').html() + '</span>' +
+					'<a href="#header" class="toggle" aria-label="Abrir menú"></a>' +
 				'</div>'
 			)
 				.appendTo($body);
@@ -146,14 +145,27 @@
 	// Scrolly.
 		$('.scrolly').scrolly({
 			speed: 400,
-			offset: function() {
-
-				if (breakpoints.active('<=medium'))
-					return $titleBar.height();
-
-				return 0;
-
-			}
+			offset: 0
 		});
+
+	// Reveal sections on scroll.
+		if ('IntersectionObserver' in window) {
+			var revealObserver = new IntersectionObserver(function(entries) {
+				entries.forEach(function(entry) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('is-visible');
+						revealObserver.unobserve(entry.target);
+					}
+				});
+			}, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+			document.querySelectorAll('.reveal').forEach(function(el) {
+				revealObserver.observe(el);
+			});
+		} else {
+			document.querySelectorAll('.reveal').forEach(function(el) {
+				el.classList.add('is-visible');
+			});
+		}
 
 })(jQuery);
