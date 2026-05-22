@@ -20,9 +20,9 @@
 	--border-strong: rgba(255, 255, 255, 0.18);
 	--border-accent: rgba(0, 229, 160, 0.35);
 	--amber: #f0b429;
-	--font-display: "Syne", sans-serif;
-	--font-mono: "IBM Plex Mono", monospace;
-	--font-body: "Inter", sans-serif;
+	--font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+	--font-mono: "IBM Plex Mono", ui-monospace, monospace;
+	--font-sans: var(--font-body);
 	--max-w: 1100px;
 	--nav-h: 64px;
 }
@@ -30,16 +30,29 @@
 html {
 	scroll-behavior: smooth;
 	scroll-padding-top: calc(var(--nav-h) + 16px);
+	background-color: var(--bg-0);
+	color-scheme: dark;
 }
 
 body {
 	background: var(--bg-0) !important;
 	color: var(--text-primary);
-	font-family: var(--font-body);
+	font-family: var(--font-body) !important;
 	font-size: 16px;
 	line-height: 1.7;
 	-webkit-font-smoothing: antialiased;
 	overflow-x: hidden;
+}
+
+body,
+input,
+select,
+textarea,
+button,
+#wrapper,
+#main,
+#header {
+	font-family: var(--font-body) !important;
 }
 
 body::before {
@@ -64,8 +77,14 @@ h1,
 h2,
 h3,
 h4,
-.section-subtitle {
-	font-family: var(--font-display);
+.section-subtitle,
+.hero-name,
+.hero-headline,
+.project-title,
+.contact-panel h2,
+#header h1 {
+	font-family: var(--font-body) !important;
+	letter-spacing: -0.02em;
 }
 
 .mono {
@@ -208,6 +227,10 @@ a:hover {
 	padding: 0 24px;
 }
 
+#wrapper {
+	background: var(--bg-0) !important;
+}
+
 #main > section {
 	border-top: 0 !important;
 	background: transparent !important;
@@ -295,6 +318,16 @@ a:hover {
 	animation: fadeSlideUp 0.6s 0.1s ease both;
 }
 
+.hero-headline {
+	font-size: clamp(20px, 3vw, 26px);
+	font-weight: 600;
+	line-height: 1.45;
+	color: var(--text-primary);
+	margin: 0 0 16px;
+	max-width: 520px;
+	animation: fadeSlideUp 0.6s 0.2s ease both;
+}
+
 .hero-tagline {
 	font-size: clamp(20px, 3vw, 28px);
 	font-weight: 600;
@@ -327,8 +360,8 @@ a:hover {
 	color: var(--text-secondary);
 	line-height: 1.7;
 	margin: 0 0 36px;
-	max-width: 480px;
-	animation: fadeSlideUp 0.6s 0.3s ease both;
+	max-width: 520px;
+	animation: fadeSlideUp 0.6s 0.28s ease both;
 }
 
 .hero-ctas {
@@ -483,11 +516,23 @@ a:hover {
 .stat-card {
 	background: var(--bg-1);
 	padding: 28px 24px;
-	transition: background 0.2s;
+	transition:
+		background 0.25s ease,
+		transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .stat-card:hover {
 	background: var(--bg-2);
+	transform: translateY(-2px);
+}
+
+.stat-card--text .stat-tagline {
+	font-size: 22px;
+	font-weight: 600;
+	color: var(--accent);
+	line-height: 1.3;
+	margin-bottom: 6px;
+	letter-spacing: 0.02em;
 }
 
 .stat-number {
@@ -519,6 +564,7 @@ a:hover {
 	color: var(--text-primary);
 	margin: 0 0 12px;
 	border: 0;
+	letter-spacing: -0.02em;
 }
 
 .section-lead {
@@ -565,7 +611,8 @@ a:hover {
 .project-card:hover {
 	border-color: var(--border-accent);
 	background: var(--bg-3);
-	transform: translateX(4px);
+	transform: translateY(-2px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .project-card.featured {
@@ -574,7 +621,7 @@ a:hover {
 }
 
 .project-card.featured::before {
-	content: "★ Destacado";
+	content: "Proyecto reciente";
 	font-family: var(--font-mono);
 	font-size: 10px;
 	color: var(--accent);
@@ -986,6 +1033,17 @@ html.has-custom-cursor * {
 
 /* —— Mobile: barra inferior + layout —— */
 @media (max-width: 1024px) {
+	html,
+	body,
+	#wrapper,
+	#main,
+	#main > section,
+	.site-footer,
+	#footer.site-footer {
+		background: var(--bg-0) !important;
+		background-color: var(--bg-0) !important;
+	}
+
 	body::before {
 		display: none;
 	}
@@ -1084,7 +1142,8 @@ html.has-custom-cursor * {
 
 	#header > nav ul li a:hover,
 	#header > nav ul li a.nav-active,
-	#header > nav ul li a.active {
+	#header > nav ul li a.active,
+	#header > nav ul li a.active-locked {
 		color: var(--accent) !important;
 		background: var(--accent-glow) !important;
 	}
@@ -1094,6 +1153,7 @@ html.has-custom-cursor * {
 		padding-top: 0 !important;
 		padding-bottom: calc(var(--mobile-nav-h) + env(safe-area-inset-bottom, 0px)) !important;
 		transform: none !important;
+		background: var(--bg-0) !important;
 	}
 
 	body.header-visible #wrapper,
@@ -1126,15 +1186,16 @@ html.has-custom-cursor * {
 		font-size: clamp(40px, 11vw, 64px);
 	}
 
+	.hero-headline {
+		font-size: clamp(17px, 4.5vw, 22px);
+		margin-left: auto;
+		margin-right: auto;
+	}
+
 	.hero-tagline {
 		font-size: clamp(17px, 4.5vw, 22px);
 		min-height: 2.6em;
 		line-height: 1.35;
-	}
-
-	#rotating-text {
-		display: inline;
-		word-break: break-word;
 	}
 
 	.hero-right {

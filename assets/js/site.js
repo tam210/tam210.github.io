@@ -5,57 +5,6 @@
   var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   var isCompactNav = window.matchMedia("(max-width: 1024px)").matches;
 
-  /* —— Texto rotante (typewriter) —— */
-  (function initRotatingText() {
-    var el = document.getElementById("rotating-text");
-    if (!el) return;
-
-    var words = [
-      "software operacional.",
-      "apps móviles de terreno.",
-      "plataformas SaaS.",
-      "automatización de procesos.",
-      "APIs y microservicios.",
-      "dashboards y reportes.",
-    ];
-
-    if (reducedMotion || isCompactNav) {
-      var wi = 0;
-      el.textContent = words[0];
-      if (isCompactNav && !reducedMotion) {
-        setInterval(function () {
-          wi = (wi + 1) % words.length;
-          el.textContent = words[wi];
-        }, 3200);
-      }
-      return;
-    }
-
-    var i = 0;
-    var ci = 0;
-    var deleting = false;
-
-    function tick() {
-      var word = words[i];
-      if (!deleting) {
-        el.textContent = word.slice(0, ++ci);
-        if (ci === word.length) {
-          deleting = true;
-          return setTimeout(tick, 2000);
-        }
-        return setTimeout(tick, 80);
-      }
-      el.textContent = word.slice(0, --ci);
-      if (ci === 0) {
-        deleting = false;
-        i = (i + 1) % words.length;
-      }
-      setTimeout(tick, 40);
-    }
-
-    tick();
-  })();
-
   /* —— Contadores stats —— */
   function animateCounter(node, target, suffix) {
     var duration = 1400;
@@ -133,6 +82,12 @@
     }
 
     document.querySelectorAll(".reveal:not(.project-card):not(.skill-item)").forEach(function (el) {
+      revealObs.observe(el);
+    });
+
+    document.querySelectorAll(".stat-card").forEach(function (el, i) {
+      el.classList.add("reveal");
+      el.style.transitionDelay = i * 0.06 + "s";
       revealObs.observe(el);
     });
   } else {
