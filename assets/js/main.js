@@ -11,7 +11,13 @@
 		$header = $('#header'),
 		$titleBar = null,
 		$nav = $('#nav'),
-		$wrapper = $('#wrapper');
+		$wrapper = $('#wrapper'),
+		isCompactNav = window.matchMedia('(max-width: 1024px)').matches;
+
+	if (isCompactNav) {
+		$body.addClass('mobile-bottom-nav');
+		$body.removeClass('is-preload');
+	}
 
 	// Breakpoints.
 		breakpoints({
@@ -88,6 +94,9 @@
 						if ($section.length < 1)
 							return;
 
+					if (isCompactNav)
+						return;
+
 					// Scrollex.
 						$section.scrollex({
 							mode: 'middle',
@@ -121,7 +130,7 @@
 
 				});
 
-		// Title Bar.
+		if (!isCompactNav) {
 			$titleBar = $(
 				'<div id="titleBar">' +
 					'<a href="#header" class="toggle" aria-label="Abrir menú"></a>' +
@@ -129,7 +138,6 @@
 			)
 				.appendTo($body);
 
-		// Panel.
 			$header
 				.panel({
 					delay: 200,
@@ -141,15 +149,16 @@
 					target: $body,
 					visibleClass: 'header-visible'
 				});
+		}
 
 	// Scrolly.
 		$('.scrolly').scrolly({
-			speed: 400,
+			speed: isCompactNav ? 300 : 400,
 			offset: 0
 		});
 
-	// Reveal sections on scroll.
-		if ('IntersectionObserver' in window) {
+	// Reveal sections on scroll (site.js handles .reveal on compact nav).
+		if (!isCompactNav && 'IntersectionObserver' in window) {
 			var revealObserver = new IntersectionObserver(function(entries) {
 				entries.forEach(function(entry) {
 					if (entry.isIntersecting) {

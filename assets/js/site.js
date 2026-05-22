@@ -3,6 +3,7 @@
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  var isCompactNav = window.matchMedia("(max-width: 1024px)").matches;
 
   /* —— Texto rotante (typewriter) —— */
   (function initRotatingText() {
@@ -18,8 +19,15 @@
       "dashboards y reportes.",
     ];
 
-    if (reducedMotion) {
+    if (reducedMotion || isCompactNav) {
+      var wi = 0;
       el.textContent = words[0];
+      if (isCompactNav && !reducedMotion) {
+        setInterval(function () {
+          wi = (wi + 1) % words.length;
+          el.textContent = words[wi];
+        }, 3200);
+      }
       return;
     }
 
@@ -97,20 +105,32 @@
           revealObs.unobserve(entry.target);
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+      { threshold: isCompactNav ? 0.04 : 0.08, rootMargin: isCompactNav ? "0px 0px 0px 0px" : "0px 0px -40px 0px" }
     );
 
-    document.querySelectorAll(".project-card").forEach(function (el, i) {
-      el.classList.add("reveal");
-      el.style.transitionDelay = i * 0.07 + "s";
-      revealObs.observe(el);
-    });
+    if (!isCompactNav) {
+      document.querySelectorAll(".project-card").forEach(function (el, i) {
+        el.classList.add("reveal");
+        el.style.transitionDelay = i * 0.07 + "s";
+        revealObs.observe(el);
+      });
+    } else {
+      document.querySelectorAll(".project-card").forEach(function (el) {
+        el.classList.add("visible");
+      });
+    }
 
-    document.querySelectorAll(".skill-item").forEach(function (el, i) {
-      el.classList.add("reveal");
-      el.style.transitionDelay = (i % 7) * 0.05 + "s";
-      revealObs.observe(el);
-    });
+    if (!isCompactNav) {
+      document.querySelectorAll(".skill-item").forEach(function (el, i) {
+        el.classList.add("reveal");
+        el.style.transitionDelay = (i % 7) * 0.05 + "s";
+        revealObs.observe(el);
+      });
+    } else {
+      document.querySelectorAll(".skill-item").forEach(function (el) {
+        el.classList.add("visible");
+      });
+    }
 
     document.querySelectorAll(".reveal:not(.project-card):not(.skill-item)").forEach(function (el) {
       revealObs.observe(el);
@@ -231,6 +251,10 @@
         ring.style.opacity = "0.5";
       });
     });
+  }
+
+  if (isCompactNav) {
+    document.body.classList.remove("is-preload");
   }
 
   window.addEventListener("load", function () {
