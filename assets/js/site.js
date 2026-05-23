@@ -345,8 +345,12 @@
   /* —— Tilt 3D —— */
   if (finePointer && !reducedMotion) {
     document.querySelectorAll("[data-tilt]").forEach(function (wrap) {
-      var inner = wrap.querySelector(".hero-photo-card") || wrap;
-      var max = wrap.classList.contains("hero-photo-wrap") ? 10 : 6;
+      var inner =
+        wrap.querySelector(".hero-portrait-tilt") ||
+        wrap.querySelector(".hero-photo") ||
+        wrap.querySelector("img") ||
+        wrap;
+      var max = wrap.classList.contains("hero-portrait") ? 5 : 6;
       wrap.addEventListener("mousemove", function (e) {
         var r = wrap.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width - 0.5;
