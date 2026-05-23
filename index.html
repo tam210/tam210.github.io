@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#080c10" />
+    <meta name="theme-color" content="#0F172A" />
     <meta name="description" content="Desarrolladora full-stack. Plataformas web, apps móviles y automatizaciones para procesos reales de trabajo. Laravel · Vue · React Native · GCP." />
     <meta name="author" content="Tamara Ossandón" />
     <meta name="robots" content="index, follow" />
@@ -28,7 +28,20 @@
     <link rel="stylesheet" href="assets/css/site.css" />
   </head>
   <body class="is-preload">
-    <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span></div>
+    <div class="scroll-progress" aria-hidden="true">
+      <span class="scroll-progress-glow" aria-hidden="true"></span>
+      <span class="scroll-progress-bar"></span>
+    </div>
+    <aside class="scroll-timeline" aria-label="Progreso por sección" aria-hidden="true">
+      <div class="scroll-timeline-track"><span class="scroll-timeline-fill"></span></div>
+      <ul class="scroll-timeline-dots"></ul>
+    </aside>
+    <div class="custom-cursor" aria-hidden="true">
+      <span class="cursor-halo"></span>
+      <span class="cursor-ring"></span>
+      <span class="cursor-dot"></span>
+    </div>
+    <div class="cursor-particles" aria-hidden="true"></div>
     <a class="skip-link" href="#main">Saltar al contenido</a>
 
     <section id="header" aria-label="Navegación">
@@ -39,6 +52,7 @@
         <p>Full‑stack · Web · Móvil · GCP</p>
       </header>
       <nav id="nav" aria-label="Secciones">
+        <span class="nav-indicator" aria-hidden="true"></span>
         <ul>
           <li><a href="#one" class="active">Inicio</a></li>
           <li><a href="#about-work">Sobre mí</a></li>
@@ -60,37 +74,47 @@
     <div id="wrapper">
       <main id="main">
         <section id="one" class="hero-wrap">
+          <div class="hero-aurora" aria-hidden="true"></div>
+          <div class="hero-mesh" aria-hidden="true"></div>
           <div class="site-container">
             <div class="hero-section">
               <div class="hero-left">
-                <div class="hero-tag mono"><span class="dot"></span> Disponible · Full-stack</div>
+                <div class="hero-tag mono"><span class="dot pulse-dot"></span> Disponible · Full-stack</div>
                 <h1 class="hero-name">Tamara<br />Ossandón</h1>
-                <p class="hero-headline">
-                  Desarrollo plataformas web, apps móviles y automatizaciones que ayudan a ordenar procesos reales de trabajo.
+                <p class="hero-memorable">
+                  Diseño y construyo software que convierte procesos complejos en productos claros, útiles y escalables.
+                </p>
+                <p class="hero-tagline" aria-live="polite">
+                  <span class="hero-prefix">Construyo </span>
+                  <span class="hero-typed">
+                    <span id="typed" class="hero-typed-text" data-typed></span><span class="cursor-type" aria-hidden="true">|</span>
+                  </span>
                 </p>
                 <p class="hero-desc">
-                  Me especializo en soluciones que los equipos realmente usan: terreno, reportes, combustible, mantención, aprobaciones, datos y operación diaria.
+                  Plataformas web, apps móviles, automatización y cloud para equipos en terreno, oficina y gerencia.
                 </p>
                 <div class="hero-ctas">
-                  <a href="#three" class="cta-primary scrolly">Ver experiencia →</a>
-                  <a href="#contact" class="cta-secondary scrolly">Conversemos</a>
+                  <a href="#three" class="cta-primary scrolly btn-magnetic" data-magnetic>Ver experiencia <span class="cta-arrow" aria-hidden="true">→</span></a>
+                  <a href="#contact" class="cta-secondary scrolly btn-magnetic" data-magnetic>Conversemos</a>
                 </div>
-                <div class="hero-socials">
-                  <a href="https://github.com/tam210/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <div class="hero-socials" role="list" aria-label="Redes y contacto">
+                  <a href="https://github.com/tam210/" target="_blank" rel="noopener noreferrer" aria-label="GitHub" role="listitem">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.76.5 12.04c0 5.09 3.29 9.4 7.86 10.93.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.91-.39c.99 0 1.98.13 2.91.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.43-2.71 5.41-5.29 5.69.42.36.8 1.08.8 2.18 0 1.58-.01 2.85-.01 3.24 0 .31.21.67.8.56A10.55 10.55 0 0 0 23.5 12.04C23.5 5.76 18.27.5 12 .5z"/></svg>
                   </a>
-                  <a href="https://www.linkedin.com/in/tamara-ossandon/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <a href="https://www.linkedin.com/in/tamara-ossandon/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" role="listitem">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.65-1.85 3.4-1.85 3.64 0 4.31 2.39 4.31 5.5v6.24zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>
                   </a>
-                  <a href="mailto:ossandon.t20@gmail.com" aria-label="Email">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <a href="mailto:ossandon.t20@gmail.com" aria-label="Email" role="listitem">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-2 4.3-6 3.75L6 8.3V6l6 3.75L18 6v2.3z"/></svg>
                   </a>
                 </div>
               </div>
               <div class="hero-right">
-                <div class="hero-photo-wrap">
+                <div class="hero-photo-wrap" data-tilt>
                   <div class="hero-photo-glow" aria-hidden="true"></div>
-                  <img src="images/pf1.jpeg" alt="Tamara Ossandón" class="hero-photo" width="280" height="280" fetchpriority="high" decoding="async" />
+                  <div class="hero-photo-card">
+                    <img src="images/pf1.jpeg" alt="Tamara Ossandón" class="hero-photo" width="280" height="280" fetchpriority="high" decoding="async" />
+                  </div>
                 </div>
                 <div class="hero-badge mono">GCP · Laravel · Vue · RN</div>
               </div>
@@ -101,10 +125,6 @@
         <section class="stats-section reveal">
           <div class="site-container">
             <div class="stats-grid">
-              <div class="stat-card" data-target="5" data-suffix="+">
-                <div class="stat-number mono" data-counter>0</div>
-                <div class="stat-label">Proyectos desplegados y en uso</div>
-              </div>
               <div class="stat-card" data-target="4" data-suffix="+">
                 <div class="stat-number mono" data-counter>0</div>
                 <div class="stat-label">Años desarrollando software</div>
@@ -112,10 +132,6 @@
               <div class="stat-card stat-card--text">
                 <div class="stat-tagline mono">Web · Móvil · Cloud</div>
                 <div class="stat-label">Stack que llevo de punta a punta</div>
-              </div>
-              <div class="stat-card" data-target="3" data-suffix="">
-                <div class="stat-number mono" data-counter>0</div>
-                <div class="stat-label">Despliegues en Google Cloud</div>
               </div>
             </div>
           </div>
@@ -136,11 +152,36 @@
 
         <section id="three" class="experience-section">
           <div class="site-container">
-            <p class="section-eyebrow mono">Proyectos</p>
-            <h2 class="section-subtitle">Experiencia</h2>
-            <p class="section-lead">Proyectos donde el software se usa de verdad en el día a día</p>
+            <p class="section-eyebrow mono reveal">Proyectos</p>
+            <h2 class="section-subtitle reveal">Experiencia</h2>
+            <p class="section-lead reveal">Proyectos donde el software se usa de verdad en el día a día</p>
 
-            <div class="project-card featured">
+            <div class="experience-timeline reveal">
+              <div class="timeline-rail" aria-hidden="true"><span class="timeline-rail-fill"></span></div>
+              <div class="timeline-projects">
+
+            <div class="project-card" data-tilt>
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <div class="project-header">
+                <div class="project-company">
+                  <img src="images/construckit-logo.png" alt="" class="company-logo" width="36" height="36" loading="lazy" decoding="async" />
+                  <span class="company-name mono">ConstruckIT</span>
+                </div>
+                <span class="project-year mono">2026 · Actualidad</span>
+              </div>
+              <h3 class="project-title">Suite multiempresa para operación en obra</h3>
+              <div class="project-psi">
+                <div class="psi-block"><div class="psi-label mono">Contexto</div><p class="psi-text">ConstruckIT comercializa un SaaS multi-tenant en producción para operación en obra.</p></div>
+                <div class="psi-block"><div class="psi-label mono">Qué hice</div><p class="psi-text">Participé en el diseño y desarrollo: arquitectura multi-tenant, API en Laravel, panel con Inertia, app React Native con cola offline, RBAC, módulos de reportes, combustible y mantención, y despliegues en Cloud Run.</p></div>
+                <div class="psi-block impact"><div class="psi-label mono">Resultado</div><p class="psi-text">SaaS en producción, con uso diario en campo y administración por varias empresas.</p></div>
+              </div>
+              <div class="tech-chips">
+                <span class="chip mono">Laravel</span><span class="chip mono">Vue / Inertia</span><span class="chip mono">React Native</span><span class="chip mono">Multi-tenant</span><span class="chip mono">GCP</span><span class="chip mono">RBAC</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-tilt>
+              <span class="timeline-marker" aria-hidden="true"></span>
               <div class="project-header">
                 <div class="project-company">
                   <img src="images/duffco-logo.jpeg" alt="" class="company-logo" width="36" height="36" loading="lazy" decoding="async" />
@@ -151,15 +192,16 @@
               <h3 class="project-title">Plataforma web y móvil para constructoras</h3>
               <div class="project-psi">
                 <div class="psi-block"><div class="psi-label mono">Contexto</div><p class="psi-text">En obra, mucha información seguía en planillas, WhatsApp y registros sueltos.</p></div>
-                <div class="psi-block"><div class="psi-label mono">Qué hice</div><p class="psi-text">En Duffco desarrollé una plataforma web y móvil para la operación diaria de empresas constructoras: reportes de terreno, combustible, maquinarias, mantenciones, usuarios, roles y aprobaciones. Integré frontend, backend, app móvil y despliegue en Google Cloud.</p></div>
-                <div class="psi-block impact"><div class="psi-label mono">Resultado</div><p class="psi-text">Un solo lugar para la operación diaria, con menos Excel y más claridad para terreno y jefatura.</p></div>
+                <div class="psi-block"><div class="psi-label mono">Qué hice</div><p class="psi-text">SaaS web y móvil offline first para terreno: registro operativo, alertas de fugas y consumo anómalo de combustible, cobros automatizados, costos por obra y maquinaria, cruce de datos, informes y gráficos para gerencia, y aprobaciones por rol.</p></div>
+                <div class="psi-block impact"><div class="psi-label mono">Resultado</div><p class="psi-text">Menos Excel y pérdidas por combustible, con operación, cobros y costos más visibles para terreno y gerencia.</p></div>
               </div>
               <div class="tech-chips">
-                <span class="chip mono">Laravel</span><span class="chip mono">Vue / Inertia</span><span class="chip mono">React Native</span><span class="chip mono">GCP</span><span class="chip mono">Cloud Run</span><span class="chip mono">Cloud SQL</span><span class="chip mono">MySQL</span><span class="chip mono">Tailwind</span>
+                <span class="chip mono">Laravel</span><span class="chip mono">Vue / Inertia</span><span class="chip mono">React Native</span><span class="chip mono">GCP</span><span class="chip mono">Cloud Run</span><span class="chip mono">Cloud SQL</span><span class="chip mono">MySQL</span>
               </div>
             </div>
 
-            <div class="project-card featured">
+            <div class="project-card featured" data-tilt>
+              <span class="timeline-marker" aria-hidden="true"></span>
               <div class="project-header">
                 <div class="project-company">
                   <img src="images/stracon-tech-logo.jpeg" alt="" class="company-logo" width="36" height="36" loading="lazy" decoding="async" />
@@ -178,7 +220,8 @@
               </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" data-tilt>
+              <span class="timeline-marker" aria-hidden="true"></span>
               <div class="project-header">
                 <div class="project-company">
                   <img src="images/stracon-tech-logo.jpeg" alt="" class="company-logo" width="36" height="36" loading="lazy" decoding="async" />
@@ -197,7 +240,8 @@
               </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" data-tilt>
+              <span class="timeline-marker" aria-hidden="true"></span>
               <div class="project-header">
                 <div class="project-company">
                   <img src="images/dem-logo.jpg" alt="" class="company-logo" width="36" height="36" loading="lazy" decoding="async" />
@@ -216,7 +260,8 @@
               </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" data-tilt>
+              <span class="timeline-marker" aria-hidden="true"></span>
               <div class="project-header">
                 <div class="project-company">
                   <img src="images/dem-logo.jpg" alt="" class="company-logo" width="36" height="36" loading="lazy" decoding="async" />
@@ -235,7 +280,8 @@
               </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" data-tilt>
+              <span class="timeline-marker" aria-hidden="true"></span>
               <div class="project-header">
                 <div class="project-company">
                   <img src="images/dem-logo.jpg" alt="" class="company-logo" width="36" height="36" loading="lazy" decoding="async" />
@@ -254,7 +300,8 @@
               </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" data-tilt>
+              <span class="timeline-marker" aria-hidden="true"></span>
               <div class="project-header">
                 <div class="project-company">
                   <img src="images/agrofamily-logo.png" alt="" class="company-logo" width="36" height="36" loading="lazy" decoding="async" />
@@ -273,7 +320,8 @@
               </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" data-tilt>
+              <span class="timeline-marker" aria-hidden="true"></span>
               <div class="project-header">
                 <div class="project-company">
                   <img src="images/stracon-tech-logo.jpeg" alt="" class="company-logo" width="36" height="36" loading="lazy" decoding="async" />
@@ -291,74 +339,79 @@
                 <span class="chip mono">TypeScript</span><span class="chip mono">NestJS</span><span class="chip mono">React</span><span class="chip mono">PostgreSQL</span><span class="chip mono">Python</span>
               </div>
             </div>
+
+              </div>
+            </div>
+
           </div>
         </section>
 
         <section id="two" class="skills-section">
           <div class="site-container">
-            <p class="section-eyebrow mono">Tecnologías</p>
-            <h2 class="section-subtitle">Lo que uso en producción</h2>
-            <p class="skills-desc">Herramientas con las que he construido y desplegado proyectos reales</p>
+            <p class="section-eyebrow mono reveal">Tecnologías</p>
+            <h2 class="section-subtitle reveal">Lo que uso en producción</h2>
+            <p class="skills-desc reveal">Herramientas con las que he construido y desplegado proyectos reales</p>
 
-            <div class="skills-group">
-              <div class="skills-group-label mono">Día a día</div>
-              <div class="skills-grid primary">
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/laravel/ff2d20" alt="" loading="lazy" /></div><span class="skill-name mono">Laravel</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/vuedotjs/4fc08d" alt="" loading="lazy" /></div><span class="skill-name mono">Vue.js</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/react/61dafb" alt="" loading="lazy" /></div><span class="skill-name mono">React Native</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/mysql/4479a1" alt="" loading="lazy" /></div><span class="skill-name mono">MySQL</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/googlecloud/4285f4" alt="" loading="lazy" /></div><span class="skill-name mono">Google Cloud</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/docker/2496ed" alt="" loading="lazy" /></div><span class="skill-name mono">Docker</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/tailwindcss/06b6d4" alt="" loading="lazy" /></div><span class="skill-name mono">Tailwind CSS</span></div>
-              </div>
+            <div class="skills-meta reveal">
+              <p class="skills-count mono" id="skills-count" aria-live="polite"></p>
             </div>
 
-            <div class="skills-group">
-              <div class="skills-group-label mono">También he trabajado con</div>
-              <div class="skills-grid secondary">
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/nestjs/e0234e" alt="" loading="lazy" /></div><span class="skill-name mono">NestJS</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/flask/9ca3af" alt="" loading="lazy" /></div><span class="skill-name mono">Flask</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/powerapps.svg" alt="" loading="lazy" style="filter:brightness(0) invert(0.75)" /></div><span class="skill-name mono">Power Apps</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/postgresql/4169e1" alt="" loading="lazy" /></div><span class="skill-name mono">PostgreSQL</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/python/3776ab" alt="" loading="lazy" /></div><span class="skill-name mono">Python</span></div>
-              </div>
+            <div class="skills-filters reveal" role="tablist" aria-label="Filtrar por categoría">
+              <button type="button" class="skills-filter active" data-filter="all" role="tab" aria-selected="true">Todas</button>
+              <button type="button" class="skills-filter" data-filter="core" role="tab" aria-selected="false">Core stack</button>
+              <button type="button" class="skills-filter" data-filter="mobile" role="tab" aria-selected="false">Mobile &amp; offline</button>
+              <button type="button" class="skills-filter" data-filter="cloud" role="tab" aria-selected="false">Cloud &amp; DevOps</button>
+              <button type="button" class="skills-filter" data-filter="data" role="tab" aria-selected="false">Data &amp; automation</button>
+              <button type="button" class="skills-filter" data-filter="backend" role="tab" aria-selected="false">Backend &amp; API</button>
             </div>
 
-            <div class="skills-group">
-              <div class="skills-group-label mono">Otros</div>
-              <div class="skills-grid tertiary">
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/graphql/e10098" alt="" loading="lazy" /></div><span class="skill-name mono">GraphQL</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/rabbitmq/ff6600" alt="" loading="lazy" /></div><span class="skill-name mono">RabbitMQ</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/angular/dd0031" alt="" loading="lazy" /></div><span class="skill-name mono">Angular</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/react/61dafb" alt="" loading="lazy" /></div><span class="skill-name mono">React</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/go/00add8" alt="" loading="lazy" /></div><span class="skill-name mono">Go</span></div>
-                <div class="skill-item"><div class="skill-icon"><img src="https://cdn.simpleicons.org/git/f05032" alt="" loading="lazy" /></div><span class="skill-name mono">Git</span></div>
+            <div class="skills-stage reveal" id="skills-stage">
+              <div class="skills-stage-header">
+                <p class="skills-stage-label">Stack en producción</p>
+                <p class="skills-stage-hint">Pasa el cursor sobre cada tarjeta para ver el contexto</p>
               </div>
+              <div class="skills-grid-interactive" id="skills-grid" role="list">
+                <div class="skill-chip skill-chip--core" role="listitem" data-category="core" data-tip="Backend principal en SaaS operacional"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/laravel/ff2d20" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">Laravel</span></div>
+                <div class="skill-chip skill-chip--core" role="listitem" data-category="core" data-tip="Interfaces web con Inertia y Tailwind"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/vuedotjs/4fc08d" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">Vue.js</span></div>
+                <div class="skill-chip skill-chip--core" role="listitem" data-category="mobile core" data-tip="Apps offline-first para terreno"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/react/61dafb" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">React Native</span></div>
+                <div class="skill-chip skill-chip--core" role="listitem" data-category="cloud core" data-tip="Cloud Run, Cloud SQL, Artifact Registry"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/googlecloud/4285f4" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">Google Cloud</span></div>
+                <div class="skill-chip" role="listitem" data-category="core backend" data-tip="Base de datos en producción"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/mysql/4479a1" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">MySQL</span></div>
+                <div class="skill-chip" role="listitem" data-category="cloud" data-tip="Contenedores y despliegues"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/docker/2496ed" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">Docker</span></div>
+                <div class="skill-chip" role="listitem" data-category="core" data-tip="UI rápida y consistente"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/tailwindcss/06b6d4" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">Tailwind</span></div>
+                <div class="skill-chip" role="listitem" data-category="backend" data-tip="APIs y microservicios"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/nestjs/e0234e" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">NestJS</span></div>
+                <div class="skill-chip" role="listitem" data-category="backend data" data-tip="Portales y automatización ligera"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/flask/9ca3af" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">Flask</span></div>
+                <div class="skill-chip" role="listitem" data-category="data" data-tip="Automatización en Microsoft 365"><span class="skill-chip-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/powerapps.svg" alt="" width="26" height="26" loading="lazy" style="filter:brightness(0) invert(0.75)" /></span><span class="skill-chip-name mono">Power Apps</span></div>
+                <div class="skill-chip" role="listitem" data-category="backend data" data-tip="Reportes y ETL"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/postgresql/4169e1" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">PostgreSQL</span></div>
+                <div class="skill-chip" role="listitem" data-category="data backend" data-tip="Scripts, ETL y análisis"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/python/3776ab" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">Python</span></div>
+                <div class="skill-chip" role="listitem" data-category="backend" data-tip="APIs flexibles"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/graphql/e10098" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">GraphQL</span></div>
+                <div class="skill-chip" role="listitem" data-category="backend data" data-tip="Mensajería asíncrona"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/rabbitmq/ff6600" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">RabbitMQ</span></div>
+                <div class="skill-chip" role="listitem" data-category="core" data-tip="Frontends corporativos"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/angular/dd0031" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">Angular</span></div>
+                <div class="skill-chip" role="listitem" data-category="core" data-tip="Dashboards y SPAs"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/react/61dafb" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">React</span></div>
+                <div class="skill-chip" role="listitem" data-category="backend" data-tip="Microservicios de alto rendimiento"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/go/00add8" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">Go</span></div>
+                <div class="skill-chip" role="listitem" data-category="cloud" data-tip="Control de versiones y CI"><span class="skill-chip-icon"><img src="https://cdn.simpleicons.org/git/f05032" alt="" width="26" height="26" loading="lazy" /></span><span class="skill-chip-name mono">Git</span></div>
+              </div>
+              <p class="skills-empty" id="skills-empty" hidden>No hay tecnologías en esta categoría.</p>
             </div>
 
-            <p class="languages-note"><strong>Idiomas:</strong> Español (nativo) · Inglés (intermedio)</p>
+            <p class="languages-note reveal"><strong>Idiomas:</strong> Español (nativo) · Inglés (intermedio)</p>
           </div>
         </section>
 
-        <section id="contact" class="contact-section reveal">
+        <section id="contact" class="contact-section contact-premium reveal">
+          <div class="contact-glow" aria-hidden="true"></div>
           <div class="site-container">
             <div class="contact-panel">
               <div class="contact-panel-main">
-                <p class="contact-eyebrow mono">Abierta a conversar</p>
+                <p class="contact-eyebrow mono"><span class="dot pulse-dot"></span> Disponible</p>
                 <h2>¿Conversamos?</h2>
-                <p class="contact-lead">Si buscas a alguien que pueda entender un proceso, diseñar una solución y llevarla a producción, feliz de conversar.</p>
-                <ul class="contact-fit">
-                  <li>
-                    <span class="contact-fit-icon icon solid fa-briefcase" aria-hidden="true"></span>
-                    <span class="contact-fit-text"><strong>Me interesa</strong> Full‑stack · Web y móvil · Automatización · Cloud</span>
-                  </li>
-                </ul>
+                <p class="contact-lead">Cuéntame qué tienes en mente — un rol, un proyecto o una idea — y vemos cómo darle forma juntos.</p>
               </div>
               <aside class="contact-panel-aside">
-                <p class="contact-aside-title">Conversemos</p>
-                <p class="contact-aside-text">Cuéntame el rol o el proyecto. Te respondo en 24–48 h.</p>
+                <p class="contact-aside-text">Escríbeme, contesto rápido :]</p>
                 <ul class="contact-actions">
-                  <li><a href="mailto:ossandon.t20@gmail.com?subject=Hola%20Tamara" class="button primary"><span class="icon solid fa-envelope" aria-hidden="true"></span> Escribirme</a></li>
+                  <li><a href="mailto:ossandon.t20@gmail.com?subject=Hola%20Tamara" class="button primary btn-magnetic contact-btn-main"><span class="icon solid fa-envelope" aria-hidden="true"></span> Escribirme</a></li>
+                  <li><button type="button" class="button secondary contact-btn-copy" data-copy="ossandon.t20@gmail.com">Copiar correo</button></li>
+                  <li><a href="https://www.linkedin.com/in/tamara-ossandon/" target="_blank" rel="noopener noreferrer" class="button secondary btn-magnetic">LinkedIn</a></li>
                 </ul>
               </aside>
             </div>
@@ -367,11 +420,11 @@
       </main>
 
       <footer id="footer" class="site-footer">
+        <div class="footer-quote" aria-label="Cita final">
+          <blockquote>El propósito de la ingeniería de software es controlar la complejidad, no crearla.</blockquote>
+          <cite class="mono">— Pamela Zave · Científica de la computación</cite>
+        </div>
         <div class="site-container">
-          <div class="footer-quote">
-            <blockquote>El propósito de la ingeniería de software es controlar la complejidad, no crearla.</blockquote>
-            <cite class="mono">— Pamela Zave · Científica de la computación</cite>
-          </div>
           <div class="footer-bottom">
             <ul class="footer-links">
               <li><a href="https://github.com/tam210/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
@@ -383,6 +436,18 @@
         </div>
       </footer>
     </div>
+
+    <div id="project-modal" class="modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-overlay" data-close-modal></div>
+      <div class="modal-panel">
+        <button type="button" class="modal-close" aria-label="Cerrar" data-close-modal>×</button>
+        <p class="modal-eyebrow mono" id="modal-company"></p>
+        <h2 class="modal-title" id="modal-title"></h2>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-chips" id="modal-chips"></div>
+      </div>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
