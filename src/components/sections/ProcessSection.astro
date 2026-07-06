@@ -1,0 +1,56 @@
+---
+import OsWindow from "../OsWindow.astro";
+import AeroBackground from "../AeroBackground.astro";
+import { processSteps } from "../../data/site";
+---
+
+<section id="process" class="os-section os-section--dark process-section">
+  <AeroBackground variant="dark" />
+  <span class="os-section-num" aria-hidden="true">04</span>
+  <div class="os-container process-section__inner">
+    <OsWindow title="installing_system.exe" dark interactive={false} class="process-section__window">
+      <div class="process-section__steps">
+        {
+          processSteps.map((step) => (
+            <div class="os-wizard-step">
+              <span class="os-wizard-step__num mono">{step.num}</span>
+              <div>
+                <h3 class="os-wizard-step__title">{step.title}</h3>
+                <p class="os-wizard-step__desc">{step.desc}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <div class="os-progress" role="progressbar" aria-valuenow={72} aria-valuemin={0} aria-valuemax={100} aria-label="Progreso de instalación">
+        <div class="os-progress__fill"></div>
+      </div>
+      <p class="os-window__status mono">&gt; INSTALLING… 72%</p>
+    </OsWindow>
+  </div>
+</section>
+
+<style>
+  .process-section {
+    overflow: hidden;
+  }
+
+  .process-section__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .process-section__window {
+    width: min(100%, 520px);
+  }
+
+  .process-section__steps {
+    margin-bottom: 1.25rem;
+  }
+
+  .os-progress {
+    margin-bottom: 0.75rem;
+  }
+</style>

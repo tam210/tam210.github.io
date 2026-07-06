@@ -1,0 +1,78 @@
+---
+import ModuleIntro from "./ModuleIntro.astro";
+import { connectInfo } from "../../data/site";
+---
+
+<section class="connect-module" aria-labelledby="connect-headline">
+  <div class="contact-cta">
+    <ModuleIntro title="Contacto" status="// contacto.exe · en línea" num="04" />
+
+    <p class="connect-module__hook" id="connect-headline">¿Algo que construir? Escríbeme.</p>
+
+    <div class="connect-module__lists">
+      <div class="connect-module__block">
+        <h2 class="connect-module__label mono">sí</h2>
+        <ul>
+          {connectInfo.interests.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="connect-module__block connect-module__block--muted">
+        <h2 class="connect-module__label mono">nah</h2>
+        <ul>
+          {connectInfo.notLookingFor.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="contact-cta__email">
+      <a href="mailto:ossandon.t20@gmail.com" class="contact-cta__link">ossandon.t20@gmail.com</a>
+      <button
+        type="button"
+        class="os-btn os-btn--ghost mono contact-cta__copy"
+        data-copy="ossandon.t20@gmail.com"
+      >
+        copiar
+      </button>
+    </div>
+
+    <ul class="contact-cta__social">
+      <li>
+        <a href="https://www.linkedin.com/in/tamara-ossandon/" target="_blank" rel="noopener noreferrer">
+          LinkedIn
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/tam210/" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </li>
+    </ul>
+
+    <a
+      href="mailto:ossandon.t20@gmail.com?subject=Hola%20Tamara"
+      class="os-btn os-btn--primary contact-cta__main"
+    >
+      email →
+    </a>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const text = btn.getAttribute("data-copy");
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "ok ✓";
+        setTimeout(() => {
+          btn.textContent = "copiar";
+        }, 2000);
+      } catch {
+        btn.textContent = text;
+      }
+    });
+  });
+</script>

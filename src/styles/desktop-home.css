@@ -1,0 +1,608 @@
+/* Home desktop — hero, backdrop, chrome torus */
+
+.desktop-panel {
+  overflow: hidden;
+  padding-top: 2.5rem;
+  min-height: 0;
+  flex: 1;
+  position: relative;
+}
+
+.desktop-panel__label {
+  margin-bottom: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* Backdrop */
+.desktop-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  --parallax-x: 0px;
+  --parallax-y: 0px;
+  contain: strict;
+}
+
+.desktop-backdrop__wash {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 20% 15%, rgba(255, 255, 255, 0.75) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 85% 70%, rgba(143, 182, 255, 0.28) 0%, transparent 50%),
+    radial-gradient(ellipse 90% 70% at 55% 105%, rgba(29, 107, 255, 0.1) 0%, transparent 55%);
+}
+
+.desktop-backdrop__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(rgba(29, 107, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 107, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, #000 20%, transparent 75%);
+}
+
+.desktop-backdrop__orbit {
+  position: absolute;
+  transform: translate(var(--parallax-x), var(--parallax-y));
+  transition: transform 0.1s linear;
+}
+
+.desktop-backdrop__orbit--1 {
+  width: min(85vw, 640px);
+  height: min(85vw, 640px);
+  top: 50%;
+  left: 52%;
+  transform: translate(calc(-50% + var(--parallax-x)), calc(-50% + var(--parallax-y)));
+  animation: orbitSpin 48s linear infinite;
+}
+
+.desktop-backdrop__orbit--2 {
+  width: min(70vw, 520px);
+  height: min(70vw, 520px);
+  top: 48%;
+  left: 50%;
+  transform: translate(calc(-50% + var(--parallax-x)), calc(-50% + var(--parallax-y)));
+  animation: orbitSpin 36s linear infinite reverse;
+  opacity: 0.7;
+}
+
+.desktop-backdrop__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(48px);
+  animation: orbDriftDesktop 20s ease-in-out infinite;
+}
+
+.desktop-backdrop__orb--1 {
+  width: clamp(140px, 22vw, 280px);
+  height: clamp(140px, 22vw, 280px);
+  top: 8%;
+  right: 6%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.desktop-backdrop__orb--2 {
+  width: clamp(100px, 14vw, 180px);
+  height: clamp(100px, 14vw, 180px);
+  bottom: 22%;
+  left: 8%;
+  background: rgba(143, 182, 255, 0.4);
+  animation-delay: -7s;
+}
+
+.desktop-backdrop__orb--3 {
+  width: 80px;
+  height: 80px;
+  top: 35%;
+  left: 62%;
+  background: rgba(255, 255, 255, 0.65);
+  filter: blur(32px);
+  animation-delay: -14s;
+}
+
+.desktop-backdrop__bubble {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.55), rgba(143, 182, 255, 0.08));
+  box-shadow: 0 8px 24px rgba(29, 107, 255, 0.08);
+  animation: bubbleFloat 12s ease-in-out infinite;
+}
+
+.desktop-backdrop__bubble--1 {
+  width: 28px;
+  height: 28px;
+  top: 18%;
+  left: 28%;
+}
+
+.desktop-backdrop__bubble--2 {
+  width: 18px;
+  height: 18px;
+  top: 62%;
+  left: 72%;
+  animation-delay: -4s;
+}
+
+.desktop-backdrop__bubble--3 {
+  width: 22px;
+  height: 22px;
+  bottom: 30%;
+  left: 42%;
+  animation-delay: -8s;
+}
+
+.desktop-backdrop__waves {
+  position: absolute;
+  bottom: 42px;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100px;
+  opacity: 0.85;
+}
+
+@keyframes orbitSpin {
+  to {
+    transform: translate(calc(-50% + var(--parallax-x)), calc(-50% + var(--parallax-y))) rotate(360deg);
+  }
+}
+
+@keyframes orbDriftDesktop {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(12px, -16px) scale(1.06);
+  }
+}
+
+@keyframes bubbleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Scene layout */
+.desktop-panel__label,
+.desktop-panel__num {
+  position: relative;
+  z-index: 5;
+}
+
+.desktop-panel__scene {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-height: 0;
+  max-height: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  align-items: stretch;
+  padding: 0 clamp(1rem, 3vw, 2rem) 1rem;
+}
+
+.desktop-panel__main {
+  position: relative;
+  z-index: 4;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, min(220px, 38vw));
+  grid-template-rows: 1fr auto;
+  gap: clamp(0.65rem, 1.5vw, 1rem);
+  align-items: end;
+  height: 100%;
+}
+
+.desktop-panel__hero {
+  z-index: 4;
+  grid-column: 1;
+  grid-row: 1 / -1;
+  align-self: center;
+  justify-self: start;
+  min-width: 0;
+  max-width: 100%;
+  animation: heroEnter 1s var(--os-ease) both;
+}
+
+.desktop-panel__hero--hidden {
+  display: none;
+}
+
+.desktop-panel__chrome-wrap {
+  position: absolute;
+  left: 54%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: min(52vw, 520px);
+  height: min(52vw, 520px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.desktop-panel__name {
+  margin: 0;
+  line-height: 0.84;
+  letter-spacing: -0.055em;
+}
+
+.desktop-panel__name-text {
+  display: block;
+  font-size: clamp(4.5rem, 18vw, 11.5rem);
+  font-weight: 800;
+  /* mercurio vegetal — berenjena óxido + musgo de canal */
+  color: #3a2832;
+  -webkit-text-fill-color: #3a2832;
+  -webkit-text-stroke: 1.5px #4f6e54;
+  text-shadow:
+    -1px -1px 0 #8a7482,
+    1px 0 0 #2d4238,
+    2px 3px 0 #1a1216,
+    4px 5px 0 #141018,
+    5px 7px 18px rgba(20, 16, 24, 0.38);
+}
+
+@keyframes heroEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.desktop-panel__folders .os-folder__label {
+  max-width: 132px;
+  font-size: 0.64rem;
+  line-height: 1.25;
+  word-break: break-word;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  opacity: 1;
+}
+
+.desktop-panel__folders .os-folder--lg .os-folder__visual {
+  width: 104px;
+  height: 84px;
+}
+
+.desktop-panel__folders .os-folder--lg .os-folder__body {
+  height: 68px;
+  border-radius: 8px;
+}
+
+.desktop-panel__folders .os-folder--lg .os-folder__tab {
+  width: 44px;
+  height: 14px;
+  left: 12px;
+}
+
+.desktop-panel__folders {
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  align-items: center;
+  justify-content: center;
+  width: 148px;
+  min-height: 0;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0.15rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(29, 107, 255, 0.25) transparent;
+}
+
+.desktop-panel__widgets {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  width: 100%;
+  max-width: 220px;
+  min-width: 0;
+  justify-self: end;
+  align-self: end;
+  padding-bottom: 0.15rem;
+}
+
+.desktop-panel__widgets .os-now-playing,
+.desktop-panel__widgets .os-system-widget {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.desktop-panel__widgets .os-now-playing {
+  padding: 0.6rem 0.7rem;
+}
+
+.desktop-panel__widgets .os-now-playing__label,
+.desktop-panel__widgets .os-now-playing__track {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.desktop-panel__widgets .os-now-playing__track {
+  font-size: 0.72rem;
+}
+
+.desktop-panel__widgets .os-now-playing__controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  max-width: 100%;
+}
+
+.desktop-panel__widgets .os-now-playing__btn {
+  flex-shrink: 0;
+  padding: 0.1rem 0.25rem;
+}
+
+.desktop-panel__widgets .os-system-widget {
+  padding: 0.55rem 0.65rem;
+}
+
+.desktop-panel__widgets .os-system-widget__row {
+  font-size: 0.62rem;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.desktop-panel__widgets .os-system-widget__value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Chrome hero */
+.os-chrome-object--hero {
+  width: 100%;
+  height: 100%;
+}
+
+.os-chrome-object--hero .os-chrome-object__torus {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: torusSpin 24s linear infinite;
+}
+
+.os-chrome-object--hero .os-chrome-object__ribbon {
+  width: 42%;
+  height: 42%;
+}
+
+.os-chrome-object__torus {
+  pointer-events: none;
+}
+
+.os-chrome-object__core {
+  position: absolute;
+  inset: 28%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.9), rgba(143, 182, 255, 0.25) 55%, transparent 70%);
+  filter: blur(1px);
+  opacity: 0.85;
+}
+
+@keyframes torusSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* System widget */
+.os-system-widget {
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: var(--os-radius);
+  padding: 0.65rem 0.8rem;
+  box-shadow: 0 8px 24px rgba(29, 107, 255, 0.08);
+  min-width: 0;
+  transition: transform var(--os-duration) var(--os-ease), box-shadow var(--os-duration) var(--os-ease);
+}
+
+.os-system-widget:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(29, 107, 255, 0.12);
+}
+
+.os-system-widget__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.22rem 0;
+  font-size: 0.68rem;
+}
+
+.os-system-widget__label {
+  color: var(--os-text-secondary);
+  text-transform: lowercase;
+}
+
+.os-system-widget__value {
+  color: var(--os-text);
+  font-weight: 500;
+  text-align: right;
+}
+
+.os-system-widget__value--live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--os-xp-blue);
+}
+
+.os-system-widget__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--os-live);
+  box-shadow: 0 0 8px var(--os-live);
+  animation: statusPulse 2.5s ease infinite;
+}
+
+/* Now playing interactive */
+.os-now-playing__btn {
+  background: none;
+  border: none;
+  padding: 0.15rem 0.35rem;
+  font-size: 0.75rem;
+  color: var(--os-text-secondary);
+  border-radius: 4px;
+  transition: color var(--os-duration) var(--os-ease), background var(--os-duration) var(--os-ease);
+}
+
+.os-now-playing__btn:hover {
+  color: var(--os-xp-blue);
+  background: rgba(29, 107, 255, 0.08);
+}
+
+.os-now-playing__btn--play {
+  color: var(--os-xp-blue);
+  font-size: 0.82rem;
+}
+
+/* Folder open animation */
+.os-folder.is-opening {
+  animation: folderOpen 0.32s var(--os-ease);
+}
+
+@keyframes folderOpen {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 1100px) {
+  .desktop-panel__scene {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+    align-content: start;
+    padding-bottom: 1.25rem;
+  }
+
+  .desktop-panel__chrome-wrap {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: min(75vw, 320px);
+    height: min(75vw, 320px);
+    margin: 0 auto 0.75rem;
+    order: -1;
+  }
+
+  .desktop-panel {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .desktop-panel__main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 0.85rem;
+    height: auto;
+  }
+
+  .desktop-panel__hero {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .desktop-panel__widgets {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: center;
+  }
+
+  .desktop-panel__widgets {
+    max-width: min(100%, 320px);
+    margin: 0 auto;
+    align-self: center;
+  }
+
+  .desktop-panel__folders {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+    gap: 1rem 1.25rem;
+    padding-top: 0.5rem;
+  }
+}
+
+@media (max-height: 760px) {
+  .desktop-panel__folders {
+    gap: 0.75rem;
+    justify-content: flex-start;
+  }
+
+  .desktop-panel__folders .os-folder--lg {
+    transform: scale(0.94);
+    transform-origin: top center;
+  }
+
+  .desktop-panel__widgets {
+    gap: 0.5rem;
+  }
+
+  .desktop-panel__main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(180px, 34vw));
+  }
+}
+
+@media (max-width: 640px) {
+  .desktop-panel__name-text {
+    font-size: clamp(3.5rem, 16vw, 5.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop-backdrop__orbit,
+  .desktop-backdrop__orb,
+  .desktop-backdrop__bubble,
+  .os-chrome-object--hero .os-chrome-object__torus,
+  .os-system-widget__dot {
+    animation: none;
+  }
+
+  .desktop-panel__hero {
+    animation: none;
+  }
+}

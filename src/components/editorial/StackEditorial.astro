@@ -1,0 +1,78 @@
+---
+import { stackNodes, stackEdges, stackCapabilities } from "../../data/site";
+---
+
+<section class="stack-editorial" aria-labelledby="stack-headline">
+  <h1 id="stack-headline" class="stack-editorial__headline display">
+    Stack que uso para llevar<br />productos a producción
+  </h1>
+  <p class="stack-editorial__lead">
+    Tecnología elegida por criterio: lo que resuelve el problema, no lo que está de moda.
+  </p>
+
+  <div class="stack-editorial__map os-stack-map" role="img" aria-label="Mapa de tecnologías">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+      {
+        stackEdges.map((edge) => {
+          const from = stackNodes.find((n) => n.id === edge.from);
+          const to = stackNodes.find((n) => n.id === edge.to);
+          if (!from || !to) return null;
+          return (
+            <line
+              x1={from.x}
+              y1={from.y}
+              x2={to.x}
+              y2={to.y}
+              stroke="rgba(29, 107, 255, 0.2)"
+              stroke-width="0.35"
+            />
+          );
+        })
+      }
+      {
+        stackNodes.map((node) => (
+          <g transform={`translate(${node.x}, ${node.y})`}>
+            <rect
+              x={node.core ? -12 : -9}
+              y={node.core ? -5.5 : -4}
+              width={node.core ? 24 : 18}
+              height={node.core ? 11 : 8}
+              rx="2"
+              fill={node.core ? "#1d6bff" : "rgba(255,255,255,0.9)"}
+              stroke={node.core ? "#8fb6ff" : "rgba(29, 107, 255, 0.3)"}
+              stroke-width="0.35"
+            />
+            <text
+              text-anchor="middle"
+              dominant-baseline="middle"
+              fill={node.core ? "#fff" : "#3d4a60"}
+              font-family="JetBrains Mono, monospace"
+              font-size={node.core ? "3" : "2.5"}
+              font-weight={node.core ? "600" : "400"}
+            >
+              {node.label}
+            </text>
+          </g>
+        ))
+      }
+    </svg>
+  </div>
+
+  <div class="capability-grid">
+    {
+      stackCapabilities.map((block) => (
+        <article class="capability-block">
+          <h2 class="capability-block__category mono">{block.category}</h2>
+          <ul class="capability-block__list">
+            {block.items.map((item) => (
+              <li class="capability-block__item">
+                <span class="capability-block__name">{item.name}</span>
+                <span class="capability-block__use">{item.use}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</section>

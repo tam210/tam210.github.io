@@ -1,0 +1,26 @@
+---
+import ModuleIntro from "./ModuleIntro.astro";
+import CaseTimelineEntry from "./CaseTimelineEntry.astro";
+import { caseFiles } from "../../data/site";
+---
+
+<section class="projects-timeline" aria-labelledby="projects-headline">
+  <p class="projects-timeline__label mono">01 · proyectos.sys</p>
+  <span class="projects-timeline__num" aria-hidden="true">01</span>
+
+  <ModuleIntro
+    title="Proyectos"
+    status={`// ${caseFiles.length} casos · scroll para leer`}
+    id="projects-headline"
+  />
+
+  <ol class="projects-timeline__track">
+    {caseFiles.map((item, index) => (
+      <CaseTimelineEntry caseFile={item} index={index} />
+    ))}
+  </ol>
+
+  <p class="projects-timeline__end mono">
+    fin_del_archivo.sys — <a href="/connect/">contacto.exe →</a>
+  </p>
+</section>

@@ -1,0 +1,60 @@
+---
+import type { Project } from "../data/site";
+import FolderIcon from "./FolderIcon.astro";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="project-item" data-project={project.id}>
+  <div class="project-item__icon">
+    <FolderIcon
+      label=""
+      static
+      variant={project.variant ?? "default"}
+      size="md"
+    />
+  </div>
+  <div class="project-item__info">
+    <h3 class="project-item__name">
+      {project.name}
+      {project.live && <span class="os-badge-live">Live</span>}
+    </h3>
+    <p class="project-item__desc">{project.tagline}</p>
+  </div>
+  <button
+    type="button"
+    class="project-item__open os-project-toggle"
+    data-toggle={project.id}
+    aria-expanded="false"
+    aria-controls={`project-${project.id}`}
+  >
+    abrir →
+  </button>
+  <div class="project-item__detail os-project-detail" id={`project-${project.id}`}>
+    <div class="os-project-detail__grid">
+      <div>
+        <p class="os-project-detail__label">Problema</p>
+        <p class="os-project-detail__text">{project.problem}</p>
+      </div>
+      <div>
+        <p class="os-project-detail__label">Qué construí</p>
+        <p class="os-project-detail__text">{project.built}</p>
+      </div>
+      <div>
+        <p class="os-project-detail__label">Resultado</p>
+        <p class="os-project-detail__text">{project.result}</p>
+      </div>
+    </div>
+    <p class="os-project-detail__label">Rol</p>
+    <p class="os-project-detail__text" style="margin-bottom:0.5rem">{project.role}</p>
+    <div class="os-chips">
+      {project.stack.map((tech) => (
+        <span class="os-chip">{tech}</span>
+      ))}
+    </div>
+  </div>
+</article>

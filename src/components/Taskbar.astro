@@ -1,0 +1,68 @@
+---
+import { navModules } from "../data/site";
+
+interface Props {
+  current?: string;
+  pathname: string;
+}
+
+const { current, pathname } = Astro.props;
+
+const normalized = pathname.replace(/\/index\.html$/, "/").replace(/\/$/, "") || "/";
+const isOverview = normalized === "/";
+
+function isActive(item: (typeof navModules)[0]) {
+  if (current && current !== "home") return item.id === current;
+  const path = item.path.replace(/\/$/, "");
+  if (path === "/cases") return normalized === "/cases" || normalized.startsWith("/cases/");
+  return normalized === path || normalized.startsWith(`${path}/`);
+}
+
+const activeModule = navModules.find((item) => isActive(item));
+const contextLabel = activeModule?.window ?? (isOverview ? "inicio" : "tamara_os");
+---
+
+<nav class="os-taskbar" aria-label="Navegación principal">
+  <a
+    href="/"
+    class:list={["os-taskbar__start", isOverview && "is-active"]}
+    aria-current={isOverview ? "page" : undefined}
+  >
+    <span class="os-taskbar__start-icon" aria-hidden="true"></span>
+    TAMARA_OS
+  </a>
+
+  <div class="os-taskbar__windows" role="list">
+    {
+      navModules.map((item) => (
+        <a
+          href={item.href}
+          class:list={["os-taskbar__tab", isActive(item) && "is-active"]}
+          role="listitem"
+          aria-current={isActive(item) ? "page" : undefined}
+        >
+          <span class="os-taskbar__tab-icon" aria-hidden="true">▢</span>
+          <span class="os-taskbar__tab-label">{item.window}</span>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="os-taskbar__tray">
+    <span class="os-taskbar__context mono" aria-hidden="true">{contextLabel}</span>
+    <time class="os-taskbar__clock" id="os-clock">--:--</time>
+  </div>
+</nav>
+
+<script>
+  function updateClock() {
+    const el = document.getElementById("os-clock");
+    if (!el) return;
+    el.textContent = new Date().toLocaleTimeString("es-CL", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+  updateClock();
+  setInterval(updateClock, 30000);
+</script>

@@ -1,0 +1,52 @@
+---
+import ModuleIntro from "./ModuleIntro.astro";
+import { principles, processSteps, profilePositioning } from "../../data/site";
+---
+
+<section class="thinking-module" aria-labelledby="thinking-headline">
+  <ModuleIntro title="Criterio" status="// cómo trabajo · v2" num="03" />
+
+  <p class="thinking-module__hook" id="thinking-headline">{profilePositioning.headline}</p>
+
+  <ul class="thinking-module__focus">
+    {profilePositioning.focus.map((item) => (
+      <li class="mono">{item}</li>
+    ))}
+  </ul>
+
+  <div class="principles">
+    {
+      principles.map((item) => (
+        <article class="principle-card">
+          <span class="principle-card__num mono">{item.num}</span>
+          <h2 class="principle-card__title">{item.title}</h2>
+          <p class="principle-card__desc">{item.desc}</p>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="thinking-loop">
+    <h2 class="thinking-loop__title mono">product_loop</h2>
+    <ol class="thinking-loop__steps">
+      {
+        processSteps.map((step) => (
+          <li class="thinking-loop__step">
+            <span class="thinking-loop__num mono">{step.num}</span>
+            <div class="thinking-loop__body">
+              <h3 class="thinking-loop__name">{step.title}</h3>
+              <p class="thinking-loop__desc">{step.desc}</p>
+              {
+                step.caseLink && (
+                  <a href={`/cases/${step.caseLink}/`} class="thinking-loop__link mono">
+                    → {step.caseLink}
+                  </a>
+                )
+              }
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

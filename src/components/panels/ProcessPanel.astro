@@ -1,0 +1,23 @@
+---
+import { processSteps } from "../../data/site";
+---
+
+<div class="process-aero">
+  <div class="process-aero__steps">
+    {
+      processSteps.map((step) => (
+        <div class="os-wizard-step">
+          <span class="os-wizard-step__num mono">{step.num}</span>
+          <div>
+            <h3 class="os-wizard-step__title">{step.title}</h3>
+            <p class="os-wizard-step__desc">{step.desc}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div class="os-progress" role="progressbar" aria-valuenow={72} aria-valuemin={0} aria-valuemax={100}>
+    <div class="os-progress__fill"></div>
+  </div>
+  <p class="aero-panel__status mono">&gt; INSTALLING… 72%</p>
+</div>

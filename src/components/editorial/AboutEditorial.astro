@@ -1,0 +1,57 @@
+---
+import { principles } from "../../data/site";
+---
+
+<section class="about-editorial" aria-labelledby="about-headline">
+  <h1 id="about-headline" class="about-editorial__headline display">
+    Diseño y construyo software<br />para operación real
+  </h1>
+
+  <div class="about-editorial__grid">
+    <div class="about-editorial__copy">
+      <p class="about-editorial__lead">
+        Soy ingeniera civil en computación. Trabajo entre backend, frontend, móvil y cloud. Me gusta
+        transformar procesos complejos en sistemas simples de usar.
+      </p>
+    </div>
+
+    <aside class="id-card" aria-label="Perfil">
+      <p class="id-card__label mono">system.properties</p>
+      <div class="id-card__body">
+        <div class="id-card__row">
+          <span class="id-card__key mono">education</span>
+          <span class="id-card__val">
+            Ingeniera Civil en Computación<br />Universidad Católica del Norte
+          </span>
+        </div>
+        <div class="id-card__row">
+          <span class="id-card__key mono">location</span>
+          <span class="id-card__val">Antofagasta, Chile</span>
+        </div>
+        <div class="id-card__row">
+          <span class="id-card__key mono">focus</span>
+          <span class="id-card__val">Backend · Frontend · Móvil · Cloud</span>
+        </div>
+        <div class="id-card__row">
+          <span class="id-card__key mono">status</span>
+          <span class="id-card__val id-card__val--live">
+            <span class="id-card__dot" aria-hidden="true"></span>
+            disponible
+          </span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="principles">
+    {
+      principles.map((item) => (
+        <article class="principle-card">
+          <span class="principle-card__num mono">{item.num}</span>
+          <h2 class="principle-card__title">{item.title}</h2>
+          <p class="principle-card__desc">{item.desc}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>

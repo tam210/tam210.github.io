@@ -1,0 +1,36 @@
+---
+import { featuredProjects, otherProjects } from "../../data/site";
+import CaseStudy from "./CaseStudy.astro";
+---
+
+<section class="projects-editorial" aria-labelledby="projects-headline">
+  <h1 id="projects-headline" class="projects-editorial__headline display">
+    Proyectos reales. Código real.<br />Usuarios reales.
+  </h1>
+  <p class="projects-editorial__lead">
+    Software en producción para operación, construcción y automatización de procesos.
+  </p>
+
+  <div class="projects-editorial__featured">
+    {featuredProjects.map((project, index) => <CaseStudy project={project} index={index} />)}
+  </div>
+
+  {
+    otherProjects.length > 0 && (
+      <div class="project-archive">
+        <h2 class="project-archive__title mono">archivo / otros proyectos</h2>
+        <ul class="project-archive__list">
+          {otherProjects.map((project) => (
+            <li class="project-archive__item">
+              <div class="project-archive__info">
+                <span class="project-archive__name">{project.name}</span>
+                <span class="project-archive__tagline">{project.tagline}</span>
+              </div>
+              <span class="project-archive__year mono">{project.year}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</section>

@@ -1,0 +1,44 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Taskbar from "../components/Taskbar.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  current?: string;
+  theme?: "light" | "dark";
+  hideBrand?: boolean;
+}
+
+const {
+  title,
+  description,
+  current,
+  theme = "dark",
+  hideBrand = false,
+} = Astro.props;
+const pathname = Astro.url.pathname;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  bodyClass={theme === "light" ? "os-body os-body--light" : "os-body os-body--dark"}
+  themeColor={theme === "light" ? "#d4e4ff" : "#07101f"}
+>
+  <div class="os-shell" data-theme={theme}>
+    {
+      !hideBrand && (
+        <header class="os-shell__brand">
+          <a href="/" class="os-shell__title">TAMARA_OS — Creative Software System</a>
+          <span class="os-shell__badge mono">v2.0</span>
+        </header>
+      )
+    }
+
+    <main id="main" class="os-main">
+      <slot />
+    </main>
+  </div>
+  <Taskbar current={current} pathname={pathname} />
+</BaseLayout>

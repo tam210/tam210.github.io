@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  icon?: boolean;
+  dark?: boolean;
+  glass?: boolean;
+  interactive?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  icon = true,
+  dark = false,
+  glass = false,
+  interactive = true,
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "os-window",
+    dark && "os-window--dark",
+    glass && !dark && "os-window--glass",
+    glass && dark && "os-window--glass-dark",
+    interactive && "os-window--interactive",
+    className,
+  ]}
+>
+  <div class="os-window__titlebar">
+    <div class="os-window__titlebar-shine" aria-hidden="true"></div>
+    <div class="os-window__title">
+      {icon && <span class="os-window__icon" aria-hidden="true"></span>}
+      <span>{title}</span>
+    </div>
+    <div class="os-window__controls" aria-hidden="true">
+      <button type="button" class="os-window__btn" tabindex="-1">─</button>
+      <button type="button" class="os-window__btn" tabindex="-1">□</button>
+      <button type="button" class="os-window__btn os-window__btn--close" tabindex="-1">×</button>
+    </div>
+  </div>
+  <div class="os-window__body">
+    <slot />
+  </div>
+</div>

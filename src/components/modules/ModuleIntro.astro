@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string;
+  status: string;
+  id?: string;
+  num?: string;
+}
+
+const { title, status, id, num } = Astro.props;
+---
+
+<header class="module-intro">
+  {num && <span class="module-intro__num" aria-hidden="true">{num}</span>}
+  <h1 class="module-intro__title display" id={id}>{title}</h1>
+  <p class="module-intro__status mono">{status}</p>
+</header>

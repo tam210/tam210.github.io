@@ -1,0 +1,133 @@
+---
+interface Props {
+  size?: "default" | "hero";
+}
+
+const { size = "default" } = Astro.props;
+const uid = `chrome-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div
+  class:list={["os-chrome-object", size === "hero" && "os-chrome-object--hero"]}
+  data-chrome
+  aria-hidden="true"
+>
+  <div class="os-chrome-object__halo"></div>
+  <div class="os-chrome-object__bubble os-chrome-object__bubble--1"></div>
+  <div class="os-chrome-object__bubble os-chrome-object__bubble--2"></div>
+  <div class="os-chrome-object__bubble os-chrome-object__bubble--3"></div>
+
+  <div class="os-chrome-object__stage">
+    <svg class="os-chrome-object__torus" viewBox="0 0 320 320" fill="none">
+      <ellipse
+        cx="160"
+        cy="160"
+        rx="128"
+        ry="88"
+        stroke={`url(#${uid}-torus-a)`}
+        stroke-width="4"
+        opacity="0.7"
+        transform="rotate(-22 160 160)"></ellipse>
+      <ellipse
+        cx="160"
+        cy="160"
+        rx="128"
+        ry="88"
+        stroke={`url(#${uid}-torus-b)`}
+        stroke-width="3"
+        opacity="0.45"
+        transform="rotate(38 160 160)"></ellipse>
+      <ellipse
+        cx="160"
+        cy="160"
+        rx="128"
+        ry="88"
+        stroke={`url(#${uid}-torus-c)`}
+        stroke-width="2.5"
+        opacity="0.35"
+        transform="rotate(98 160 160)"></ellipse>
+      <ellipse
+        cx="160"
+        cy="160"
+        rx="100"
+        ry="68"
+        stroke="rgba(255,255,255,0.55)"
+        stroke-width="1.5"
+        opacity="0.5"
+        transform="rotate(-8 160 160)"></ellipse>
+      <defs>
+        <linearGradient id={`${uid}-torus-a`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.95)" />
+          <stop offset="35%" stop-color="rgba(180,210,255,0.4)" />
+          <stop offset="65%" stop-color="rgba(220,200,255,0.55)" />
+          <stop offset="100%" stop-color="rgba(255,255,255,0.85)" />
+        </linearGradient>
+        <linearGradient id={`${uid}-torus-b`} x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="rgba(143,182,255,0.7)" />
+          <stop offset="50%" stop-color="rgba(255,255,255,0.35)" />
+          <stop offset="100%" stop-color="rgba(200,220,255,0.8)" />
+        </linearGradient>
+        <linearGradient id={`${uid}-torus-c`} x1="50%" y1="0%" x2="50%" y2="100%">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.6)" />
+          <stop offset="100%" stop-color="rgba(29,107,255,0.35)" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="os-chrome-object__ribbon">
+      <div class="os-chrome-object__strand os-chrome-object__strand--a"></div>
+      <div class="os-chrome-object__strand os-chrome-object__strand--b"></div>
+      <div class="os-chrome-object__strand os-chrome-object__strand--c"></div>
+      <div class="os-chrome-object__glass"></div>
+      <div class="os-chrome-object__specular"></div>
+      <div class="os-chrome-object__core"></div>
+    </div>
+  </div>
+
+  <div class="os-chrome-object__reflection"></div>
+</div>
+
+<script>
+  document.querySelectorAll("[data-chrome]").forEach((chrome) => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    const panel = chrome.closest(".desktop-panel__chrome-wrap") || chrome;
+
+    if (fine) {
+      panel.addEventListener(
+        "pointermove",
+        (e) => {
+          const r = panel.getBoundingClientRect();
+          targetX = ((e.clientX - r.left) / r.width - 0.5) * 2;
+          targetY = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        },
+        { passive: true }
+      );
+      panel.addEventListener("pointerleave", () => {
+        targetX = 0;
+        targetY = 0;
+      });
+    }
+
+    function tick() {
+      currentX += (targetX - currentX) * 0.07;
+      currentY += (targetY - currentY) * 0.07;
+      const stage = chrome.querySelector(".os-chrome-object__stage");
+      const torus = chrome.querySelector(".os-chrome-object__torus");
+      if (stage) {
+        stage.style.transform = `rotateY(${currentX * 14}deg) rotateX(${-currentY * 10}deg)`;
+      }
+      if (torus) {
+        torus.style.transform = `rotateZ(${currentX * 6}deg)`;
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  });
+</script>

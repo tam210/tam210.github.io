@@ -1,0 +1,125 @@
+---
+import type { CaseFile } from "../../data/site";
+import OsWindow from "../OsWindow.astro";
+
+interface Props {
+  caseFile: CaseFile;
+  index: number;
+}
+
+const { caseFile, index } = Astro.props;
+const num = String(index + 1).padStart(2, "0");
+const isFeatured = caseFile.featured ?? false;
+const windowTitle = `${caseFile.id.replace(/-/g, "_")}.exe`;
+---
+
+<li class="timeline-entry" id={caseFile.id}>
+  <div class="timeline-entry__rail" aria-hidden="true">
+    <span class="timeline-entry__year mono">{caseFile.year}</span>
+    <span class="timeline-entry__node"></span>
+  </div>
+
+  <div class="timeline-entry__panel">
+    <OsWindow title={windowTitle} glass interactive={false} class="timeline-entry__window">
+      <header class="timeline-entry__head">
+        {
+          caseFile.logo ? (
+            <img
+              class="timeline-entry__logo"
+              src={caseFile.logo}
+              alt=""
+              width="72"
+              height="72"
+              loading={index < 2 ? "eager" : "lazy"}
+            />
+          ) : (
+            <div class="timeline-entry__logo-fallback mono" aria-hidden="true">
+              {caseFile.name.slice(0, 2)}
+            </div>
+          )
+        }
+        <div class="timeline-entry__titles">
+          <p class="timeline-entry__file mono">
+            {num} / {caseFile.company} · {caseFile.role}
+          </p>
+          <h2 class="timeline-entry__name">
+            {caseFile.name}
+            {caseFile.live && <span class="os-badge-live">Live</span>}
+          </h2>
+          <p class="timeline-entry__tagline">{caseFile.tagline}</p>
+        </div>
+      </header>
+
+      {
+        isFeatured ? (
+          <>
+            <div class="timeline-entry__story">
+              <div class="timeline-entry__block">
+                <h3 class="timeline-entry__label mono">problema</h3>
+                <p>{caseFile.problem}</p>
+              </div>
+              <div class="timeline-entry__block">
+                <h3 class="timeline-entry__label mono">solución</h3>
+                <p>{caseFile.built}</p>
+              </div>
+              <div class="timeline-entry__block">
+                <h3 class="timeline-entry__label mono">impacto</h3>
+                <p>{caseFile.impact}</p>
+              </div>
+            </div>
+
+            {
+              caseFile.uxDecisions.length > 0 && (
+                <div class="timeline-entry__decisions">
+                  <h3 class="timeline-entry__label mono">ux</h3>
+                  <ul>
+                    {caseFile.uxDecisions.map((d) => (
+                      <li>
+                        <strong>{d.title}</strong> — {d.rationale}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+
+            {
+              caseFile.techDecisions.length > 0 && (
+                <div class="timeline-entry__decisions">
+                  <h3 class="timeline-entry__label mono">tech</h3>
+                  <ul>
+                    {caseFile.techDecisions.map((d) => (
+                      <li>
+                        <strong>{d.title}</strong> — {d.rationale}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+
+            <p class="timeline-entry__learning mono">{caseFile.learnings}</p>
+          </>
+        ) : (
+          <div class="timeline-entry__compact">
+            <p>{caseFile.problem}</p>
+            <p>{caseFile.built}</p>
+          </div>
+        )
+      }
+
+      <footer class="timeline-entry__foot">
+        <div class="timeline-entry__tags">
+          {caseFile.tags.map((tag) => (
+            <span class="timeline-entry__tag mono">{tag}</span>
+          ))}
+        </div>
+        <div class="timeline-entry__stack">
+          {caseFile.stack.map((tech) => (
+            <span class="os-chip">{tech}</span>
+          ))}
+        </div>
+      </footer>
+    </OsWindow>
+  </div>
+</li>

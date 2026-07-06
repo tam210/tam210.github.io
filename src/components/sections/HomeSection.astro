@@ -1,0 +1,201 @@
+---
+import OsWindow from "../OsWindow.astro";
+import ChromeObject from "../ChromeObject.astro";
+import FolderIcon from "../FolderIcon.astro";
+import NowPlaying from "../NowPlaying.astro";
+import AeroBackground from "../AeroBackground.astro";
+---
+
+<section id="home" class="os-section os-section--light home-section">
+  <AeroBackground variant="light" />
+  <span class="os-section-num" aria-hidden="true">00</span>
+  <div class="os-container home-section__inner">
+    <div class="home-section__desktop">
+      <div class="home-section__main">
+        <OsWindow title="tamara_os" class="home-section__window">
+          <p class="home-section__eyebrow mono">TAMARA_OS</p>
+          <h1 class="home-section__name display">Tamara Ossandón</h1>
+          <p class="home-section__role mono">Full-stack developer</p>
+          <p class="home-section__lead">
+            Construyo software para problemas reales.<br />
+            Diseño productos digitales claros, útiles y con carácter.
+          </p>
+          <div class="home-section__actions">
+            <a href="#projects" class="os-btn os-btn--primary">Abrir proyectos</a>
+            <a href="#contact" class="os-btn os-btn--secondary">Contactar</a>
+          </div>
+          <p class="os-window__status mono"><span class="status-blink">●</span> SYSTEM READY</p>
+        </OsWindow>
+
+        <div class="home-section__chrome">
+          <ChromeObject />
+        </div>
+      </div>
+
+      <aside class="home-section__sidebar" aria-label="Accesos rápidos">
+        <FolderIcon label="projects" href="#projects" variant="default" />
+        <FolderIcon label="about" href="#about" variant="glass" />
+        <FolderIcon label="contact" href="#contact" variant="chrome" />
+      </aside>
+
+      <div class="home-section__widget">
+        <NowPlaying />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-section {
+    overflow: hidden;
+  }
+
+  .home-section__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    min-height: calc(100dvh - var(--os-taskbar-h) - var(--os-section-pad) * 2);
+  }
+
+  .home-section__desktop {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .home-section__main {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(300px, 400px) 1fr;
+    gap: clamp(0.5rem, 3vw, 2rem);
+    align-items: center;
+  }
+
+  .home-section__window {
+    position: relative;
+    z-index: 3;
+  }
+
+  .home-section__chrome {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    margin-left: -2rem;
+  }
+
+  .home-section__eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--os-text-secondary);
+    margin: 0 0 0.85rem;
+    text-transform: uppercase;
+  }
+
+  .home-section__name {
+    font-size: clamp(1.85rem, 4.2vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin: 0 0 0.4rem;
+    color: var(--os-text);
+  }
+
+  .home-section__role {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--os-xp-blue);
+    margin: 0 0 1.1rem;
+  }
+
+  .home-section__lead {
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    line-height: 1.6;
+    color: var(--os-text-secondary);
+    margin: 0 0 1.35rem;
+    max-width: 34ch;
+  }
+
+  .home-section__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .home-section__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding-top: 0.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .home-section__widget {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+  }
+
+  .status-blink {
+    color: var(--os-live);
+    font-size: 0.55rem;
+    vertical-align: middle;
+    margin-right: 0.35rem;
+    animation: statusPulse 2.5s ease infinite;
+  }
+
+  @keyframes statusPulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .home-section__desktop {
+      grid-template-columns: 1fr;
+    }
+
+    .home-section__main {
+      grid-template-columns: 1fr;
+    }
+
+    .home-section__chrome {
+      order: -1;
+      min-height: 200px;
+      margin-left: 0;
+    }
+
+    .home-section__sidebar {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+
+    .home-section__widget {
+      position: static;
+      margin-top: 1.75rem;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .status-blink {
+      animation: none;
+    }
+  }
+</style>

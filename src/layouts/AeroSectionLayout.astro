@@ -1,0 +1,66 @@
+---
+import OsLayout from "./OsLayout.astro";
+import OsWindow from "../components/OsWindow.astro";
+import DesktopBackdrop from "../components/DesktopBackdrop.astro";
+import ChromeObject from "../components/ChromeObject.astro";
+import FolderIcon from "../components/FolderIcon.astro";
+import { navItems, sectionMeta } from "../data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  current: string;
+}
+
+const { title, description, current } = Astro.props;
+const meta = sectionMeta[current];
+const windowTitle = navItems.find((item) => item.id === current)?.window ?? current;
+const folders = navItems.filter((item) => item.id !== "home");
+const folderVariants = ["chrome", "glass", "default", "cassette", "default"] as const;
+---
+
+<OsLayout title={title} description={description} current={current} theme="light">
+  <div class="os-view os-view--desktop">
+    <section class="aero-section" aria-labelledby={`section-${current}`}>
+      <DesktopBackdrop />
+
+      <p class="aero-section__label mono" id={`section-${current}`}>{meta?.tag}</p>
+      <span class="aero-section__num" aria-hidden="true">{meta?.num}</span>
+
+      <div class="aero-section__scene">
+        <div class="aero-section__chrome" aria-hidden="true">
+          <ChromeObject />
+        </div>
+
+        <OsWindow title={windowTitle} glass class="aero-section__window">
+          <slot />
+        </OsWindow>
+
+        <aside class="aero-section__folders" aria-label="Secciones">
+          <a href="/" class="aero-section__home mono">← escritorio</a>
+          {
+            folders.map((item, index) => (
+              <FolderIcon
+                label={item.window}
+                href={item.href}
+                variant={folderVariants[index] ?? "default"}
+                size="lg"
+                class={item.id === current ? "is-current" : ""}
+                aria-current={item.id === current ? "page" : undefined}
+              />
+            ))
+          }
+        </aside>
+      </div>
+    </section>
+  </div>
+</OsLayout>
+
+<script>
+  document.querySelectorAll(".aero-section__folders .os-folder").forEach((folder) => {
+    folder.addEventListener("click", () => {
+      folder.classList.add("is-opening");
+      setTimeout(() => folder.classList.remove("is-opening"), 320);
+    });
+  });
+</script>

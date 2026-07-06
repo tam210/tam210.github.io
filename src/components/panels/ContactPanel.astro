@@ -1,0 +1,38 @@
+<div class="contact-aero">
+  <p class="contact-aero__lead">¿Tienes un proyecto, una idea o una oportunidad? Hablemos.</p>
+  <ul class="contact-aero__links">
+    <li>
+      <span class="mono">email</span>
+      <a href="mailto:ossandon.t20@gmail.com">ossandon.t20@gmail.com</a>
+      <button type="button" class="os-btn os-btn--ghost mono" data-copy="ossandon.t20@gmail.com" style="padding:0.25rem 0.5rem;font-size:0.6rem">copiar</button>
+    </li>
+    <li>
+      <span class="mono">linkedin</span>
+      <a href="https://www.linkedin.com/in/tamara-ossandon/" target="_blank" rel="noopener noreferrer">/in/tamara-ossandon</a>
+    </li>
+    <li>
+      <span class="mono">github</span>
+      <a href="https://github.com/tam210/" target="_blank" rel="noopener noreferrer">tam210</a>
+    </li>
+  </ul>
+  <a href="mailto:ossandon.t20@gmail.com?subject=Hola%20Tamara" class="os-btn os-btn--primary" style="width:100%">Hablemos</a>
+  <p class="aero-panel__status mono">&gt; ONLINE</p>
+</div>
+
+<script>
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const text = btn.getAttribute("data-copy");
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "copiado ✓";
+        setTimeout(() => {
+          btn.textContent = "copiar";
+        }, 2000);
+      } catch {
+        btn.textContent = text;
+      }
+    });
+  });
+</script>
