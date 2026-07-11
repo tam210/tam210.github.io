@@ -1,0 +1,543 @@
+/* TAMARA_OS — Shell + vistas separadas (full viewport) */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+html.os-html--dark,
+body.os-body--dark {
+  background: #07101f;
+}
+
+html.os-html--light,
+body.os-body--light {
+  background: #d4e4ff;
+}
+
+body.os-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.os-shell {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: inherit;
+}
+
+.os-shell[data-theme="light"],
+.os-view--desktop {
+  background:
+    radial-gradient(ellipse 80% 70% at 30% 20%, #fff 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(143, 182, 255, 0.35) 0%, transparent 50%),
+    linear-gradient(145deg, #e8f2ff 0%, #d4e4ff 45%, #c8d8f8 100%);
+}
+
+.os-shell[data-theme="dark"] {
+  background: linear-gradient(165deg, #121c30 0%, #07101f 45%, #0a1220 100%);
+}
+
+.os-shell__brand {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.25rem;
+  pointer-events: none;
+}
+
+.os-shell__brand a,
+.os-shell__brand span {
+  pointer-events: auto;
+}
+
+.os-shell__title {
+  font-family: var(--font-mono);
+  font-size: clamp(0.62rem, 1.2vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232, 238, 248, 0.55);
+  margin: 0;
+  text-decoration: none;
+}
+
+.os-shell[data-theme="light"] .os-shell__title {
+  color: rgba(10, 16, 32, 0.42);
+}
+
+.os-shell__title:hover {
+  color: var(--os-blue-soft);
+}
+
+.os-shell[data-theme="light"] .os-shell__title:hover {
+  color: var(--os-xp-blue);
+}
+
+.os-shell__badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--os-blue-soft);
+  opacity: 0.7;
+}
+
+.os-shell[data-theme="light"] .os-shell__badge {
+  color: var(--os-xp-blue);
+  opacity: 0.65;
+}
+
+.os-main {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Vista individual — ocupa todo el viewport */
+.os-view {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.os-view--desktop,
+.os-view--projects {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Taskbar integrada al viewport (no fixed overlay) */
+body.os-body > .os-taskbar {
+  position: relative;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  flex-shrink: 0;
+  z-index: 9000;
+}
+
+.os-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
+  padding: 3.25rem clamp(1.25rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.os-panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.os-panel__label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(143, 182, 255, 0.65);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.os-view--desktop .os-panel__label {
+  color: rgba(10, 16, 32, 0.45);
+}
+
+.os-panel__num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.07);
+  user-select: none;
+}
+
+.os-view--desktop .os-panel__num {
+  color: rgba(10, 16, 32, 0.06);
+}
+
+.os-panel__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Desktop — base layout (home overrides in desktop-home.css) */
+.desktop-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+}
+
+.desktop-panel__label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(10, 16, 32, 0.45);
+  margin: 0 0 0.75rem;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+.desktop-panel__num {
+  position: absolute;
+  top: 3.25rem;
+  right: clamp(1.25rem, 4vw, 3rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: rgba(10, 16, 32, 0.06);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.desktop-panel__scene {
+  flex: 1;
+}
+
+/* Glass windows */
+.os-window--glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 20px 50px rgba(29, 107, 255, 0.12),
+    0 8px 24px rgba(7, 16, 31, 0.1);
+}
+
+.os-window--glass-dark {
+  background: rgba(14, 22, 38, 0.72);
+  backdrop-filter: blur(18px) saturate(1.2);
+  border: 1px solid rgba(143, 182, 255, 0.2);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 20px 48px rgba(0, 0, 0, 0.35);
+}
+
+/* Projects list */
+.project-item {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  gap: 0.85rem 1rem;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(143, 182, 255, 0.08);
+  transition: background var(--os-duration) var(--os-ease);
+}
+
+.project-item:last-child {
+  border-bottom: 0;
+}
+
+.project-item:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.project-item__icon {
+  display: flex;
+  justify-content: center;
+}
+
+.project-item__name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--os-text-on-dark);
+  margin: 0 0 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.project-item__desc {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--os-text-muted-dark);
+  margin: 0;
+}
+
+.project-item__open {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--os-blue-soft);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color var(--os-duration) var(--os-ease);
+}
+
+.project-item__open:hover {
+  color: #fff;
+}
+
+.project-item__detail {
+  grid-column: 1 / -1;
+  display: none;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(143, 182, 255, 0.1);
+}
+
+.project-item__detail.is-open {
+  display: block;
+}
+
+/* About */
+.about-panel__grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(200px, 34%);
+  gap: 1.25rem;
+  flex: 1;
+  align-items: start;
+}
+
+.about-panel__text {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--os-text-on-dark);
+  margin: 0;
+}
+
+.about-panel__meta .os-meta-item__label {
+  color: rgba(143, 182, 255, 0.55);
+}
+
+.about-panel__meta .os-meta-item__value {
+  color: rgba(232, 238, 248, 0.85);
+  font-size: 0.8rem;
+}
+
+.about-panel__meta .os-meta-item {
+  margin-bottom: 0.85rem;
+}
+
+/* Stack */
+.stack-panel__map {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+}
+
+.stack-panel__map .os-stack-map {
+  max-width: 720px;
+}
+
+.stack-panel__hint {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--os-text-muted-dark);
+  opacity: 0.65;
+  margin: 0.75rem 0 0;
+  text-align: center;
+}
+
+/* Process */
+.process-panel__window {
+  flex: 1;
+}
+
+.process-panel__inner {
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.process-panel__steps {
+  margin-bottom: 1rem;
+}
+
+/* Contact */
+.contact-panel__window {
+  flex: 1;
+}
+
+.contact-panel__inner {
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+
+.contact-panel__decor {
+  position: absolute;
+  right: -0.5rem;
+  bottom: 0;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.projects-panel__more {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-align: right;
+}
+
+.projects-panel__more a {
+  color: var(--os-blue-soft);
+}
+
+.projects-panel__more a:hover {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .about-panel__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-item {
+    grid-template-columns: 60px 1fr;
+  }
+
+  .project-item__open {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .os-shell__brand {
+    padding: 0.65rem 1rem;
+  }
+
+  .os-panel {
+    padding-top: 2.75rem;
+  }
+
+  .desktop-panel {
+    padding-top: 2.75rem;
+    min-height: 100%;
+  }
+}
+
+/* Taskbar — unified module nav */
+.os-taskbar {
+  min-height: var(--os-taskbar-h);
+  padding: 0 0.75rem;
+  box-shadow: 0 -1px rgba(255, 255, 255, 0.2) inset, 0 -10px 28px rgba(7, 16, 31, 0.22);
+}
+
+.os-taskbar__start {
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  padding: 0.45rem 1rem 0.45rem 0.6rem !important;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.os-taskbar__start.is-active {
+  background: linear-gradient(180deg, #ffffff75, #ffffff35);
+  border-color: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.os-taskbar__tab {
+  font-size: 0.78rem !important;
+  padding: 0.42rem 0.95rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+}
+
+.os-taskbar__tab-icon {
+  font-size: 0.62rem;
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+.os-taskbar__tab-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.os-taskbar__tab.is-active {
+  background: rgba(255, 255, 255, 0.58) !important;
+  border-color: rgba(255, 255, 255, 0.65) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.os-taskbar__tab.is-active .os-taskbar__tab-label {
+  font-weight: 600;
+}
+
+.os-taskbar__tray {
+  font-size: 0.74rem;
+  color: #fff;
+}
+
+.os-taskbar__context {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: #fff;
+  max-width: 11rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0.28rem 0.55rem;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.os-taskbar__clock {
+  font-size: 0.74rem !important;
+  font-weight: 500;
+  padding: 0.28rem 0.55rem !important;
+}
+
+@media (max-width: 720px) {
+  .os-taskbar__context {
+    display: none;
+  }
+
+  .os-taskbar__tab-label {
+    max-width: 5.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

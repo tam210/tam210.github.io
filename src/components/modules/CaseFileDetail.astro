@@ -1,0 +1,115 @@
+---
+import type { CaseFile } from "../../data/site";
+import FolderIcon from "../FolderIcon.astro";
+
+interface Props {
+  caseFile: CaseFile;
+}
+
+const { caseFile } = Astro.props;
+---
+
+<article class="case-expediente">
+  <header class="case-expediente__header">
+    <a href="/cases/" class="case-expediente__back mono">← proyectos</a>
+    <div class="case-expediente__title-row">
+      <div class="case-expediente__icon" aria-hidden="true">
+        <FolderIcon label="" static variant={caseFile.variant ?? "default"} size="md" />
+      </div>
+      <div>
+        <h1 class="case-expediente__name display">
+          {caseFile.name}
+          {caseFile.live && <span class="os-badge-live">Live</span>}
+        </h1>
+        <p class="case-expediente__tagline">{caseFile.tagline}</p>
+        <p class="case-expediente__meta mono">
+          {caseFile.company} · {caseFile.year} · {caseFile.role}
+        </p>
+      </div>
+    </div>
+    <div class="case-expediente__tags">
+      {caseFile.tags.map((tag) => (
+        <span class="case-expediente__tag mono">{tag}</span>
+      ))}
+    </div>
+  </header>
+
+  <div class="case-expediente__body">
+    <section class="case-expediente__section">
+      <h2 class="case-expediente__label mono">// context</h2>
+      <p>{caseFile.context}</p>
+    </section>
+
+    <section class="case-expediente__section">
+      <h2 class="case-expediente__label mono">// problem</h2>
+      <p>{caseFile.problem}</p>
+    </section>
+
+    <section class="case-expediente__section">
+      <h2 class="case-expediente__label mono">// approach</h2>
+      <p>{caseFile.approach}</p>
+    </section>
+
+    {
+      caseFile.uxDecisions.length > 0 && (
+        <section class="case-expediente__section case-expediente__section--decisions">
+          <h2 class="case-expediente__label mono">// ux_decisions</h2>
+          <ul class="case-expediente__decisions">
+            {caseFile.uxDecisions.map((d) => (
+              <li class="case-expediente__decision">
+                <h3>{d.title}</h3>
+                <p>{d.rationale}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      caseFile.techDecisions.length > 0 && (
+        <section class="case-expediente__section case-expediente__section--decisions">
+          <h2 class="case-expediente__label mono">// tech_decisions</h2>
+          <ul class="case-expediente__decisions">
+            {caseFile.techDecisions.map((d) => (
+              <li class="case-expediente__decision">
+                <h3>{d.title}</h3>
+                <p>{d.rationale}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <section class="case-expediente__section">
+      <h2 class="case-expediente__label mono">// solution</h2>
+      <p>{caseFile.built}</p>
+    </section>
+
+    <div class="case-expediente__outcomes">
+      <section class="case-expediente__section">
+        <h2 class="case-expediente__label mono">// impact</h2>
+        <p>{caseFile.impact}</p>
+      </section>
+      <section class="case-expediente__section">
+        <h2 class="case-expediente__label mono">// result</h2>
+        <p>{caseFile.result}</p>
+      </section>
+    </div>
+
+    <section class="case-expediente__section">
+      <h2 class="case-expediente__label mono">// learnings</h2>
+      <p class="case-expediente__learnings">{caseFile.learnings}</p>
+    </section>
+
+    <footer class="case-expediente__footer">
+      <div class="case-expediente__stack">
+        {caseFile.stack.map((tech) => (
+          <span class="os-chip">{tech}</span>
+        ))}
+      </div>
+      <a href="/connect/" class="os-btn os-btn--secondary">connect →</a>
+    </footer>
+  </div>
+</article>

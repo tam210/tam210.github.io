@@ -1,0 +1,60 @@
+<section class="contact-editorial" aria-labelledby="contact-headline">
+  <div class="contact-cta">
+    <p class="contact-cta__badge mono" aria-hidden="true">connect.exe · ONLINE</p>
+
+    <h1 id="contact-headline" class="contact-cta__headline display">
+      Hablemos de software,<br />producto o diseño.
+    </h1>
+
+    <p class="contact-cta__lead">
+      ¿Tienes un proyecto, una idea o una oportunidad? Escríbeme.
+    </p>
+
+    <div class="contact-cta__email">
+      <a href="mailto:ossandon.t20@gmail.com" class="contact-cta__link">ossandon.t20@gmail.com</a>
+      <button
+        type="button"
+        class="os-btn os-btn--ghost mono contact-cta__copy"
+        data-copy="ossandon.t20@gmail.com"
+      >
+        copiar
+      </button>
+    </div>
+
+    <ul class="contact-cta__social">
+      <li>
+        <a href="https://www.linkedin.com/in/tamara-ossandon/" target="_blank" rel="noopener noreferrer">
+          LinkedIn
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/tam210/" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </li>
+    </ul>
+
+    <a
+      href="mailto:ossandon.t20@gmail.com?subject=Hola%20Tamara"
+      class="os-btn os-btn--primary contact-cta__main"
+    >
+      Enviar email
+    </a>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const text = btn.getAttribute("data-copy");
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "copiado ✓";
+        setTimeout(() => {
+          btn.textContent = "copiar";
+        }, 2000);
+      } catch {
+        btn.textContent = text;
+      }
+    });
+  });
+</script>

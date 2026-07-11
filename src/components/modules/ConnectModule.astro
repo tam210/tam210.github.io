@@ -1,0 +1,31 @@
+---
+const email = "ossandon.dev@gmail.com";
+---
+
+<section class="glass-connect" aria-labelledby="connect-headline">
+  <h1 id="connect-headline" class="glass-connect__title">¿Construimos algo juntos?</h1>
+  <p class="glass-connect__lead">
+    Me interesa integrarme a equipos donde pueda aportar en la creación de soluciones digitales
+    sólidas, desde la definición del problema hasta su implementación y evolución en producción.
+  </p>
+
+  <a href={`mailto:${email}`} class="glass-connect__mail">{email}</a>
+
+  <div class="glass-connect__actions">
+    <a href={`mailto:${email}?subject=Hola%20Tamara`} class="glass-btn glass-btn--primary">
+      Enviar email
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 12h14" />
+        <path d="m13 6 6 6-6 6" />
+      </svg>
+    </a>
+    <a
+      class="glass-connect__social-link"
+      href="https://www.linkedin.com/in/tamara-ossandon/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      LinkedIn
+    </a>
+  </div>
+</section>

@@ -1,0 +1,76 @@
+---
+import { caseFiles } from "../../data/site";
+
+const statusLabel: Record<string, string> = {
+  live: "En producción",
+  shipped: "Entregado",
+  archived: "Archivado",
+};
+---
+
+<section class="glass-cases" aria-labelledby="cases-title">
+  <header class="glass-cases__intro">
+    <p class="glass-cases__eyebrow">Proyectos</p>
+    <h1 id="cases-title" class="glass-cases__title">
+      Casos donde el software se usa de verdad.
+    </h1>
+    <p class="glass-cases__lead">
+      Timeline de productos reales. Abre un expediente para ver el detalle.
+    </p>
+  </header>
+
+  <ol class="glass-timeline">
+    {
+      caseFiles.map((item, index) => (
+        <li class="glass-timeline__item" id={item.id}>
+          <div class="glass-timeline__rail" aria-hidden="true">
+            <span class="glass-timeline__year">{item.year}</span>
+            <span class="glass-timeline__node"></span>
+            {index < caseFiles.length - 1 && <span class="glass-timeline__line" />}
+          </div>
+
+          <a class="glass-case-card glass-surface" href={`/cases/${item.id}/`}>
+            <div class="glass-case-card__top">
+              {item.logo ? (
+                <img
+                  class="glass-case-card__logo"
+                  src={item.logo}
+                  alt=""
+                  width="48"
+                  height="48"
+                  loading={index < 2 ? "eager" : "lazy"}
+                />
+              ) : (
+                <span class="glass-case-card__logo-fallback" aria-hidden="true">
+                  {item.name.slice(0, 2)}
+                </span>
+              )}
+              <div class="glass-case-card__meta">
+                {item.live && <span class="glass-case-card__live">Live</span>}
+                <span class="glass-case-card__status">{statusLabel[item.status] ?? item.status}</span>
+              </div>
+            </div>
+
+            <h2 class="glass-case-card__name">{item.name}</h2>
+            <p class="glass-case-card__tagline">{item.tagline}</p>
+            <p class="glass-case-card__role">{item.role}</p>
+
+            <div class="glass-case-card__tags">
+              {item.stack.slice(0, 4).map((tech) => (
+                <span class="glass-case-card__tag">{tech}</span>
+              ))}
+            </div>
+
+            <span class="glass-case-card__cta">
+              Ver expediente
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14" />
+                <path d="m13 6 6 6-6 6" />
+              </svg>
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</section>

@@ -1,0 +1,325 @@
+/* Frutiger Aero — secciones (estilo home) */
+
+.aero-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+  padding: 2.5rem 0 0;
+}
+
+.aero-section__label,
+.aero-section__num {
+  position: relative;
+  z-index: 5;
+}
+
+.aero-section__label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(10, 16, 32, 0.45);
+  margin: 0 0 0.5rem;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+.aero-section__num {
+  position: absolute;
+  top: 2.5rem;
+  right: clamp(1.25rem, 4vw, 3rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: rgba(10, 16, 32, 0.06);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.aero-section__scene {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-height: 0;
+  max-height: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(96px, 120px);
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  align-items: start;
+  padding: 0 clamp(1rem, 3vw, 2rem) 1rem;
+}
+
+.aero-section__chrome {
+  position: absolute;
+  left: 62%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: min(38vw, 340px);
+  height: min(38vw, 340px);
+  pointer-events: none;
+  opacity: 0.92;
+}
+
+.aero-section__window {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 720px);
+  max-height: calc(100% - 0.5rem);
+  display: flex;
+  flex-direction: column;
+  animation: windowEnter 0.65s var(--os-ease) both;
+}
+
+.aero-section__window .os-window__body {
+  overflow-y: auto;
+  max-height: min(58vh, 560px);
+  padding: 1.15rem 1.25rem 1.1rem;
+  scrollbar-width: thin;
+  scrollbar-color: #b8c4dc transparent;
+}
+
+.aero-section__window .os-window__body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.aero-section__window .os-window__body::-webkit-scrollbar-thumb {
+  background: #b8c4dc;
+  border-radius: 4px;
+}
+
+.aero-section__folders {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
+  z-index: 4;
+  padding-top: 0.25rem;
+}
+
+.aero-section__folders .os-folder__label {
+  max-width: 96px;
+  font-size: 0.58rem;
+  line-height: 1.25;
+  word-break: break-word;
+}
+
+.aero-section__folders .os-folder.is-current {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(29, 107, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(29, 107, 255, 0.12);
+}
+
+.aero-section__home {
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(10, 16, 32, 0.5);
+  text-decoration: none;
+  margin-bottom: 0.25rem;
+}
+
+.aero-section__home:hover {
+  color: var(--os-xp-blue);
+}
+
+/* Contenido dentro de ventanas aero */
+.aero-panel__lead {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--os-text-secondary);
+  margin: 0 0 1rem;
+}
+
+.aero-panel__status {
+  margin: 0.85rem 0 0;
+  font-size: 0.62rem;
+  color: var(--os-text-secondary);
+}
+
+.about-aero__grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(160px, 34%);
+  gap: 1.15rem;
+}
+
+.about-aero__text {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--os-text);
+  margin: 0;
+}
+
+.about-aero__meta .os-meta-item__label {
+  color: var(--os-text-secondary);
+  font-size: 0.62rem;
+}
+
+.about-aero__meta .os-meta-item__value {
+  color: var(--os-text);
+  font-size: 0.78rem;
+}
+
+.about-aero__meta .os-meta-item {
+  margin-bottom: 0.75rem;
+}
+
+.aero-section .project-item {
+  border-bottom-color: rgba(10, 16, 32, 0.08);
+}
+
+.aero-section .project-item:hover {
+  background: rgba(29, 107, 255, 0.04);
+}
+
+.aero-section .project-item__name {
+  color: var(--os-text);
+}
+
+.aero-section .project-item__desc {
+  color: var(--os-text-secondary);
+}
+
+.aero-section .project-item__open {
+  color: var(--os-xp-blue);
+}
+
+.aero-section .project-item__detail {
+  background: rgba(29, 107, 255, 0.05);
+  border-color: rgba(29, 107, 255, 0.12);
+}
+
+.aero-section .projects-panel__more a {
+  color: var(--os-xp-blue);
+}
+
+.aero-section .os-wizard-step {
+  border-bottom-color: rgba(10, 16, 32, 0.08);
+}
+
+.aero-section .os-wizard-step__num {
+  color: var(--os-xp-blue);
+}
+
+.aero-section .os-wizard-step__title {
+  color: var(--os-text);
+}
+
+.aero-section .os-wizard-step__desc {
+  color: var(--os-text-secondary);
+}
+
+.aero-section .os-progress {
+  background: #e8edf5;
+  border-color: #b8c4dc;
+}
+
+.aero-section .os-project-detail__label {
+  color: var(--os-text-secondary);
+}
+
+.aero-section .os-project-detail__text {
+  color: var(--os-text);
+}
+
+.aero-section .os-chip {
+  color: var(--os-xp-blue);
+  background: rgba(29, 107, 255, 0.08);
+  border-color: rgba(29, 107, 255, 0.16);
+}
+
+.stack-aero__map {
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stack-aero__hint {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--os-text-secondary);
+  text-align: center;
+  margin: 0.5rem 0 0;
+}
+
+.process-aero__steps {
+  margin-bottom: 1rem;
+}
+
+.contact-aero__links {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.contact-aero__links li {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 0.35rem 0.65rem;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.contact-aero__lead {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--os-text-secondary);
+  margin: 0 0 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .aero-section__scene {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .aero-section__chrome {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: min(70vw, 260px);
+    height: min(70vw, 260px);
+    margin: 0 auto 0.5rem;
+    order: -1;
+  }
+
+  .aero-section__window {
+    max-width: 100%;
+  }
+
+  .aero-section__window .os-window__body {
+    max-height: none;
+  }
+
+  .aero-section__folders {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .about-aero__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .aero-section {
+    padding-top: 2.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aero-section__window {
+    animation: none;
+  }
+}

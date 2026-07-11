@@ -1,0 +1,64 @@
+---
+import { stackNodes, stackEdges } from "../../data/site";
+---
+
+<div class="stack-aero">
+  <div class="stack-aero__map os-stack-map" role="img" aria-label="Mapa de tecnologías">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+      {
+        stackEdges.map((edge) => {
+          const from = stackNodes.find((n) => n.id === edge.from);
+          const to = stackNodes.find((n) => n.id === edge.to);
+          if (!from || !to) return null;
+          return (
+            <line
+              x1={from.x}
+              y1={from.y}
+              x2={to.x}
+              y2={to.y}
+              stroke="rgba(29, 107, 255, 0.25)"
+              stroke-width="0.4"
+            />
+          );
+        })
+      }
+      {
+        stackNodes.map((node) => (
+          <g transform={`translate(${node.x}, ${node.y})`}>
+            <rect
+              x={node.core ? -12 : -9}
+              y={node.core ? -5.5 : -4}
+              width={node.core ? 24 : 18}
+              height={node.core ? 11 : 8}
+              rx="2"
+              fill={node.core ? "#1d6bff" : "#f4f7ff"}
+              stroke={node.core ? "#8fb6ff" : "rgba(29, 107, 255, 0.35)"}
+              stroke-width="0.4"
+              filter={node.core ? "url(#stackGlowAero)" : undefined}
+            />
+            <text
+              text-anchor="middle"
+              dominant-baseline="middle"
+              fill={node.core ? "#fff" : "#3d4a60"}
+              font-family="JetBrains Mono, monospace"
+              font-size={node.core ? "3" : "2.6"}
+              font-weight={node.core ? "600" : "400"}
+            >
+              {node.label}
+            </text>
+          </g>
+        ))
+      }
+      <defs>
+        <filter id="stackGlowAero" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="1.5" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+  <p class="stack-aero__hint">Mapa de tecnologías que uso a diario</p>
+</div>

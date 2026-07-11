@@ -1,0 +1,100 @@
+---
+import { stackNodes, stackEdges } from "../../data/site";
+import AeroBackground from "../AeroBackground.astro";
+---
+
+<section id="stack" class="os-section os-section--dark stack-section">
+  <AeroBackground variant="dark" />
+  <span class="os-section-num" aria-hidden="true">03</span>
+  <div class="os-container stack-section__inner">
+    <header class="stack-section__header">
+      <h2 class="stack-section__title display">Herramientas</h2>
+      <p class="stack-section__sub mono">Stack que uso en producción</p>
+    </header>
+
+    <div class="os-stack-map" role="img" aria-label="Mapa de tecnologías conectadas">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+        {
+          stackEdges.map((edge) => {
+            const from = stackNodes.find((n) => n.id === edge.from);
+            const to = stackNodes.find((n) => n.id === edge.to);
+            if (!from || !to) return null;
+            return (
+              <line
+                x1={from.x}
+                y1={from.y}
+                x2={to.x}
+                y2={to.y}
+                stroke="rgba(143, 182, 255, 0.25)"
+                stroke-width="0.35"
+              />
+            );
+          })
+        }
+        {
+          stackNodes.map((node) => (
+            <g transform={`translate(${node.x}, ${node.y})`}>
+              <rect
+                x={node.core ? -11 : -9}
+                y={node.core ? -5 : -4}
+                width={node.core ? 22 : 18}
+                height={node.core ? 10 : 8}
+                rx="1.5"
+                fill={node.core ? "#1d6bff" : "rgba(17, 28, 48, 0.9)"}
+                stroke={node.core ? "#8fb6ff" : "rgba(143, 182, 255, 0.3)"}
+                stroke-width="0.35"
+              />
+              <text
+                class="os-stack-node"
+                text-anchor="middle"
+                dominant-baseline="middle"
+                fill={node.core ? "#fff" : "#c5d4ea"}
+                font-size={node.core ? "3.2" : "2.8"}
+              >
+                {node.label}
+              </text>
+            </g>
+          ))
+        }
+      </svg>
+    </div>
+
+    <p class="stack-section__hint mono">click en un nodo para ver más — próximamente</p>
+  </div>
+</section>
+
+<style>
+  .stack-section {
+    overflow: hidden;
+  }
+
+  .stack-section__inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .stack-section__header {
+    margin-bottom: 2rem;
+  }
+
+  .stack-section__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    margin: 0 0 0.35rem;
+    color: var(--os-text-on-dark);
+  }
+
+  .stack-section__sub {
+    font-size: 0.78rem;
+    color: var(--os-text-muted-dark);
+    margin: 0;
+  }
+
+  .stack-section__hint {
+    margin-top: 1.25rem;
+    font-size: 0.68rem;
+    color: var(--os-text-muted-dark);
+    opacity: 0.7;
+  }
+</style>

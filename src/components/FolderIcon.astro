@@ -1,0 +1,53 @@
+---
+interface Props {
+  label: string;
+  href?: string;
+  static?: boolean;
+  variant?: "default" | "glass" | "chrome" | "cassette";
+  size?: "md" | "lg";
+  class?: string;
+  "aria-current"?: "page" | undefined;
+}
+
+const {
+  label,
+  href = "#",
+  static: isStatic = false,
+  variant = "default",
+  size = "md",
+  class: className = "",
+  "aria-current": ariaCurrent,
+} = Astro.props;
+
+const classes = ["os-folder", `os-folder--${variant}`, `os-folder--${size}`, className];
+---
+
+{
+  isStatic ? (
+    <div class:list={classes} aria-hidden="true">
+      <div class="os-folder__visual">
+        <div class="os-folder__tab"></div>
+        <div class="os-folder__body">
+          <div class="os-folder__sheen"></div>
+        </div>
+        <div class="os-folder__shadow"></div>
+      </div>
+    </div>
+  ) : (
+    <a
+      href={href}
+      class:list={classes}
+      aria-label={label || undefined}
+      aria-current={ariaCurrent}
+    >
+      <div class="os-folder__visual" aria-hidden="true">
+        <div class="os-folder__tab"></div>
+        <div class="os-folder__body">
+          <div class="os-folder__sheen"></div>
+        </div>
+        <div class="os-folder__shadow"></div>
+      </div>
+      {label && <span class="os-folder__label">{label}</span>}
+    </a>
+  )
+}

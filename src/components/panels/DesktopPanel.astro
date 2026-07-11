@@ -1,0 +1,60 @@
+---
+import ChromeObject from "../ChromeObject.astro";
+import FolderIcon from "../FolderIcon.astro";
+import NowPlaying from "../NowPlaying.astro";
+import DesktopBackdrop from "../DesktopBackdrop.astro";
+import SystemWidget from "../SystemWidget.astro";
+import OverviewPositioning from "../OverviewPositioning.astro";
+import { navModules } from "../../data/site";
+
+const folderVariants = ["chrome", "glass", "default", "cassette"] as const;
+---
+
+<div id="home" class="desktop-panel">
+  <DesktopBackdrop />
+
+  <p class="desktop-panel__label mono">00 · inicio</p>
+  <span class="desktop-panel__num" aria-hidden="true">00</span>
+
+  <div class="desktop-panel__scene">
+    <div class="desktop-panel__chrome-wrap">
+      <ChromeObject size="hero" />
+    </div>
+
+    <div class="desktop-panel__main">
+      <div class="desktop-panel__hero desktop-panel__hero--hidden" aria-hidden="true">
+        <h1 class="desktop-panel__name display">
+          <span class="desktop-panel__name-text">Tamara<br aria-hidden="true" /> Ossandón</span>
+        </h1>
+      </div>
+
+      <div class="desktop-panel__widgets">
+        <OverviewPositioning />
+        <NowPlaying />
+        <SystemWidget />
+      </div>
+    </div>
+
+    <aside class="desktop-panel__folders" aria-label="Módulos">
+      {
+        navModules.map((item, index) => (
+          <FolderIcon
+            label={item.window}
+            href={item.href}
+            variant={folderVariants[index] ?? "default"}
+            size="lg"
+          />
+        ))
+      }
+    </aside>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll(".desktop-panel__folders .os-folder").forEach((folder) => {
+    folder.addEventListener("click", () => {
+      folder.classList.add("is-opening");
+      setTimeout(() => folder.classList.remove("is-opening"), 320);
+    });
+  });
+</script>

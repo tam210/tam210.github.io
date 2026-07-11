@@ -1,0 +1,30 @@
+---
+import type { ExperienceLayer } from "../../data/experience";
+import type { CaseFile } from "../../data/site";
+
+interface Props {
+  layers: ExperienceLayer[];
+  caseFile: CaseFile;
+}
+
+const { layers, caseFile } = Astro.props;
+---
+
+<div class="exp-layers" aria-label="Desafío, trabajo realizado y resultado">
+  {
+    layers.map((layer, i) => {
+      const body = String(caseFile[layer.field] ?? "")
+        .replace(/\s*\n+\s*/g, " ")
+        .trim();
+      return (
+        <article class:list={["exp-layers__card", `exp-layers__card--${layer.key}`]}>
+          <h3 class="exp-layers__label">
+            <span class="mono">{String(i + 1).padStart(2, "0")}</span>
+            {layer.label}
+          </h3>
+          <p class="exp-layers__text">{body}</p>
+        </article>
+      );
+    })
+  }
+</div>

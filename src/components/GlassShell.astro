@@ -1,0 +1,35 @@
+---
+import SceneBackdrop from "./SceneBackdrop.astro";
+import GlassHeader from "./GlassHeader.astro";
+import type { GlassNavId } from "./GlassHeader.astro";
+
+interface Props {
+  current?: GlassNavId;
+  /** Softer scene wash for reading pages */
+  reading?: boolean;
+  /**
+   * Scene photo under public/. Omit for home default.
+   * Pass `false` for gradient-only (e.g. contacto until bg is ready).
+   */
+  sceneImage?: string | false;
+}
+
+const { current = "inicio", reading = false, sceneImage } = Astro.props;
+---
+
+<div class:list={["glass-home", reading && "glass-home--reading"]}>
+  {
+    sceneImage === false ? (
+      <SceneBackdrop plain />
+    ) : sceneImage ? (
+      <SceneBackdrop imageSrc={sceneImage} />
+    ) : (
+      <SceneBackdrop />
+    )
+  }
+
+  <div class="glass-home__content">
+    <GlassHeader current={current} />
+    <slot />
+  </div>
+</div>

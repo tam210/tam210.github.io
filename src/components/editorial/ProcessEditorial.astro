@@ -1,0 +1,25 @@
+---
+import { processSteps } from "../../data/site";
+---
+
+<section class="process-editorial" aria-labelledby="process-headline">
+  <p class="process-editorial__eyebrow mono">installing_system.exe</p>
+  <h1 id="process-headline" class="process-editorial__headline display">
+    Cómo llevo un producto<br />de la idea a producción
+  </h1>
+
+  <ol class="process-timeline">
+    {
+      processSteps.map((step) => (
+        <li class="process-phase">
+          <span class="process-phase__num mono">{step.num}</span>
+          <div class="process-phase__body">
+            <h2 class="process-phase__title">{step.title}</h2>
+            <p class="process-phase__desc">{step.desc}</p>
+            <p class="process-phase__example">{step.example}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>

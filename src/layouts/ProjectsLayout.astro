@@ -1,0 +1,20 @@
+---
+import OsLayout from "./OsLayout.astro";
+import DesktopBackdrop from "../components/DesktopBackdrop.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<OsLayout title={title} description={description} current="cases" theme="light" hideBrand>
+  <div class="os-view os-view--projects">
+    <DesktopBackdrop />
+    <div class="projects-scene">
+      <slot />
+    </div>
+  </div>
+</OsLayout>

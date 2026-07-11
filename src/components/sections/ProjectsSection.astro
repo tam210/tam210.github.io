@@ -1,0 +1,111 @@
+---
+import { featuredProjects } from "../../data/site";
+import ProjectFile from "../ProjectFile.astro";
+import AeroBackground from "../AeroBackground.astro";
+---
+
+<section id="projects" class="os-section os-section--dark projects-section">
+  <AeroBackground variant="dark" />
+  <span class="os-section-num" aria-hidden="true">02</span>
+  <div class="os-container projects-section__inner">
+    <header class="projects-section__header">
+      <h2 class="projects-section__title display">Mis archivos</h2>
+      <p class="projects-section__sub mono">Proyectos reales. Código real. Usuarios reales.</p>
+    </header>
+
+    <div class="projects-section__grid">
+      {featuredProjects.map((project) => <ProjectFile project={project} />)}
+    </div>
+
+    <p class="projects-section__more mono">
+      <a href="#contact">¿Quieres ver más? Escríbeme →</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .projects-section {
+    overflow: hidden;
+  }
+
+  .projects-section__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .projects-section__header {
+    margin-bottom: 2.75rem;
+  }
+
+  .projects-section__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    margin: 0 0 0.35rem;
+    color: var(--os-text-on-dark);
+  }
+
+  .projects-section__sub {
+    font-size: 0.78rem;
+    color: var(--os-text-muted-dark);
+    margin: 0;
+  }
+
+  .projects-section__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .projects-section__more {
+    margin-top: 2.5rem;
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  .projects-section__more a {
+    color: var(--os-blue-soft);
+    transition: color var(--os-duration) var(--os-ease);
+  }
+
+  .projects-section__more a:hover {
+    color: #fff;
+  }
+
+  @media (max-width: 900px) {
+    .projects-section__grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll(".os-project-toggle").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-toggle");
+      const panel = id ? document.getElementById(`project-${id}`) : null;
+      const card = btn.closest(".project-file");
+      if (!panel || !card) return;
+
+      const wasOpen = panel.classList.contains("is-open");
+
+      document.querySelectorAll(".project-file .os-project-detail.is-open").forEach((el) => {
+        el.classList.remove("is-open");
+      });
+      document.querySelectorAll(".os-project-toggle").forEach((b) => {
+        b.setAttribute("aria-expanded", "false");
+        b.textContent = "abrir →";
+      });
+      document.querySelectorAll(".project-file").forEach((c) => c.classList.remove("is-expanded"));
+
+      if (!wasOpen) {
+        panel.classList.add("is-open");
+        card.classList.add("is-expanded");
+        btn.setAttribute("aria-expanded", "true");
+        btn.textContent = "cerrar ←";
+      }
+    });
+  });
+</script>

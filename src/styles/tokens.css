@@ -1,0 +1,114 @@
+/* TAMARA_OS — design tokens */
+
+:root {
+  /* Surfaces */
+  --os-sky: #dde8ff;
+  --os-sky-soft: #e8f0ff;
+  --os-sky-mid: #c5d8ff;
+  --os-night: #07101f;
+  --os-night-soft: #0c1628;
+  --os-night-panel: #111c30;
+
+  /* Window chrome */
+  --os-window: #f7faff;
+  --os-window-border: #b8c4dc;
+  --os-window-shadow: rgba(7, 16, 31, 0.14);
+  --os-titlebar: linear-gradient(180deg, #5a9dff 0%, #3d8bff 18%, #1d6bff 62%, #1458d8 100%);
+  --os-titlebar-shine: linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, transparent 48%);
+  --os-titlebar-border: #0f4ec4;
+  --os-titlebar-text: #ffffff;
+
+  /* Blues */
+  --os-xp-blue: #1d6bff;
+  --os-blue-soft: #8fb6ff;
+  --os-cyber: #006bff;
+
+  /* Text */
+  --os-text: #0a1020;
+  --os-text-secondary: #5d6678;
+  --os-text-on-dark: #e8eef8;
+  --os-text-muted-dark: #8b97ad;
+
+  /* Accents */
+  --os-deep: #020817;
+  --os-lime: #b8ff2c;
+  --os-live: #3dd68c;
+  --os-live-bg: rgba(61, 214, 140, 0.12);
+
+  /* Chrome / iridescent */
+  --os-chrome: linear-gradient(
+    135deg,
+    #dfe8ff 0%,
+    #c8d4f8 18%,
+    #f0e6ff 36%,
+    #b8d0ff 54%,
+    #e8f4ff 72%,
+    #d4c8f0 88%,
+    #dfe8ff 100%
+  );
+  --os-chrome-glow: rgba(141, 182, 255, 0.35);
+
+  /* Typography */
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Times New Roman", serif;
+  --font-body: "Outfit", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: var(--font-body);
+
+  /* Spacing & layout */
+  --os-radius: 10px;
+  --os-radius-sm: 6px;
+  --os-radius-window: 12px;
+  --os-max: 1180px;
+  --os-taskbar-h: 58px;
+  --os-section-pad: clamp(4rem, 10vw, 7rem);
+
+  /* Shadows */
+  --os-shadow-window:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.35) inset,
+    0 28px 56px var(--os-window-shadow),
+    0 8px 20px rgba(7, 16, 31, 0.06);
+  --os-shadow-window-hover:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.4) inset,
+    0 36px 64px rgba(7, 16, 31, 0.16),
+    0 12px 28px rgba(29, 107, 255, 0.08);
+  --os-shadow-soft: 0 10px 32px rgba(7, 16, 31, 0.1);
+  --os-shadow-btn: 0 1px 0 rgba(255, 255, 255, 0.55) inset, 0 2px 8px rgba(7, 16, 31, 0.14);
+  --os-shadow-btn-hover: 0 1px 0 rgba(255, 255, 255, 0.65) inset, 0 6px 16px rgba(7, 16, 31, 0.18);
+
+  /* Taskbar */
+  --os-taskbar: linear-gradient(180deg, #4a94ff 0%, #2b7af5 40%, #1d6bff 100%);
+  --os-taskbar-border: #1458d8;
+
+  /* Motion */
+  --os-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --os-duration: 0.35s;
+
+  /* Glass landing */
+  --glass-bg: rgba(255, 255, 255, 0.42);
+  --glass-bg-strong: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-border-soft: rgba(255, 255, 255, 0.35);
+  --glass-blur: 18px;
+  --glass-radius: 28px;
+  --glass-radius-pill: 999px;
+  --glass-shadow: 0 8px 32px rgba(15, 40, 90, 0.1), 0 1px 0 rgba(255, 255, 255, 0.65) inset;
+  --glass-cta: #2f6bff;
+  --glass-cta-hover: #1d56e8;
+  --glass-text: #0c1a3a;
+  --glass-text-muted: #4a5d7a;
+  --scene-image: none;
+  --scene-gradient:
+    radial-gradient(ellipse 70% 55% at 72% 42%, rgba(120, 170, 255, 0.45) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 50% at 18% 20%, rgba(255, 255, 255, 0.85) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(180, 210, 255, 0.55) 0%, transparent 55%),
+    linear-gradient(155deg, #eef4ff 0%, #d5e4ff 38%, #b8cef8 72%, #9eb8ef 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --os-duration: 0.01ms;
+  }
+}

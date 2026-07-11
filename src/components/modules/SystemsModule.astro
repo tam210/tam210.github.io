@@ -1,0 +1,26 @@
+---
+import ModuleIntro from "./ModuleIntro.astro";
+import { stackCapabilities } from "../../data/site";
+---
+
+<section class="systems-module" aria-labelledby="systems-headline">
+  <ModuleIntro title="Sistemas" status="// herramientas activas" id="systems-headline" num="02" />
+
+  <div class="capability-grid">
+    {
+      stackCapabilities.map((block) => (
+        <article class="capability-block">
+          <h2 class="capability-block__category mono">{block.category}</h2>
+          <ul class="capability-block__list">
+            {block.items.map((item) => (
+              <li class="capability-block__item">
+                <span class="capability-block__name">{item.name}</span>
+                <span class="capability-block__use">{item.use}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</section>

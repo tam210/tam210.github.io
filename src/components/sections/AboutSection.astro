@@ -1,0 +1,69 @@
+---
+import OsWindow from "../OsWindow.astro";
+import AeroBackground from "../AeroBackground.astro";
+---
+
+<section id="about" class="os-section os-section--light about-section">
+  <AeroBackground variant="light" />
+  <span class="os-section-num" aria-hidden="true">01</span>
+  <div class="os-container about-section__grid">
+    <OsWindow title="system.properties" class="about-section__window">
+      <p class="about-section__text">
+        Soy ingeniera civil en computación.<br />
+        Trabajo entre backend, frontend, móvil y cloud.<br />
+        Me gusta transformar procesos complejos en sistemas simples de usar.
+      </p>
+      <p class="os-window__status mono">&gt; USER: tamara_os</p>
+    </OsWindow>
+
+    <aside class="about-section__meta os-meta-list" aria-label="Información de perfil">
+      <div class="os-meta-item">
+        <p class="os-meta-item__label mono">Education</p>
+        <p class="os-meta-item__value">
+          Ingeniera Civil en Computación<br />
+          Universidad Católica del Norte
+        </p>
+      </div>
+      <div class="os-meta-item">
+        <p class="os-meta-item__label mono">Focus</p>
+        <p class="os-meta-item__value">Backend · Frontend · Móvil · Cloud</p>
+      </div>
+      <div class="os-meta-item">
+        <p class="os-meta-item__label mono">Location</p>
+        <p class="os-meta-item__value">Antofagasta, Chile</p>
+      </div>
+      <div class="os-meta-item">
+        <p class="os-meta-item__label mono">Status</p>
+        <p class="os-meta-item__value os-status-dot">Building cool stuff</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    overflow: hidden;
+  }
+
+  .about-section__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) minmax(200px, 320px);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .about-section__text {
+    font-size: clamp(1rem, 2.2vw, 1.15rem);
+    line-height: 1.65;
+    color: var(--os-text);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .about-section__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

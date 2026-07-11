@@ -1,0 +1,58 @@
+---
+import GlassLayout from "../layouts/GlassLayout.astro";
+---
+
+<GlassLayout
+  title="Tamara Ossandón — ideas vivas. sistemas inteligentes."
+  description="Diseño y construyo SaaS, apps móviles y sistemas en la nube que los equipos usan en el día a día."
+  current="inicio"
+>
+  <section class="glass-hero" aria-labelledby="glass-hero-title">
+    <h1 id="glass-hero-title" class="glass-hero__title">
+      <span class="glass-hero__line">ideas vivas.</span>
+      <span class="glass-hero__line glass-hero__line--accent">sistemas inteligentes.</span>
+    </h1>
+    <div class="glass-hero__ctas">
+      <a href="/cases/" class="glass-btn glass-btn--primary">
+        Ver experiencia
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 12h14" />
+          <path d="m13 6 6 6-6 6" />
+        </svg>
+      </a>
+      <a href="/connect/" class="glass-btn glass-btn--ghost">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <path d="m3 7 9 6 9-6" />
+        </svg>
+        Contacto
+      </a>
+    </div>
+  </section>
+
+  <aside class="glass-strip glass-surface" aria-label="Perfil">
+    <div class="glass-strip__item">
+      <span class="glass-strip__orb" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3.5 13.2 8h4.7l-3.8 2.8 1.4 4.6L12 12.9 8.5 15.4l1.4-4.6L6.1 8h4.7L12 3.5Z" />
+        </svg>
+      </span>
+      <div class="glass-strip__copy">
+        <p class="glass-strip__label">Enfoque</p>
+        <p class="glass-strip__value">Producto, UX y arquitectura.</p>
+      </div>
+    </div>
+    <div class="glass-strip__divider" aria-hidden="true"></div>
+    <div class="glass-strip__item">
+      <span class="glass-strip__orb" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M7 17h11a4 4 0 0 0 .3-8 6 6 0 0 0-11.5-1.6A4.5 4.5 0 0 0 7 17Z" />
+        </svg>
+      </span>
+      <div class="glass-strip__copy">
+        <p class="glass-strip__label">Especialidad</p>
+        <p class="glass-strip__value">SaaS, móvil, cloud y automatización empresarial.</p>
+      </div>
+    </div>
+  </aside>
+</GlassLayout>

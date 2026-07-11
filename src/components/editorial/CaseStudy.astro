@@ -1,0 +1,87 @@
+---
+import type { Project } from "../../data/site";
+import FolderIcon from "../FolderIcon.astro";
+
+interface Props {
+  project: Project;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+const num = String(index + 1).padStart(2, "0");
+const reversed = index % 2 === 1;
+---
+
+<article class="case-study" data-reversed={reversed}>
+  <header class="case-study__header">
+    <div class="case-study__id">
+      <span class="case-study__num mono">{num}</span>
+      <div class="case-study__icon" aria-hidden="true">
+        <FolderIcon
+          label=""
+          static
+          variant={project.variant ?? "default"}
+          size="md"
+        />
+      </div>
+    </div>
+    <div class="case-study__titles">
+      <h2 class="case-study__name">
+        {project.name}
+        {project.live && <span class="os-badge-live">Live</span>}
+      </h2>
+      <p class="case-study__tagline">{project.tagline}</p>
+    </div>
+  </header>
+
+  <div class="case-study__grid">
+    <div class="case-study__visual">
+      {
+        project.logo ? (
+          <img
+            class="case-study__logo"
+            src={project.logo}
+            alt={`Logo ${project.name}`}
+            width="120"
+            height="120"
+            loading="lazy"
+          />
+        ) : (
+          <div class="case-study__placeholder mono">{project.name}</div>
+        )
+      }
+      <p class="case-study__meta mono">
+        {project.year} · {project.company}
+      </p>
+    </div>
+
+    <div class="case-study__content">
+      <div class="case-study__cols">
+        <div class="case-study__col">
+          <h3 class="case-study__label mono">Problema</h3>
+          <p>{project.problem}</p>
+        </div>
+        <div class="case-study__col">
+          <h3 class="case-study__label mono">Solución</h3>
+          <p>{project.built}</p>
+        </div>
+        <div class="case-study__col">
+          <h3 class="case-study__label mono">Resultado</h3>
+          <p>{project.result}</p>
+        </div>
+      </div>
+
+      <div class="case-study__footer">
+        <p class="case-study__role mono">{project.role}</p>
+        <div class="os-chips">
+          {project.stack.map((tech) => (
+            <span class="os-chip">{tech}</span>
+          ))}
+        </div>
+        <a href="/contact/" class="os-btn os-btn--secondary case-study__cta">
+          Ver caso →
+        </a>
+      </div>
+    </div>
+  </div>
+</article>

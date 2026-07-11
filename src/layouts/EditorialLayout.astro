@@ -1,0 +1,21 @@
+---
+import OsLayout from "./OsLayout.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  current: string;
+}
+
+const { title, description, current } = Astro.props;
+---
+
+<OsLayout title={title} description={description} current={current} theme="light" hideBrand>
+  <div class="os-view os-view--editorial">
+    <div class="editorial">
+      <div class="editorial__inner">
+        <slot />
+      </div>
+    </div>
+  </div>
+</OsLayout>

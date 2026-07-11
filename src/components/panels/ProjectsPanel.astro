@@ -1,0 +1,37 @@
+---
+import { featuredProjects } from "../../data/site";
+import ProjectListItem from "../ProjectListItem.astro";
+---
+
+<div class="projects-aero">
+  <p class="aero-panel__lead">Proyectos seleccionados. Haz clic en abrir para ver detalle.</p>
+  {featuredProjects.map((project) => <ProjectListItem project={project} />)}
+  <p class="projects-panel__more mono">
+    <a href="/contact/">¿tienes un proyecto? hablemos →</a>
+  </p>
+</div>
+
+<script>
+  document.querySelectorAll(".os-project-toggle").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-toggle");
+      const panel = id ? document.getElementById(`project-${id}`) : null;
+      if (!panel) return;
+      const wasOpen = panel.classList.contains("is-open");
+
+      document.querySelectorAll(".project-item__detail.is-open").forEach((el) => {
+        el.classList.remove("is-open");
+      });
+      document.querySelectorAll(".os-project-toggle").forEach((b) => {
+        b.setAttribute("aria-expanded", "false");
+        b.textContent = "abrir →";
+      });
+
+      if (!wasOpen) {
+        panel.classList.add("is-open");
+        btn.setAttribute("aria-expanded", "true");
+        btn.textContent = "cerrar ←";
+      }
+    });
+  });
+</script>

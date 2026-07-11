@@ -1,0 +1,73 @@
+<div class="os-now-playing" data-now-playing>
+  <p class="os-now-playing__label">now playing</p>
+  <p class="os-now-playing__track" data-track-label>building software / 01</p>
+  <div class="os-now-playing__bar" aria-hidden="true">
+    <div class="os-now-playing__bar-fill" data-bar-fill></div>
+  </div>
+  <div class="os-now-playing__controls">
+    <button type="button" class="os-now-playing__btn" data-action="prev" aria-label="Anterior">⏮</button>
+    <button type="button" class="os-now-playing__btn os-now-playing__btn--play" data-action="play" aria-label="Reproducir">▶</button>
+    <button type="button" class="os-now-playing__btn" data-action="next" aria-label="Siguiente">⏭</button>
+  </div>
+</div>
+
+<script>
+  const widget = document.querySelector("[data-now-playing]");
+  if (!widget) {
+    /* noop */
+  } else {
+    const tracks = [
+      "building software / 01",
+      "deploy cloud run / 02",
+      "offline mobile / 03",
+    ];
+    let index = 0;
+    let playing = false;
+    let progress = 0;
+    let raf = 0;
+
+    const label = widget.querySelector("[data-track-label]");
+    const fill = widget.querySelector("[data-bar-fill]");
+    const playBtn = widget.querySelector('[data-action="play"]');
+
+    function render() {
+      if (label) label.textContent = tracks[index];
+      if (fill) fill.style.width = `${progress}%`;
+      if (playBtn) playBtn.textContent = playing ? "⏸" : "▶";
+    }
+
+    function tick() {
+      if (playing) {
+        progress = Math.min(100, progress + 0.35);
+        if (progress >= 100) {
+          progress = 0;
+          index = (index + 1) % tracks.length;
+        }
+        render();
+      }
+      raf = requestAnimationFrame(tick);
+    }
+
+    widget.querySelector('[data-action="play"]')?.addEventListener("click", () => {
+      playing = !playing;
+      render();
+    });
+
+    widget.querySelector('[data-action="prev"]')?.addEventListener("click", () => {
+      index = (index - 1 + tracks.length) % tracks.length;
+      progress = 0;
+      render();
+    });
+
+    widget.querySelector('[data-action="next"]')?.addEventListener("click", () => {
+      index = (index + 1) % tracks.length;
+      progress = 0;
+      render();
+    });
+
+    render();
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      tick();
+    }
+  }
+</script>

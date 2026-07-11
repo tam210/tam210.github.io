@@ -1,0 +1,91 @@
+---
+import type { CaseFile } from "../../data/site";
+
+interface Props {
+  cases: CaseFile[];
+}
+
+const { cases } = Astro.props;
+
+const payload = cases.map((c) => ({
+  id: c.id,
+  name: c.name,
+  company: c.company,
+  year: c.year,
+  tagline: c.tagline,
+  role: c.role,
+  context: c.context,
+  problem: c.problem,
+  approach: c.approach,
+  built: c.built,
+  result: c.result,
+  impact: c.impact,
+  learnings: c.learnings,
+  stack: c.stack,
+  uxDecisions: c.uxDecisions,
+  techDecisions: c.techDecisions,
+}));
+---
+
+<dialog class="exp-drawer" data-case-drawer aria-label="Detalle del caso">
+  <div class="exp-drawer__sheet">
+    <header class="exp-drawer__head">
+      <button type="button" class="exp-drawer__close" data-drawer-close aria-label="Cerrar">
+        Cerrar
+      </button>
+      <p class="exp-drawer__eyebrow mono" data-drawer-meta></p>
+      <h2 class="exp-drawer__title" data-drawer-title></h2>
+      <p class="exp-drawer__tagline" data-drawer-tagline></p>
+      <p class="exp-drawer__role" data-drawer-role></p>
+    </header>
+
+    <div class="exp-drawer__body">
+      <section>
+        <h3>Contexto</h3>
+        <p data-drawer-context></p>
+      </section>
+      <section>
+        <h3>Problema</h3>
+        <p data-drawer-problem></p>
+      </section>
+      <section>
+        <h3>Enfoque</h3>
+        <p data-drawer-approach></p>
+      </section>
+      <section>
+        <h3>Qué construí</h3>
+        <p data-drawer-built></p>
+      </section>
+      <section>
+        <h3>Resultado</h3>
+        <p data-drawer-result></p>
+      </section>
+      <section>
+        <h3>Impacto</h3>
+        <p data-drawer-impact></p>
+      </section>
+      <section>
+        <h3>Decisiones UX</h3>
+        <ul data-drawer-ux></ul>
+      </section>
+      <section>
+        <h3>Decisiones técnicas</h3>
+        <ul data-drawer-tech></ul>
+      </section>
+      <section>
+        <h3>Aprendizaje</h3>
+        <p data-drawer-learnings></p>
+      </section>
+      <section>
+        <h3>Stack</h3>
+        <ul class="exp-drawer__chips" data-drawer-stack></ul>
+      </section>
+    </div>
+
+    <footer class="exp-drawer__foot">
+      <a class="exp-btn exp-btn--ghost" data-drawer-permalink href="#">Abrir página del caso</a>
+    </footer>
+  </div>
+</dialog>
+
+<script is:inline id="exp-cases-data" type="application/json" set:html={JSON.stringify(payload)} />

@@ -1,0 +1,36 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import GlassShell from "../components/GlassShell.astro";
+
+import type { GlassNavId } from "../components/GlassHeader.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  current?: GlassNavId;
+  reading?: boolean;
+  /** Scene photo path, or `false` for gradient-only */
+  sceneImage?: string | false;
+}
+
+const {
+  title,
+  description,
+  current = "inicio",
+  reading = false,
+  sceneImage,
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  bodyClass="glass-body"
+  themeColor="#d6e4ff"
+>
+  <main id="main">
+    <GlassShell current={current} reading={reading} sceneImage={sceneImage}>
+      <slot />
+    </GlassShell>
+  </main>
+</BaseLayout>

@@ -1,0 +1,25 @@
+---
+import GlassLayout from "../../layouts/GlassLayout.astro";
+import GlassCaseDetail from "../../components/cases/GlassCaseDetail.astro";
+import { caseFiles, getCaseById } from "../../data/site";
+
+export function getStaticPaths() {
+  return caseFiles.map((item) => ({ params: { slug: item.id } }));
+}
+
+const { slug } = Astro.params;
+const caseFile = getCaseById(slug!);
+
+if (!caseFile) {
+  return Astro.redirect("/cases/");
+}
+---
+
+<GlassLayout
+  title={`${caseFile.name} — Tamara Ossandón`}
+  description={caseFile.tagline}
+  current="proyectos"
+  reading
+>
+  <GlassCaseDetail caseFile={caseFile} />
+</GlassLayout>

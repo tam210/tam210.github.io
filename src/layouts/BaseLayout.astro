@@ -1,0 +1,64 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { pageLayer } from "../lib/pageTransition";
+
+interface Props {
+  title?: string;
+  description?: string;
+  bodyClass?: string;
+  themeColor?: string;
+}
+
+const {
+  title = "Tamara Ossandón — Full-stack Developer",
+  description = "Construyo software para problemas reales. Full-stack · Web · Móvil · GCP.",
+  bodyClass = "os-body os-body--dark",
+  themeColor = "#07101f",
+} = Astro.props;
+---
+
+<!doctype html>
+<html
+  lang="es"
+  class={
+    bodyClass.includes("glass-body")
+      ? "os-html--glass"
+      : bodyClass.includes("os-body--light")
+        ? "os-html--light"
+        : "os-html--dark"
+  }
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content={themeColor} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Tamara Ossandón" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://tam210.github.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <link rel="canonical" href="https://tam210.github.io" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <ClientRouter fallback="animate" />
+  </head>
+  <body class={bodyClass} transition:animate={pageLayer}>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import "../styles/page-transitions.css";
+  @import "../styles/global.css";
+</style>
