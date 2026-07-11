@@ -18,11 +18,13 @@
   --exp-mono: "IBM Plex Mono", ui-monospace, monospace;
   --exp-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --exp-dur: 0.55s;
+  --exp-rail-left: clamp(4.25rem, 7vw, 5.5rem);
+  --exp-rail-right: clamp(5.5rem, 8vw, 6.5rem);
+  --exp-content-x: clamp(1.25rem, 4vw, 3rem);
   /* Align shared glass chrome with this page */
   --glass-text: var(--exp-ink);
   --glass-cta: #2f6bff;
   --font-serif: "Cormorant Garamond", "Times New Roman", serif;
-  --font-body: var(--exp-font);
   --os-ease: var(--exp-ease);
   --glass-radius-pill: 999px;
 }
@@ -39,7 +41,7 @@
   min-height: 100%;
   color: var(--exp-ink);
   font-family: var(--exp-font);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .exp-body {
@@ -136,15 +138,20 @@
   color: var(--exp-blue);
 }
 
-/* Main */
+/* Main — shared horizontal rhythm for hero + scenes */
 .exp-main {
   position: relative;
-  padding-top: var(--glass-brand-clearance, 5rem);
-  padding-left: clamp(4.25rem, 7vw, 5.5rem);
-  padding-right: clamp(5.5rem, 8vw, 6.5rem);
+  padding-top: 0;
+  padding-left: var(--exp-rail-left);
+  padding-right: var(--exp-rail-right);
 }
 
-/* Brand mark: same coords as other pages; only tint for this universe */
+/* Brand bar aligns with content column below */
+.exp-body .glass-brand-bar {
+  padding-left: calc(var(--exp-rail-left) + var(--exp-content-x));
+  padding-right: var(--exp-rail-right);
+}
+
 .exp-body .glass-brand {
   color: var(--exp-ink);
 }
@@ -176,7 +183,7 @@
   min-height: auto;
   display: grid;
   align-items: center;
-  padding: clamp(1.25rem, 4vh, 2.5rem) clamp(1.25rem, 4vw, 3rem) clamp(1.5rem, 4vh, 2.5rem);
+  padding: clamp(1.25rem, 4vh, 2.5rem) var(--exp-content-x) clamp(1.5rem, 4vh, 2.5rem);
   overflow: hidden;
 }
 
@@ -301,8 +308,7 @@
   min-height: 0;
   display: grid;
   align-items: start;
-  padding: clamp(2.75rem, 7vh, 4.5rem) clamp(1.25rem, 4vw, 3rem);
-  padding-left: clamp(4.5rem, 8vw, 6.5rem);
+  padding: clamp(2.75rem, 7vh, 4.5rem) var(--exp-content-x);
 }
 
 .exp-scene--compact {
@@ -677,8 +683,7 @@
 
 /* Technologies */
 .exp-tech {
-  padding: clamp(2.5rem, 7vh, 4rem) clamp(1.25rem, 4vw, 3rem) clamp(1.5rem, 4vh, 2.5rem);
-  padding-left: clamp(4.5rem, 8vw, 6.5rem);
+  padding: clamp(2.5rem, 7vh, 4rem) var(--exp-content-x) clamp(1.5rem, 4vh, 2.5rem);
   max-width: 52rem;
 }
 
@@ -764,7 +769,7 @@
 
 /* Closing quote */
 .exp-quote {
-  padding: clamp(2.5rem, 8vh, 4.5rem) clamp(1.25rem, 4vw, 3rem) clamp(3rem, 8vh, 5rem);
+  padding: clamp(2.5rem, 8vh, 4.5rem) var(--exp-content-x) clamp(3rem, 8vh, 5rem);
   max-width: 40rem;
   margin-left: auto;
   margin-right: auto;
@@ -954,16 +959,22 @@
     border-radius: 18px;
   }
 
+  .exp-body {
+    --exp-rail-left: 0px;
+    --exp-rail-right: 4rem;
+    --exp-content-x: clamp(1.25rem, 4vw, 2rem);
+  }
+
   .exp-main {
-    padding-top: var(--glass-brand-clearance, 5rem);
+    padding-top: 0;
     padding-left: 0;
     padding-right: 4rem;
     padding-bottom: 4.5rem;
   }
 
-  .exp-scene,
-  .exp-tech {
-    padding-left: clamp(1.25rem, 4vw, 2rem);
+  .exp-body .glass-brand-bar {
+    padding-left: var(--exp-content-x);
+    padding-right: 4rem;
   }
 
   .exp-river {

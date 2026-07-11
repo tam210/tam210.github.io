@@ -123,6 +123,7 @@ export const caseFiles: CaseFile[] = [
     tags: ["web", "data", "ocr", "internship"],
     status: "shipped",
     featured: true,
+    logo: "/images/dem-logo.jpg",
     companyUrl: "https://www.linkedin.com/company/ilustre-municipalidad-de-ovalle/",
     variant: "folder",
   },
@@ -153,6 +154,7 @@ export const caseFiles: CaseFile[] = [
     tags: ["inventory", "scrum", "mvvm"],
     status: "archived",
     featured: true,
+    logo: "/images/agrofamily-logo.png",
     variant: "folder",
   },
 ];

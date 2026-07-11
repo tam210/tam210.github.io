@@ -3,21 +3,36 @@ export type GlassNavId = "inicio" | "proyectos" | "contacto";
 
 interface Props {
   current?: GlassNavId;
+  /** Sticky horizontal bar in document flow (avoids overlapping content) */
+  brandSticky?: boolean;
 }
 
-const { current = "inicio" } = Astro.props;
+const { current = "inicio", brandSticky = false } = Astro.props;
 
 const railNav = [
   { id: "inicio", label: "Inicio", href: "/", icon: "home" },
   { id: "proyectos", label: "Experiencia", href: "/cases/", icon: "cube" },
   { id: "contacto", label: "Contacto", href: "/connect/", icon: "mail" },
 ] as const;
+
+const brandClass = ["glass-brand", brandSticky && "glass-brand--inflow"];
 ---
 
-<a href="/" class="glass-brand" aria-label="Tamara Ossandón — Inicio">
-  <span class="glass-brand__name">Tamara Ossandón</span>
-  <span class="glass-brand__role">Software Engineer</span>
-</a>
+{
+  brandSticky ? (
+    <div class="glass-brand-bar">
+      <a href="/" class:list={brandClass} aria-label="Tamara Ossandón — Inicio">
+        <span class="glass-brand__name">Tamara Ossandón</span>
+        <span class="glass-brand__role">Software Engineer</span>
+      </a>
+    </div>
+  ) : (
+    <a href="/" class:list={brandClass} aria-label="Tamara Ossandón — Inicio">
+      <span class="glass-brand__name">Tamara Ossandón</span>
+      <span class="glass-brand__role">Software Engineer</span>
+    </a>
+  )
+}
 
 <nav class="glass-rail glass-surface" aria-label="Principal">
   {
