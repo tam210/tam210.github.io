@@ -25,6 +25,8 @@ export interface CaseFile {
   live?: boolean;
   featured?: boolean;
   logo?: string;
+  /** External company / product link for the scene arrow */
+  companyUrl?: string;
   variant?: "folder" | "glass" | "cassette";
 }
 
@@ -89,6 +91,7 @@ export const caseFiles: CaseFile[] = [
     live: true,
     featured: true,
     logo: "/images/construckit-logo.png",
+    companyUrl: "https://construckit.cl",
     variant: "folder",
   },
   {
@@ -140,6 +143,7 @@ export const caseFiles: CaseFile[] = [
     status: "shipped",
     featured: true,
     logo: "/images/duffco-logo.jpeg",
+    companyUrl: "https://cl.linkedin.com/company/duffco-ingenier%C3%ADa-construcci%C3%B3n",
     variant: "glass",
   },
   {
@@ -184,6 +188,7 @@ export const caseFiles: CaseFile[] = [
     status: "shipped",
     featured: true,
     logo: "/images/stracon-tech-logo.jpeg",
+    companyUrl: "https://www.linkedin.com/company/stracon-tech",
     variant: "cassette",
   },
   {
@@ -216,6 +221,7 @@ export const caseFiles: CaseFile[] = [
     tags: ["automation", "enterprise"],
     status: "archived",
     logo: "/images/stracon-tech-logo.jpeg",
+    companyUrl: "https://www.linkedin.com/company/stracon-tech",
     variant: "cassette",
   },
   {
@@ -251,6 +257,7 @@ export const caseFiles: CaseFile[] = [
     learnings: "La modularidad tiene costo operativo; vale la pena cuando el dominio lo justifica.",
     tags: ["backend", "ecommerce"],
     status: "archived",
+    companyUrl: "https://www.linkedin.com/company/ilustre-municipalidad-de-ovalle/",
     variant: "folder",
   },
 ];

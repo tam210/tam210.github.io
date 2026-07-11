@@ -1,5 +1,6 @@
 ---
 import type { ResolvedExperienceScene } from "../../data/experience";
+import { resolveTechBadge, techIconSrc } from "../../data/experience";
 import ExperienceLayers from "./ExperienceLayers.astro";
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
 
 const { scene, index, showYearAnchor } = Astro.props;
 const { caseFile } = scene;
-const stackTags = caseFile.stack.slice(0, 4);
+const stackTags = caseFile.stack.slice(0, 4).map(resolveTechBadge);
 ---
 
 <section
@@ -43,27 +44,45 @@ const stackTags = caseFile.stack.slice(0, 4);
       <div class="exp-scene__titles">
         <div class="exp-scene__name-row">
           <h2 class="exp-scene__name">{caseFile.name}</h2>
-          <button
-            type="button"
-            class="exp-scene__explore-icon"
-            data-open-case={caseFile.id}
-            aria-label={`Explorar ${caseFile.name}`}
-            title="Explorar caso"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 17 17 7" />
-              <path d="M8 7h9v9" />
-            </svg>
-          </button>
-        </div>
-        <p class="exp-scene__role">{caseFile.role}</p>
-        <div class="exp-scene__stack" aria-label="Stack destacado">
           {
-            stackTags.map((tech) => (
-              <span class="exp-scene__chip mono">{tech}</span>
-            ))
+            caseFile.companyUrl && (
+              <a
+                class="exp-scene__explore-icon"
+                href={caseFile.companyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Abrir sitio de ${caseFile.company}`}
+                title={caseFile.company}
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17 17 7" />
+                  <path d="M8 7h9v9" />
+                </svg>
+              </a>
+            )
           }
         </div>
+        <p class="exp-scene__role">{caseFile.role}</p>
+        <ul class="exp-scene__stack" aria-label="Stack destacado">
+          {
+            stackTags.map((tech) => (
+              <li class="exp-scene__chip">
+                {tech.icon ? (
+                  <img
+                    class="exp-scene__chip-icon"
+                    src={techIconSrc(tech.icon)}
+                    alt=""
+                    width="14"
+                    height="14"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : null}
+                <span>{tech.name}</span>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </div>
 

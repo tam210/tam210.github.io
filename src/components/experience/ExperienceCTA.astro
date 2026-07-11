@@ -1,15 +1,42 @@
 ---
+import { experienceTech, techIconSrc } from "../../data/experience";
 ---
 
-<section class="exp-cta" data-exp-cta>
-  <div class="exp-cta__panel">
-    <h2 class="exp-cta__title">¿Seguimos?</h2>
-    <p class="exp-cta__text">
-      Si quieres profundizar en un caso o en cómo trabajo de punta a punta.
-    </p>
-    <div class="exp-cta__actions">
-      <a class="exp-btn exp-btn--primary" href="/connect/">Conversemos</a>
-      <a class="exp-btn exp-btn--ghost" href="#construckit">Ver un caso</a>
-    </div>
+<section class="exp-tech" id="tecnologias" aria-labelledby="exp-tech-title">
+  <h2 id="exp-tech-title" class="exp-tech__title">{experienceTech.title}</h2>
+  <p class="exp-tech__lead">{experienceTech.lead}</p>
+
+  <div class="exp-tech__production">
+    <h3 class="exp-tech__group-label">{experienceTech.productionLabel}</h3>
+    <ul class="exp-tech__chips">
+      {
+        experienceTech.production.map((item) => (
+          <li>
+            <img
+              class="exp-tech__icon"
+              src={techIconSrc(item.icon)}
+              alt=""
+              width="18"
+              height="18"
+              loading="lazy"
+              decoding="async"
+            />
+            <span>{item.name}</span>
+          </li>
+        ))
+      }
+    </ul>
   </div>
+
+  <p class="exp-tech__langs">
+    <span class="exp-tech__langs-label">Idiomas:</span>
+    {experienceTech.languages}
+  </p>
 </section>
+
+<footer class="exp-quote" data-exp-quote>
+  <blockquote class="exp-quote__text">
+    El propósito de la ingeniería de software es controlar la complejidad, no crearla.
+  </blockquote>
+  <cite class="exp-quote__cite">Pamela Zave · Científica de la computación</cite>
+</footer>
