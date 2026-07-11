@@ -87,7 +87,7 @@
 /* Year nav */
 .exp-nav {
   position: fixed;
-  top: 50%;
+  top: max(calc(var(--glass-brand-clearance, 5rem) + 2rem), 50%);
   left: clamp(0.6rem, 2vw, 1.25rem);
   transform: translateY(-50%);
   z-index: 35;
@@ -139,8 +139,18 @@
 /* Main */
 .exp-main {
   position: relative;
+  padding-top: var(--glass-brand-clearance, 5rem);
   padding-left: clamp(4.25rem, 7vw, 5.5rem);
   padding-right: clamp(5.5rem, 8vw, 6.5rem);
+}
+
+/* Brand mark: same coords as other pages; only tint for this universe */
+.exp-body .glass-brand {
+  color: var(--exp-ink);
+}
+
+.exp-body .glass-brand__role {
+  color: var(--exp-muted);
 }
 
 /* River */
@@ -166,7 +176,7 @@
   min-height: auto;
   display: grid;
   align-items: center;
-  padding: clamp(2rem, 6vh, 3.5rem) clamp(1.25rem, 4vw, 3rem) clamp(1.5rem, 4vh, 2.5rem);
+  padding: clamp(1.25rem, 4vh, 2.5rem) clamp(1.25rem, 4vw, 3rem) clamp(1.5rem, 4vh, 2.5rem);
   overflow: hidden;
 }
 
@@ -945,6 +955,7 @@
   }
 
   .exp-main {
+    padding-top: var(--glass-brand-clearance, 5rem);
     padding-left: 0;
     padding-right: 4rem;
     padding-bottom: 4.5rem;

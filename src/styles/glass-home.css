@@ -30,7 +30,7 @@ html.os-html--glass body.glass-body {
   min-height: 100dvh;
   max-width: 1280px;
   margin: 0 auto;
-  padding: clamp(1rem, 2.5vw, 1.75rem) clamp(1.1rem, 3vw, 2.5rem)
+  padding: var(--glass-brand-clearance, 5rem) clamp(1.1rem, 3vw, 2.5rem)
     clamp(1.25rem, 3vw, 2rem);
   padding-right: clamp(1.1rem, 3vw, 2.5rem);
 }
@@ -150,7 +150,7 @@ html.os-html--glass body.glass-body {
   flex-direction: column;
   justify-content: center;
   max-width: 34rem;
-  padding: clamp(2.5rem, 9vh, 5.5rem) 0 clamp(1.5rem, 4vh, 2.5rem);
+  padding: clamp(1.5rem, 5vh, 3.5rem) 0 clamp(1.5rem, 4vh, 2.5rem);
   padding-right: 5rem;
 }
 
@@ -355,7 +355,7 @@ html.os-html--glass body.glass-body {
   flex-direction: column;
   justify-content: center;
   max-width: 36rem;
-  padding: clamp(2rem, 8vh, 4.5rem) 0 clamp(2rem, 5vh, 3rem);
+  padding: clamp(1.25rem, 4vh, 2.5rem) 0 clamp(2rem, 5vh, 3rem);
   padding-right: 5rem;
 }
 

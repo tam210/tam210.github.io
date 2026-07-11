@@ -25,7 +25,7 @@ export interface ExperienceSceneConfig {
 /** Presentation only — content bodies come from caseFiles */
 const experienceLayerSet = [
   { key: "problem" as const, label: "Desafío", field: "problem" as const },
-  { key: "decision" as const, label: "Mi aporte", field: "approach" as const },
+  { key: "decision" as const, label: "Trabajo realizado", field: "approach" as const },
   { key: "result" as const, label: "Resultado", field: "result" as const },
 ];
 

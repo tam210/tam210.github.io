@@ -10,7 +10,7 @@ interface Props {
 const { layers, caseFile } = Astro.props;
 ---
 
-<div class="exp-layers" aria-label="Desafío, aporte y resultado">
+<div class="exp-layers" aria-label="Desafío, trabajo realizado y resultado">
   {
     layers.map((layer, i) => {
       const body = String(caseFile[layer.field] ?? "")
