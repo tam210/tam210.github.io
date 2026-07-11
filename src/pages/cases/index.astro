@@ -1,11 +1,194 @@
 ---
-import ProjectsLayout from "../../layouts/ProjectsLayout.astro";
-import CasesIndex from "../../components/modules/CasesIndex.astro";
+import ExperienceLayout from "../../layouts/ExperienceLayout.astro";
+import GlassHeader from "../../components/GlassHeader.astro";
+import ExperienceHero from "../../components/experience/ExperienceHero.astro";
+import ExperienceNavigation from "../../components/experience/ExperienceNavigation.astro";
+import ExperienceScene from "../../components/experience/ExperienceScene.astro";
+import EvolutionMap from "../../components/experience/EvolutionMap.astro";
+import ExperienceCTA from "../../components/experience/ExperienceCTA.astro";
+import CaseDetailDrawer from "../../components/experience/CaseDetailDrawer.astro";
+import {
+  getExperienceScenes,
+  getExperienceYearNav,
+} from "../../data/experience";
+
+const scenes = getExperienceScenes();
+const years = getExperienceYearNav(scenes);
+const cases = scenes.map((s) => s.caseFile);
+
+const seenYears = new Set<string>();
+const sceneItems = scenes.map((scene, index) => {
+  const year = scene.caseFile.year;
+  const showYearAnchor = !seenYears.has(year);
+  if (showYearAnchor) seenYears.add(year);
+  return { scene, index, showYearAnchor };
+});
 ---
 
-<ProjectsLayout
-  title="Proyectos — Tamara Ossandón"
-  description="Timeline de productos reales: UX, tech e impacto."
+<ExperienceLayout
+  title="Experiencia — Tamara Ossandón"
+  description="Productos, plataformas y automatizaciones diseñadas para operar fuera del prototipo."
 >
-  <CasesIndex />
-</ProjectsLayout>
+  <GlassHeader current="proyectos" />
+
+  <ExperienceNavigation years={years} />
+
+  <main id="main" class="exp-main" data-exp-page>
+    <ExperienceHero />
+
+    {
+      sceneItems.map(({ scene, index, showYearAnchor }) => (
+        <ExperienceScene scene={scene} index={index} showYearAnchor={showYearAnchor} />
+      ))
+    }
+
+    <EvolutionMap />
+    <ExperienceCTA />
+  </main>
+
+  <CaseDetailDrawer cases={cases} />
+
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    type CasePayload = {
+      id: string;
+      name: string;
+      company: string;
+      year: string;
+      tagline: string;
+      role: string;
+      context: string;
+      problem: string;
+      approach: string;
+      built: string;
+      result: string;
+      impact: string;
+      learnings: string;
+      stack: string[];
+      uxDecisions: { title: string; rationale: string }[];
+      techDecisions: { title: string; rationale: string }[];
+    };
+
+    let scrollHandler: (() => void) | null = null;
+
+    function initExperiencePage() {
+      const page = document.querySelector("[data-exp-page]");
+      if (!page) return;
+
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      if (scrollHandler) {
+        window.removeEventListener("scroll", scrollHandler);
+        scrollHandler = null;
+      }
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const dataEl = document.getElementById("exp-cases-data");
+      const cases: CasePayload[] = dataEl ? JSON.parse(dataEl.textContent || "[]") : [];
+      const caseMap = new Map(cases.map((c) => [c.id, c]));
+
+      const drawer = document.querySelector<HTMLDialogElement>("[data-case-drawer]");
+      const setText = (sel: string, value: string) => {
+        const el = drawer?.querySelector(sel);
+        if (el) el.textContent = value;
+      };
+      const setList = (sel: string, items: { title: string; rationale: string }[]) => {
+        const el = drawer?.querySelector(sel);
+        if (!el) return;
+        el.innerHTML = items
+          .map((d) => `<li><strong>${d.title}</strong> — ${d.rationale}</li>`)
+          .join("");
+      };
+      const setChips = (sel: string, items: string[]) => {
+        const el = drawer?.querySelector(sel);
+        if (!el) return;
+        el.innerHTML = items.map((t) => `<li>${t}</li>`).join("");
+      };
+
+      function openCase(id: string) {
+        const item = caseMap.get(id);
+        if (!item || !drawer) return;
+        setText("[data-drawer-meta]", `${item.year} · ${item.company}`);
+        setText("[data-drawer-title]", item.name);
+        setText("[data-drawer-tagline]", item.tagline);
+        setText("[data-drawer-role]", item.role);
+        setText("[data-drawer-context]", item.context);
+        setText("[data-drawer-problem]", item.problem);
+        setText("[data-drawer-approach]", item.approach);
+        setText("[data-drawer-built]", item.built);
+        setText("[data-drawer-result]", item.result);
+        setText("[data-drawer-impact]", item.impact);
+        setText("[data-drawer-learnings]", item.learnings);
+        setList("[data-drawer-ux]", item.uxDecisions);
+        setList("[data-drawer-tech]", item.techDecisions);
+        setChips("[data-drawer-stack]", item.stack);
+        const link = drawer.querySelector<HTMLAnchorElement>("[data-drawer-permalink]");
+        if (link) link.href = `/cases/${item.id}/`;
+        drawer.showModal();
+      }
+
+      document.querySelectorAll<HTMLButtonElement>("[data-open-case]").forEach((btn) => {
+        btn.onclick = () => openCase(btn.dataset.openCase || "");
+      });
+
+      const closeBtn = drawer?.querySelector<HTMLButtonElement>("[data-drawer-close]");
+      if (closeBtn) closeBtn.onclick = () => drawer?.close();
+      if (drawer) {
+        drawer.onclick = (e) => {
+          if (e.target === drawer) drawer.close();
+        };
+      }
+
+      const navLinks = document.querySelectorAll<HTMLAnchorElement>("[data-exp-year]");
+      const scenes = document.querySelectorAll<HTMLElement>("[data-exp-scene]");
+
+      scrollHandler = () => {
+        let activeYear = navLinks[0]?.dataset.expYear || "";
+        scenes.forEach((scene) => {
+          const rect = scene.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.45) {
+            activeYear = scene.dataset.year || activeYear;
+          }
+        });
+        navLinks.forEach((link) => {
+          link.classList.toggle("is-active", link.dataset.expYear === activeYear);
+        });
+      };
+
+      window.addEventListener("scroll", scrollHandler, { passive: true });
+      scrollHandler();
+
+      if (!reduceMotion) {
+        scenes.forEach((scene) => {
+          const node = scene.querySelector("[data-exp-node]");
+          if (node) {
+            ScrollTrigger.create({
+              trigger: scene,
+              start: "top 90%",
+              onEnter: () => node.classList.add("is-lit"),
+              onEnterBack: () => node.classList.add("is-lit"),
+              onLeave: () => node.classList.remove("is-lit"),
+              onLeaveBack: () => node.classList.remove("is-lit"),
+            });
+          }
+        });
+
+        gsap.to("[data-exp-river]", {
+          scrollTrigger: {
+            trigger: "[data-exp-page]",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.35,
+          },
+          y: -60,
+          ease: "none",
+        });
+      }
+    }
+
+    document.addEventListener("astro:page-load", initExperiencePage);
+  </script>
+</ExperienceLayout>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  years: { year: string; href: string }[];
+}
+
+const { years } = Astro.props;
+---
+
+<nav class="exp-nav" aria-label="Años de experiencia" data-exp-nav>
+  <ul class="exp-nav__list">
+    {
+      years.map((item) => (
+        <li class="exp-nav__item">
+          <a class="exp-nav__link mono" href={item.href} data-exp-year={item.year}>
+            {item.year}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

@@ -1,0 +1,26 @@
+---
+import { evolutionSteps } from "../../data/experience";
+---
+
+<section class="exp-evolution" data-exp-evolution aria-labelledby="exp-evolution-title">
+  <p class="exp-evolution__eyebrow mono">Síntesis</p>
+  <h2 id="exp-evolution-title" class="exp-evolution__title">
+    De construir funciones a diseñar sistemas completos.
+  </h2>
+
+  <ol class="exp-evolution__map" data-exp-evo-map>
+    {
+      evolutionSteps.map((step, i) => (
+        <li class="exp-evolution__step" style={`--i: ${i}`}>
+          <span class="exp-evolution__dot" aria-hidden="true"></span>
+          <span class="exp-evolution__label">{step}</span>
+          {i < evolutionSteps.length - 1 && (
+            <span class="exp-evolution__arrow mono" aria-hidden="true">
+              →
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</section>

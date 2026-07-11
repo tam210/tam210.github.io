@@ -1,0 +1,46 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { pageLayer } from "../lib/pageTransition";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Experiencia — Tamara Ossandón",
+  description = "Productos, plataformas y automatizaciones diseñadas para operar fuera del prototipo.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="exp-html">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#e8f4ff" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Tamara Ossandón" />
+    <link rel="canonical" href="https://tam210.github.io/cases/" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <ClientRouter fallback="animate" />
+  </head>
+  <body class="exp-body" transition:animate={pageLayer}>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import "../styles/page-transitions.css";
+  @import "../styles/glass-chrome.css";
+  @import "../styles/experience.css";
+</style>

@@ -1,4 +1,7 @@
 ---
+import { ClientRouter } from "astro:transitions";
+import { pageLayer } from "../lib/pageTransition";
+
 interface Props {
   title?: string;
   description?: string;
@@ -15,7 +18,16 @@ const {
 ---
 
 <!doctype html>
-<html lang="es" class={bodyClass.includes("os-body--light") ? "os-html--light" : "os-html--dark"}>
+<html
+  lang="es"
+  class={
+    bodyClass.includes("glass-body")
+      ? "os-html--glass"
+      : bodyClass.includes("os-body--light")
+        ? "os-html--light"
+        : "os-html--dark"
+  }
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,17 +46,19 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
+    <ClientRouter fallback="animate" />
   </head>
-  <body class={bodyClass}>
+  <body class={bodyClass} transition:animate={pageLayer}>
     <a class="skip-link" href="#main">Saltar al contenido</a>
     <slot />
   </body>
 </html>
 
 <style is:global>
+  @import "../styles/page-transitions.css";
   @import "../styles/global.css";
 </style>

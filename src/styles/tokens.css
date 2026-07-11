@@ -49,9 +49,11 @@
   --os-chrome-glow: rgba(141, 182, 255, 0.35);
 
   /* Typography */
-  --font-display: "Sora", system-ui, sans-serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Times New Roman", serif;
+  --font-body: "Outfit", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: var(--font-body);
 
   /* Spacing & layout */
   --os-radius: 10px;
@@ -83,6 +85,26 @@
   /* Motion */
   --os-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --os-duration: 0.35s;
+
+  /* Glass landing */
+  --glass-bg: rgba(255, 255, 255, 0.42);
+  --glass-bg-strong: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-border-soft: rgba(255, 255, 255, 0.35);
+  --glass-blur: 18px;
+  --glass-radius: 28px;
+  --glass-radius-pill: 999px;
+  --glass-shadow: 0 8px 32px rgba(15, 40, 90, 0.1), 0 1px 0 rgba(255, 255, 255, 0.65) inset;
+  --glass-cta: #2f6bff;
+  --glass-cta-hover: #1d56e8;
+  --glass-text: #0c1a3a;
+  --glass-text-muted: #4a5d7a;
+  --scene-image: none;
+  --scene-gradient:
+    radial-gradient(ellipse 70% 55% at 72% 42%, rgba(120, 170, 255, 0.45) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 50% at 18% 20%, rgba(255, 255, 255, 0.85) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(180, 210, 255, 0.55) 0%, transparent 55%),
+    linear-gradient(155deg, #eef4ff 0%, #d5e4ff 38%, #b8cef8 72%, #9eb8ef 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {

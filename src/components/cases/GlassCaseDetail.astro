@@ -1,0 +1,141 @@
+---
+import type { CaseFile } from "../../data/site";
+
+interface Props {
+  caseFile: CaseFile;
+}
+
+const { caseFile } = Astro.props;
+const statusLabel: Record<string, string> = {
+  live: "En producción",
+  shipped: "Entregado",
+  archived: "Archivado",
+};
+---
+
+<article class="glass-case">
+  <a class="glass-case__back" href="/cases/">← Todos los proyectos</a>
+
+  <header class="glass-case__hero glass-surface">
+    <div class="glass-case__hero-main">
+      {
+        caseFile.logo ? (
+          <img
+            class="glass-case__logo"
+            src={caseFile.logo}
+            alt=""
+            width="64"
+            height="64"
+          />
+        ) : (
+          <span class="glass-case__logo-fallback" aria-hidden="true">
+            {caseFile.name.slice(0, 2)}
+          </span>
+        )
+      }
+      <div>
+        <p class="glass-case__eyebrow">
+          {caseFile.year} · {caseFile.company}
+          {caseFile.live && <span class="glass-case__live">Live</span>}
+        </p>
+        <h1 class="glass-case__title">{caseFile.name}</h1>
+        <p class="glass-case__tagline">{caseFile.tagline}</p>
+        <p class="glass-case__role">{caseFile.role}</p>
+      </div>
+    </div>
+    <p class="glass-case__status">{statusLabel[caseFile.status] ?? caseFile.status}</p>
+  </header>
+
+  <section class="glass-case__block glass-surface">
+    <h2>Contexto</h2>
+    <p>{caseFile.context}</p>
+  </section>
+
+  <div class="glass-case__grid">
+    <section class="glass-case__block glass-surface">
+      <h2>Problema</h2>
+      <p>{caseFile.problem}</p>
+    </section>
+    <section class="glass-case__block glass-surface">
+      <h2>Enfoque</h2>
+      <p>{caseFile.approach}</p>
+    </section>
+  </div>
+
+  <section class="glass-case__block glass-surface">
+    <h2>Qué se construyó</h2>
+    <p>{caseFile.built}</p>
+  </section>
+
+  <div class="glass-case__grid">
+    <section class="glass-case__block glass-surface">
+      <h2>Resultado</h2>
+      <p>{caseFile.result}</p>
+    </section>
+    <section class="glass-case__block glass-surface">
+      <h2>Impacto</h2>
+      <p>{caseFile.impact}</p>
+    </section>
+  </div>
+
+  {
+    caseFile.uxDecisions.length > 0 && (
+      <section class="glass-case__block glass-surface">
+        <h2>Decisiones UX</h2>
+        <ul class="glass-case__decisions">
+          {caseFile.uxDecisions.map((d) => (
+            <li>
+              <strong>{d.title}</strong>
+              <span>{d.rationale}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    caseFile.techDecisions.length > 0 && (
+      <section class="glass-case__block glass-surface">
+        <h2>Decisiones tech</h2>
+        <ul class="glass-case__decisions">
+          {caseFile.techDecisions.map((d) => (
+            <li>
+              <strong>{d.title}</strong>
+              <span>{d.rationale}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <section class="glass-case__block glass-surface glass-case__block--learn">
+    <h2>Aprendizaje</h2>
+    <p>{caseFile.learnings}</p>
+  </section>
+
+  <footer class="glass-case__foot glass-surface">
+    <div>
+      <h2>Stack</h2>
+      <div class="glass-case__chips">
+        {caseFile.stack.map((tech) => (
+          <span class="glass-case__chip">{tech}</span>
+        ))}
+      </div>
+    </div>
+    <div>
+      <h2>Tags</h2>
+      <div class="glass-case__chips">
+        {caseFile.tags.map((tag) => (
+          <span class="glass-case__chip glass-case__chip--muted">{tag}</span>
+        ))}
+      </div>
+    </div>
+  </footer>
+
+  <div class="glass-case__nav">
+    <a href="/cases/" class="glass-btn glass-btn--ghost">Volver a proyectos</a>
+    <a href="/connect/" class="glass-btn glass-btn--primary">Conversemos</a>
+  </div>
+</article>

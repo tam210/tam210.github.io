@@ -1,0 +1,30 @@
+---
+interface Props {
+  motifs: string[];
+  activeLayer?: string;
+  compact?: boolean;
+}
+
+const { motifs, compact = false } = Astro.props;
+---
+
+<div class:list={["exp-visual", compact && "exp-visual--compact"]} data-exp-visual aria-hidden="true">
+  <div class="exp-visual__stage">
+    <div class="exp-visual__orbit"></div>
+    <div class="exp-visual__core" data-layer-panel="problem">
+      <span class="exp-visual__label mono">sistema</span>
+      <div class="exp-visual__nodes">
+        {
+          motifs.slice(0, 6).map((motif) => (
+            <span class:list={["exp-visual__node", `exp-visual__node--${motif}`]} data-motif={motif}>
+              {motif}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+    <div class="exp-visual__float exp-visual__float--a" data-layer-show="decision"></div>
+    <div class="exp-visual__float exp-visual__float--b" data-layer-show="result"></div>
+    <div class="exp-visual__link-line"></div>
+  </div>
+</div>

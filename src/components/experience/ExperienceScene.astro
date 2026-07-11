@@ -1,0 +1,86 @@
+---
+import type { ResolvedExperienceScene } from "../../data/experience";
+import ExperienceLayers from "./ExperienceLayers.astro";
+
+interface Props {
+  scene: ResolvedExperienceScene;
+  index: number;
+  showYearAnchor: boolean;
+}
+
+const { scene, index, showYearAnchor } = Astro.props;
+const { caseFile } = scene;
+const num = String(index + 1).padStart(2, "0");
+const stackTags = caseFile.stack.slice(0, 4);
+---
+
+<section
+  class:list={["exp-scene", scene.compact && "exp-scene--compact"]}
+  id={caseFile.id}
+  data-exp-scene
+  data-year={caseFile.year}
+  style={`--scene-i: ${index}`}
+>
+  {showYearAnchor && <div id={`year-${caseFile.year}`} class="exp-scene__year-anchor" tabindex="-1" />}
+
+  <div class="exp-scene__river-node" aria-hidden="true" data-exp-node>
+    {showYearAnchor && <span class="exp-scene__year mono">{caseFile.year}</span>}
+  </div>
+
+  <div class="exp-scene__copy">
+    <div class="exp-scene__head">
+      {
+        caseFile.logo ? (
+          <img
+            class="exp-scene__logo"
+            src={caseFile.logo}
+            alt=""
+            width="56"
+            height="56"
+            loading={index < 2 ? "eager" : "lazy"}
+          />
+        ) : (
+          <span class="exp-scene__logo-fallback" aria-hidden="true">
+            {caseFile.name.slice(0, 2)}
+          </span>
+        )
+      }
+      <div class="exp-scene__titles">
+        <p class="exp-scene__meta mono">
+          <span>{num}</span>
+          <span aria-hidden="true">·</span>
+          <span>{caseFile.company}</span>
+          <span aria-hidden="true">·</span>
+          <span>{caseFile.year}</span>
+        </p>
+        <div class="exp-scene__name-row">
+          <h2 class="exp-scene__name">{caseFile.name}</h2>
+          <button
+            type="button"
+            class="exp-scene__explore-icon"
+            data-open-case={caseFile.id}
+            aria-label={`Explorar ${caseFile.name}`}
+            title="Explorar caso"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17 17 7" />
+              <path d="M8 7h9v9" />
+            </svg>
+          </button>
+        </div>
+        <p class="exp-scene__role">{caseFile.role}</p>
+        <div class="exp-scene__stack" aria-label="Stack destacado">
+          {
+            stackTags.map((tech) => (
+              <span class="exp-scene__chip mono">{tech}</span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <p class="exp-scene__headline">{scene.headline}</p>
+
+    <ExperienceLayers layers={scene.layers} caseFile={caseFile} />
+  </div>
+</section>

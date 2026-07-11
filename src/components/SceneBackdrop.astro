@@ -1,0 +1,31 @@
+---
+/**
+ * Scene backdrop: photo + wash by default.
+ * Pass imageSrc to override, or plain to use gradient only.
+ */
+interface Props {
+  imageSrc?: string;
+  /** Gradient-only (no photo) — e.g. contacto until bg arrives */
+  plain?: boolean;
+  class?: string;
+}
+
+/** Single switch: path under public/ (served as /images/...). */
+const HERO_SCENE_IMAGE = "/images/background_green.png";
+
+const { imageSrc, plain = false, class: className = "" } = Astro.props;
+const resolvedSrc = plain ? "" : (imageSrc ?? HERO_SCENE_IMAGE);
+const hasImage = Boolean(resolvedSrc);
+---
+
+<div
+  class:list={["scene-backdrop", hasImage && "scene-backdrop--has-image", className]}
+  style={hasImage ? `--scene-image: url("${resolvedSrc}")` : undefined}
+  aria-hidden="true"
+>
+  <div class="scene-backdrop__base"></div>
+  <div class="scene-backdrop__photo"></div>
+  <div class="scene-backdrop__wash"></div>
+  <div class="scene-backdrop__glow scene-backdrop__glow--a"></div>
+  <div class="scene-backdrop__glow scene-backdrop__glow--b"></div>
+</div>
