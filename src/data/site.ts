@@ -35,111 +35,30 @@ export type Project = CaseFile;
 
 export const caseFiles: CaseFile[] = [
   {
-    id: "construckit",
-    name: "ConstruckIT",
-    company: "ConstruckIT",
-    year: "2026",
-    tagline: "Suite multiempresa para operación en obra",
-    context:
-      "Constructoras y empresas de servicios en faena necesitan coordinar reportes, combustible, mantención y personal desde terreno y oficina — con datos que no pueden perderse por mala señal.",
-    problem:
-      "La operación en obra dependía de planillas, WhatsApp y registros sueltos. No había un sistema confiable, multiempresa y usable en terreno.",
-    approach:
-      "Mapeé flujos reales con operadores y administración antes de definir módulos. Prioricé estados claros, permisos por rol y una app móvil que funcione sin conexión.",
-    built:
-      "Arquitectura multi-tenant, API Laravel, panel Inertia, app React Native offline, RBAC y módulos de reportes, combustible y mantención. Deploy en Cloud Run.",
-    result: "En producción. Uso diario en campo y administración por varias empresas.",
-    impact:
-      "Operación centralizada por empresa, trazabilidad de combustible y mantención, y menos dependencia de Excel en faena.",
-    role: "Full-stack · Arquitectura · UX de flujos · Deploy",
-    stack: ["Laravel", "Vue / Inertia", "React Native", "GCP", "Multi-tenant", "RBAC"],
-    uxDecisions: [
-      {
-        title: "Vistas por rol, no por pantalla",
-        rationale:
-          "Operador, supervisor y admin ven solo lo que necesitan. Reduce ruido y errores en terreno.",
-      },
-      {
-        title: "Estados explícitos en cada flujo",
-        rationale:
-          "Borrador → enviado → aprobado. El usuario siempre sabe dónde está el registro.",
-      },
-      {
-        title: "Mobile offline-first",
-        rationale:
-          "En faena la señal falla. Los datos se guardan localmente y sincronizan al volver la conexión.",
-      },
-    ],
-    techDecisions: [
-      {
-        title: "Multi-tenant por empresa",
-        rationale: "Aislamiento de datos y configuración independiente sin duplicar infraestructura.",
-      },
-      {
-        title: "Laravel + Inertia para el panel",
-        rationale: "Velocidad de desarrollo con control total sobre reglas de negocio complejas.",
-      },
-      {
-        title: "Cloud Run + CI/CD",
-        rationale: "Deploy reproducible y escalable sin gestionar servidores.",
-      },
-    ],
-    learnings:
-      "En productos de operación, el diseño de estados y permisos es tan crítico como la arquitectura técnica.",
-    tags: ["saas", "multi-tenant", "mobile", "live"],
-    status: "live",
-    live: true,
-    featured: true,
-    logo: "/images/construckit-logo.png",
-    companyUrl: "https://construckit.cl",
-    variant: "folder",
-  },
-  {
     id: "duffco",
-    name: "Duffco",
-    company: "Duffco",
+    name: "DUFFCO Ingeniería & Construcción",
+    company: "DUFFCO Ingeniería & Construcción",
     year: "2025",
-    tagline: "Plataforma web y móvil para constructoras",
+    tagline: "Software para digitalizar la operación en construcción",
     context:
-      "Constructoras medianas gestionan obras, combustible, costos y cobros con herramientas fragmentadas. Gerencia necesita visibilidad; terreno necesita velocidad.",
+      "Constructoras que necesitan centralizar maquinaria, combustible, mantenimientos y reportes con usuarios en terreno y oficina.",
     problem:
-      "En obra, la información seguía en planillas, WhatsApp y registros sueltos. Poca visibilidad operativa para gerencia.",
+      "La gestión de maquinaria, combustible, mantenimientos y reportes dependía de registros en papel, planillas y comunicaciones dispersas. La información era difícil de consolidar y los usuarios en terreno necesitaban seguir trabajando incluso sin conexión.",
     approach:
-      "Diseñé flujos de registro operativo simples para terreno y paneles de resumen para gerencia. Offline en móvil desde el inicio.",
+      "Diseñé y desarrollé desde cero una plataforma SaaS web y móvil para centralizar la operación. Implementé arquitectura full-stack, APIs REST, modelos de datos, permisos, pruebas, infraestructura cloud y funcionalidades offline para usuarios en faena. También construí procesos ETL, dashboards e indicadores para transformar datos operacionales en información útil para la gestión.",
     built:
-      "SaaS web y móvil offline first: registro operativo, alertas de combustible, cobros automatizados, costos por obra y reportes para gerencia.",
-    result: "Menos Excel, más visibilidad operativa para terreno y gerencia.",
+      "Plataforma SaaS web y móvil con APIs REST, permisos, offline en faena, ETL y dashboards operativos.",
+    result:
+      "Plataforma desplegada en producción para gestionar reportes diarios, reportes mecánicos, combustible, mantenimientos, traslados de maquinaria y control operacional. Digitalización del 100% del flujo de reportes diarios y mecánicos, reemplazando registros en papel por formularios con validaciones, evidencia y reportería centralizada.",
     impact:
-      "Registro unificado de operación, alertas tempranas de combustible y reportes accesibles sin depender de consolidación manual.",
-    role: "Full-stack · Producto · UX · Móvil",
-    stack: ["Laravel", "Vue / Inertia", "React Native", "GCP", "Cloud Run", "MySQL"],
-    uxDecisions: [
-      {
-        title: "Registro en pocos pasos",
-        rationale: "En terreno cada segundo cuenta. Formularios cortos con defaults inteligentes.",
-      },
-      {
-        title: "Alertas accionables",
-        rationale: "No solo notificar: cada alerta lleva al contexto donde se resuelve.",
-      },
-      {
-        title: "Jerarquía obra → actividad → registro",
-        rationale: "Refleja cómo piensan los operadores, no cómo está modelada la base de datos.",
-      },
-    ],
-    techDecisions: [
-      {
-        title: "Offline sync con cola local",
-        rationale: "React Native persiste operaciones y las sincroniza con resolución de conflictos simple.",
-      },
-      {
-        title: "API única para web y móvil",
-        rationale: "Una fuente de verdad para reglas de negocio compartidas.",
-      },
-    ],
+      "Digitalización del 100% del flujo de reportes diarios y mecánicos, con operación centralizada en producción.",
+    role: "Software Engineer · Full-stack · Backend · Cloud · Datos",
+    stack: ["Laravel", "Vue.js", "React Native", "MySQL", "GCP", "Docker", "Power BI"],
+    uxDecisions: [],
+    techDecisions: [],
     learnings:
-      "El mejor panel de gerencia es el que se alimenta solo del trabajo diario en terreno.",
-    tags: ["saas", "mobile", "construction"],
+      "En operación de terreno, offline, validaciones y evidencia importan tanto como la arquitectura cloud.",
+    tags: ["saas", "mobile", "construction", "data"],
     status: "shipped",
     featured: true,
     logo: "/images/duffco-logo.jpeg",
@@ -147,44 +66,30 @@ export const caseFiles: CaseFile[] = [
     variant: "glass",
   },
   {
-    id: "stracon-pases",
-    name: "Stracon Pases",
-    company: "Stracon Tech",
+    id: "stracon-tech",
+    name: "STRACON Tech",
+    company: "STRACON Tech",
     year: "2024",
-    tagline: "Automatización de pases de visita a faena",
+    tagline: "Automatización de procesos dentro del ecosistema Microsoft",
     context:
-      "En minería, solicitar un pase de visita a faena implica múltiples aprobadores según el perfil del solicitante y el destino.",
-    problem: "Pedir un pase de visita era lento y dependía de muchos pasos manuales entre correos y planillas.",
+      "Equipos internos que gestionan solicitudes, aprobaciones y consulta de información dentro de Microsoft 365 y Teams.",
+    problem:
+      "Procesos internos como solicitudes, aprobaciones y búsqueda de información dependían de correos, planillas y consultas manuales entre distintas plataformas.",
     approach:
-      "Observé el flujo real de aprobación y lo traduje a automatización en Teams, donde ya trabajaba el equipo.",
-    built: "App en Microsoft Teams con flujos de aprobación automatizados según el perfil del solicitante.",
-    result: "Tiempos de gestión mucho menores y más autonomía para quienes solicitan ingreso.",
-    impact: "Reducción drástica de tiempo de gestión y menos fricción para visitas a faena.",
-    role: "Automatización · Diseño de flujos · Power Platform",
-    stack: ["Power Apps", "Power Automate", "Azure", "Microsoft Lists"],
-    uxDecisions: [
-      {
-        title: "Dentro de Teams",
-        rationale: "No pedir al usuario que aprenda otra herramienta. El flujo vive donde ya trabaja.",
-      },
-      {
-        title: "Rutas de aprobación por perfil",
-        rationale: "El solicitante solo ve los pasos que le corresponden, sin ruido de reglas internas.",
-      },
-    ],
-    techDecisions: [
-      {
-        title: "Power Automate para lógica de aprobación",
-        rationale: "Rápido de iterar con usuarios reales sin ciclo de deploy largo.",
-      },
-      {
-        title: "Lists como fuente de datos",
-        rationale: "Trazabilidad y auditoría sin montar base de datos desde cero.",
-      },
-    ],
+      "Desarrollé aplicaciones y flujos automatizados con Power Apps y Power Automate, integrados directamente en Microsoft Teams. Diseñé rutas de aprobación según el perfil del usuario y construí un asistente interno con Copilot Studio para facilitar el acceso a información distribuida entre distintas herramientas.",
+    built:
+      "Apps y flujos en Power Platform dentro de Teams, con rutas de aprobación por perfil y asistente en Copilot Studio.",
+    result:
+      "Reducción de un 70% en el intercambio manual de correos y de un 75% en el tiempo de búsqueda de información por parte de los usuarios.",
+    impact:
+      "Menos fricción operativa en aprobaciones y búsqueda de información dentro del ecosistema Microsoft.",
+    role: "Power Apps Developer · Automatización · Integraciones · IA aplicada",
+    stack: ["Power Apps", "Power Automate", "Copilot Studio", "Microsoft Teams", "Microsoft 365"],
+    uxDecisions: [],
+    techDecisions: [],
     learnings:
-      "A veces el mejor producto no es una app nueva: es el flujo correcto en la herramienta que ya usan.",
-    tags: ["automation", "enterprise"],
+      "La mejor automatización es la que vive donde el equipo ya trabaja, sin forzar herramientas nuevas.",
+    tags: ["automation", "enterprise", "microsoft"],
     status: "shipped",
     featured: true,
     logo: "/images/stracon-tech-logo.jpeg",
@@ -192,72 +97,62 @@ export const caseFiles: CaseFile[] = [
     variant: "cassette",
   },
   {
-    id: "stracon-bot",
-    name: "Asistente Teams",
-    company: "Stracon Tech",
-    year: "2024",
-    tagline: "Bot en Copilot Studio conectado a Microsoft Graph",
-    context: "Equipo interno con información repartida entre Planner, Outlook y documentos.",
-    problem: "La información estaba repartida entre Planner, Outlook y documentos internos.",
-    approach: "Diseñé diálogos acotados para consultas frecuentes del equipo.",
-    built: "Bot con diálogos pensados para consultas del equipo, sin salir de Teams.",
-    result: "Consultas más rápidas para el equipo.",
-    impact: "Menos tiempo buscando información en múltiples sistemas.",
-    role: "Automatización",
-    stack: ["Copilot Studio", "Power Automate", "Graph API"],
-    uxDecisions: [
-      {
-        title: "Diálogos acotados",
-        rationale: "El bot resuelve consultas concretas, no pretende ser un asistente general.",
-      },
-    ],
-    techDecisions: [
-      {
-        title: "Graph API para datos en tiempo real",
-        rationale: "Conexión directa a Planner y calendario sin duplicar datos.",
-      },
-    ],
-    learnings: "Un bot útil es uno que hace pocas cosas muy bien.",
-    tags: ["automation", "enterprise"],
-    status: "archived",
-    logo: "/images/stracon-tech-logo.jpeg",
-    companyUrl: "https://www.linkedin.com/company/stracon-tech",
-    variant: "cassette",
+    id: "dem",
+    name: "Departamento de Educación Municipal",
+    company: "Departamento de Educación Municipal",
+    year: "2023",
+    tagline: "Digitalización del seguimiento y evaluación de candidatos",
+    context:
+      "Proceso de evaluación de postulantes que requería consolidar información y apoyar la revisión con herramientas digitales.",
+    problem:
+      "La evaluación de postulantes requería revisar currículums manualmente y consolidar información desde distintas fuentes, dificultando el seguimiento y la comparación de candidatos.",
+    approach:
+      "Desarrollé una plataforma para registrar candidatos, mantener trazabilidad de sus estados y facilitar su evaluación. Incorporé OCR para extraer información desde currículums e identificar habilidades relevantes, junto con un panel de análisis para apoyar la revisión de postulantes.",
+    built:
+      "Plataforma de seguimiento de candidatos con OCR, extracción de habilidades y panel de análisis.",
+    result:
+      "Proceso de evaluación más estructurado, con información centralizada, mayor trazabilidad y menor dependencia de la revisión manual de documentos. También brindé soporte técnico a los usuarios durante la adopción de la plataforma.",
+    impact:
+      "Mayor trazabilidad y menos dependencia de la revisión manual de documentos en la evaluación de postulantes.",
+    role: "Software Engineer Intern · Desarrollo web · Datos · OCR",
+    stack: ["OCR", "Procesamiento de datos", "Dashboards", "Desarrollo web"],
+    uxDecisions: [],
+    techDecisions: [],
+    learnings:
+      "El soporte durante la adopción es parte del producto: sin él, la digitalización no se consolida.",
+    tags: ["web", "data", "ocr", "internship"],
+    status: "shipped",
+    featured: true,
+    companyUrl: "https://www.linkedin.com/company/ilustre-municipalidad-de-ovalle/",
+    variant: "folder",
   },
   {
-    id: "dem-ecommerce",
-    name: "E-commerce microservicios",
-    company: "DEM",
-    year: "2023",
-    tagline: "Tienda online con pagos y servicios independientes",
-    context: "Tienda que necesitaba escalar catálogo, pagos y tráfico con servicios modulares.",
-    problem: "La tienda necesitaba crecer con pagos seguros y servicios modulares.",
-    approach: "Separé dominios de catálogo, pagos y notificaciones en servicios independientes.",
-    built: "Backend en microservicios con Transbank, mensajería asíncrona y APIs documentadas.",
-    result: "Base modular lista para escalar catálogo y tráfico.",
-    impact: "Arquitectura preparada para crecer sin reescribir el núcleo.",
-    role: "Backend",
-    stack: ["Golang", "NestJS", "GraphQL", "RabbitMQ", "Docker"],
-    uxDecisions: [
-      {
-        title: "Checkout con estados claros",
-        rationale: "El usuario siempre sabe si el pago está procesando, confirmado o falló.",
-      },
-    ],
-    techDecisions: [
-      {
-        title: "Microservicios por dominio",
-        rationale: "Pagos, catálogo y notificaciones escalan y despliegan de forma independiente.",
-      },
-      {
-        title: "RabbitMQ para eventos",
-        rationale: "Desacopla procesos sin bloquear la experiencia de compra.",
-      },
-    ],
-    learnings: "La modularidad tiene costo operativo; vale la pena cuando el dominio lo justifica.",
-    tags: ["backend", "ecommerce"],
+    id: "agrofamily",
+    name: "AgroFamily",
+    company: "AgroFamily",
+    year: "2022",
+    tagline: "Sistema para centralizar inventario e información del negocio",
+    context:
+      "Negocio que necesitaba organizar inventario, usuarios e indicadores en una sola solución.",
+    problem:
+      "El negocio necesitaba organizar información de inventario, usuarios e indicadores relevantes dentro de una única solución.",
+    approach:
+      "Participé en el levantamiento de requerimientos, prototipado visual, desarrollo y documentación técnica de una solución para administrar inventario y usuarios. Incorporé indicadores económicos para entregar mayor visibilidad y apoyar decisiones del negocio.",
+    built:
+      "Solución de inventario y usuarios con indicadores económicos, bajo Scrum y patrón MVVM.",
+    result:
+      "Sistema centralizado para consultar inventario, administrar usuarios y visualizar información relevante para la operación. El desarrollo se realizó bajo metodología Scrum y patrón MVVM.",
+    impact:
+      "Visibilidad centralizada de inventario, usuarios e indicadores para la operación del negocio.",
+    role: "Software Engineer · Análisis de requerimientos · Desarrollo · Prototipado",
+    stack: ["C#", "WPF", "MVVM", "Scrum", "Gestión de inventario", "Prototipado"],
+    uxDecisions: [],
+    techDecisions: [],
+    learnings:
+      "El levantamiento de requerimientos y el prototipado evitan construir la solución equivocada.",
+    tags: ["inventory", "scrum", "mvvm"],
     status: "archived",
-    companyUrl: "https://www.linkedin.com/company/ilustre-municipalidad-de-ovalle/",
+    featured: true,
     variant: "folder",
   },
 ];
@@ -327,7 +222,7 @@ export const processSteps = [
     title: "Understand",
     desc: "Escucho el flujo real antes de diseñar.",
     example: "Mapeo cómo se pide un pase de faena hoy, quién aprueba y dónde se pierde tiempo.",
-    caseLink: "stracon-pases",
+    caseLink: "stracon-tech",
     icon: "ear",
   },
   {
@@ -343,23 +238,23 @@ export const processSteps = [
     title: "Design",
     desc: "Bajo el problema a interfaces y flujos claros.",
     example: "Pantallas, estados y permisos antes de la primera línea de código.",
-    caseLink: "construckit",
+    caseLink: "duffco",
     icon: "pen",
   },
   {
     num: "04",
     title: "Build",
     desc: "Desarrollo backend, frontend y móvil.",
-    example: "API multi-tenant, panel web y app offline con la misma lógica de negocio.",
-    caseLink: "construckit",
+    example: "API, panel web y app offline con la misma lógica de negocio.",
+    caseLink: "duffco",
     icon: "code",
   },
   {
     num: "05",
     title: "Ship",
     desc: "Llevo el producto a producción.",
-    example: "Cloud Run, CI/CD y monitoreo para usuarios reales.",
-    caseLink: "construckit",
+    example: "Cloud, CI/CD y monitoreo para usuarios reales.",
+    caseLink: "duffco",
     icon: "cloud",
   },
   {

@@ -11,7 +11,7 @@ interface Props {
 
 const { scene, index, showYearAnchor } = Astro.props;
 const { caseFile } = scene;
-const stackTags = caseFile.stack.slice(0, 4).map(resolveTechBadge);
+const stackTags = caseFile.stack.map(resolveTechBadge);
 ---
 
 <section

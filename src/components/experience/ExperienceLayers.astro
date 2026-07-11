@@ -10,10 +10,12 @@ interface Props {
 const { layers, caseFile } = Astro.props;
 ---
 
-<div class="exp-layers" aria-label="Problema, decisión y resultado">
+<div class="exp-layers" aria-label="Desafío, aporte y resultado">
   {
     layers.map((layer, i) => {
-      const body = String(caseFile[layer.field] ?? "");
+      const body = String(caseFile[layer.field] ?? "")
+        .replace(/\s*\n+\s*/g, " ")
+        .trim();
       return (
         <article class:list={["exp-layers__card", `exp-layers__card--${layer.key}`]}>
           <h3 class="exp-layers__label">
