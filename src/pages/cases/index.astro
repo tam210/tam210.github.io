@@ -162,20 +162,6 @@ const sceneItems = scenes.map((scene, index) => {
       scrollHandler();
 
       if (!reduceMotion) {
-        scenes.forEach((scene) => {
-          const node = scene.querySelector("[data-exp-node]");
-          if (node) {
-            ScrollTrigger.create({
-              trigger: scene,
-              start: "top 90%",
-              onEnter: () => node.classList.add("is-lit"),
-              onEnterBack: () => node.classList.add("is-lit"),
-              onLeave: () => node.classList.remove("is-lit"),
-              onLeaveBack: () => node.classList.remove("is-lit"),
-            });
-          }
-        });
-
         gsap.to("[data-exp-river]", {
           scrollTrigger: {
             trigger: "[data-exp-page]",

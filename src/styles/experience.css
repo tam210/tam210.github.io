@@ -291,13 +291,13 @@
   min-height: 0;
   display: grid;
   align-items: start;
-  padding: clamp(1.75rem, 4vh, 2.75rem) clamp(1.25rem, 4vw, 3rem);
+  padding: clamp(2.75rem, 7vh, 4.5rem) clamp(1.25rem, 4vw, 3rem);
   padding-left: clamp(4.5rem, 8vw, 6.5rem);
 }
 
 .exp-scene--compact {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .exp-scene__year-anchor {
@@ -305,39 +305,6 @@
   top: -5rem;
   width: 1px;
   height: 1px;
-}
-
-.exp-scene__river-node {
-  position: absolute;
-  left: clamp(1rem, 3vw, 2rem);
-  top: 2rem;
-  display: grid;
-  gap: 0.35rem;
-  justify-items: center;
-  opacity: 0.45;
-  transition: opacity var(--exp-dur) var(--exp-ease), transform var(--exp-dur) var(--exp-ease);
-}
-
-.exp-scene__river-node.is-lit {
-  opacity: 1;
-  transform: scale(1.05);
-}
-
-.exp-scene__year {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--exp-blue);
-  writing-mode: horizontal-tb;
-}
-
-.exp-scene__river-node::after {
-  content: "";
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #67e8f9, #0284c7);
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 5px rgba(56, 189, 248, 0.2);
 }
 
 .exp-scene__copy {
@@ -984,10 +951,6 @@
   .exp-evolution,
   .exp-cta {
     padding-left: clamp(1.25rem, 4vw, 2rem);
-  }
-
-  .exp-scene__river-node {
-    display: none;
   }
 
   .exp-river {
