@@ -1,33 +1,33 @@
 /**
- * Transición de capa entre rutas (Astro ClientRouter / View Transitions).
- * Solo opacity + transform (sin filter/blur) para mantener 60fps.
+ * Fade corto entre rutas (ClientRouter / View Transitions).
+ * Solo opacity — sin translate/blur para no retrasar el paint.
  */
 export const pageLayer = {
   forwards: {
     old: {
       name: "pageExit",
-      duration: "240ms",
-      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      duration: "120ms",
+      easing: "ease-out",
       fillMode: "forwards" as const,
     },
     new: {
       name: "pageEnter",
-      duration: "420ms",
-      easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+      duration: "140ms",
+      easing: "ease-out",
       fillMode: "backwards" as const,
     },
   },
   backwards: {
     old: {
       name: "pageExit",
-      duration: "240ms",
-      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      duration: "120ms",
+      easing: "ease-out",
       fillMode: "forwards" as const,
     },
     new: {
       name: "pageEnter",
-      duration: "420ms",
-      easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+      duration: "140ms",
+      easing: "ease-out",
       fillMode: "backwards" as const,
     },
   },

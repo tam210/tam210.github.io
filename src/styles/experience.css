@@ -141,14 +141,8 @@
 /* Main — shared horizontal rhythm for hero + scenes */
 .exp-main {
   position: relative;
-  padding-top: 0;
+  padding-top: var(--glass-brand-clearance, 5.75rem);
   padding-left: var(--exp-rail-left);
-  padding-right: var(--exp-rail-right);
-}
-
-/* Brand bar aligns with content column below */
-.exp-body .glass-brand-bar {
-  padding-left: calc(var(--exp-rail-left) + var(--exp-content-x));
   padding-right: var(--exp-rail-right);
 }
 
@@ -966,15 +960,10 @@
   }
 
   .exp-main {
-    padding-top: 0;
+    padding-top: var(--glass-brand-clearance, 5.75rem);
     padding-left: 0;
     padding-right: 4rem;
     padding-bottom: 4.5rem;
-  }
-
-  .exp-body .glass-brand-bar {
-    padding-left: var(--exp-content-x);
-    padding-right: 4rem;
   }
 
   .exp-river {

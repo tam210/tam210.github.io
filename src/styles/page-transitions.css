@@ -1,4 +1,4 @@
-/* Page layer — GPU-friendly (opacity + transform only; no blur) */
+/* Page fade — opacity only */
 
 html {
   background-color: #eef4fb;
@@ -7,73 +7,100 @@ html {
 @keyframes pageExit {
   from {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
   }
   to {
     opacity: 0;
-    transform: translate3d(0, -4px, 0);
   }
 }
 
 @keyframes pageEnter {
   from {
     opacity: 0;
-    transform: translate3d(0, 6px, 0);
   }
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
   }
 }
 
 ::view-transition-group(root) {
   background-color: #eef4fb;
-  animation-duration: 420ms;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-duration: 140ms;
+  animation-timing-function: ease-out;
 }
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
   mix-blend-mode: normal;
-  /* Promote to compositor; avoid layout thrash during VT */
   backface-visibility: hidden;
-  transform: translateZ(0);
 }
 
 ::view-transition-old(root) {
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-timing-function: ease-out;
   z-index: 1;
 }
 
 ::view-transition-new(root) {
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-timing-function: ease-out;
   z-index: 2;
 }
 
+/* Route loader — visible solo si la navegación tarda */
+.route-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  background: rgba(238, 244, 251, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 120ms ease, visibility 120ms ease;
+}
+
+.route-loader.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.route-loader__spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(15, 40, 70, 0.15);
+  border-top-color: rgba(15, 40, 70, 0.75);
+  border-radius: 50%;
+  animation: routeSpin 0.7s linear infinite;
+}
+
+.route-loader__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes routeSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  @keyframes pageExit {
-    from {
-      opacity: 1;
-      transform: none;
-    }
-    to {
-      opacity: 0;
-      transform: none;
-    }
-  }
-
-  @keyframes pageEnter {
-    from {
-      opacity: 0;
-      transform: none;
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
   ::view-transition-group(root) {
-    animation-duration: 120ms;
+    animation-duration: 1ms;
+  }
+
+  .route-loader {
+    transition: none;
+  }
+
+  .route-loader__spinner {
+    animation-duration: 1.2s;
   }
 }

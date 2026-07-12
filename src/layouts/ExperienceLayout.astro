@@ -31,11 +31,58 @@ const {
       rel="stylesheet"
     />
     <title>{title}</title>
-    <ClientRouter fallback="animate" />
+    <ClientRouter />
   </head>
   <body class="exp-body" transition:animate={pageLayer}>
     <a class="skip-link" href="#main">Saltar al contenido</a>
+    <div
+      id="route-loader"
+      class="route-loader"
+      transition:persist="route-loader"
+      role="status"
+      aria-live="polite"
+      aria-hidden="true"
+    >
+      <div class="route-loader__spinner" aria-hidden="true"></div>
+      <span class="route-loader__label">Cargando…</span>
+    </div>
     <slot />
+    <script is:inline>
+      (() => {
+        if (window.__routeLoaderBound) return;
+        window.__routeLoaderBound = true;
+
+        const DELAY_MS = 160;
+        let timer = 0;
+
+        const el = () => document.getElementById("route-loader");
+
+        const show = () => {
+          const node = el();
+          if (!node) return;
+          node.classList.add("is-visible");
+          node.setAttribute("aria-hidden", "false");
+        };
+
+        const hide = () => {
+          window.clearTimeout(timer);
+          timer = 0;
+          const node = el();
+          if (!node) return;
+          node.classList.remove("is-visible");
+          node.setAttribute("aria-hidden", "true");
+        };
+
+        const arm = () => {
+          window.clearTimeout(timer);
+          timer = window.setTimeout(show, DELAY_MS);
+        };
+
+        document.addEventListener("astro:before-preparation", arm);
+        document.addEventListener("astro:page-load", hide);
+        document.addEventListener("astro:after-swap", hide);
+      })();
+    </script>
   </body>
 </html>
 

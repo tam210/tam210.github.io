@@ -4,7 +4,7 @@
   --glass-brand-top: clamp(1rem, 2.4vw, 1.5rem);
   --glass-brand-left: clamp(1.25rem, 3vw, 2.5rem);
   /* Space reserved so page content never sits under the brand */
-  --glass-brand-clearance: clamp(4.5rem, 7.5vw, 5.5rem);
+  --glass-brand-clearance: clamp(5.75rem, 9vw, 6.75rem);
 }
 
 .glass-brand {
@@ -14,18 +14,25 @@
   z-index: 40;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
-  text-decoration: none;
+  gap: 0.45rem;
   color: var(--glass-text, #0c1a3a);
   font-family: "Outfit", system-ui, sans-serif;
   line-height: 1.2;
-  opacity: 0.88;
-  transition: opacity 0.2s var(--os-ease, ease);
   max-width: 16rem;
   pointer-events: auto;
 }
 
-.glass-brand:hover {
+.glass-brand__home {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.88;
+  transition: opacity 0.2s var(--os-ease, ease);
+}
+
+.glass-brand__home:hover {
   opacity: 1;
 }
 
@@ -63,6 +70,34 @@
   font-weight: 500;
   color: var(--glass-text-muted, #4a6478);
   letter-spacing: 0.01em;
+}
+
+.glass-brand__social {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.glass-brand__social-link {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 8px;
+  color: var(--glass-text-muted, #4a6478);
+  text-decoration: none;
+  transition: color 0.2s var(--os-ease, ease), background 0.2s var(--os-ease, ease);
+}
+
+.glass-brand__social-link:hover {
+  color: var(--glass-text, #0c1a3a);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.glass-brand__social-link svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
 }
 
 .glass-rail {
