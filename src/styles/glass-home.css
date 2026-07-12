@@ -69,17 +69,12 @@ html.os-html--glass body.glass-body {
 .glass-home--scene-pending .glass-home__content {
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
 }
 
 .glass-home:not(.glass-home--scene-pending) .glass-home__content {
   opacity: 1;
-  transition: opacity 0.28s var(--os-ease, ease);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .glass-home:not(.glass-home--scene-pending) .glass-home__content {
-    transition: none;
-  }
+  visibility: visible;
 }
 
 .scene-backdrop__wash {
@@ -259,6 +254,12 @@ html.os-html--glass body.glass-body {
   border-radius: 22px;
   margin-top: auto;
   margin-bottom: 0.35rem;
+  /* Solid fill: avoid backdrop-filter (paints late and pops after hero text) */
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .glass-strip__item {
