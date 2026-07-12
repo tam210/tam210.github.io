@@ -43,29 +43,52 @@ const waitsForImage = sceneImage !== false;
 </div>
 
 <script>
-  function revealGlassScene() {
-    const homes = document.querySelectorAll<HTMLElement>("[data-glass-home]");
-    homes.forEach((home) => {
-      if (!home.classList.contains("glass-home--scene-pending")) return;
-
-      const photo = home.querySelector<HTMLImageElement>("[data-scene-photo]");
-      const reveal = () => home.classList.remove("glass-home--scene-pending");
-
-      if (!photo) {
-        reveal();
-        return;
-      }
-
-      if (photo.complete && photo.naturalWidth > 0) {
-        reveal();
-        return;
-      }
-
-      photo.addEventListener("load", reveal, { once: true });
-      photo.addEventListener("error", reveal, { once: true });
-      window.setTimeout(reveal, 2500);
+  function waitImage(img: HTMLImageElement) {
+    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+    return new Promise<void>((resolve) => {
+      img.addEventListener("load", () => resolve(), { once: true });
+      img.addEventListener("error", () => resolve(), { once: true });
     });
   }
 
-  document.addEventListener("astro:page-load", revealGlassScene);
+  function nextFrames(count = 2) {
+    return new Promise<void>((resolve) => {
+      const step = (left: number) => {
+        if (left <= 0) {
+          resolve();
+          return;
+        }
+        requestAnimationFrame(() => step(left - 1));
+      };
+      step(count);
+    });
+  }
+
+  async function revealGlassScene() {
+    const homes = document.querySelectorAll<HTMLElement>("[data-glass-home]");
+
+    for (const home of homes) {
+      if (!home.classList.contains("glass-home--scene-pending")) continue;
+
+      const photo = home.querySelector<HTMLImageElement>("[data-scene-photo]");
+      const reveal = () => home.classList.remove("glass-home--scene-pending");
+      const safety = window.setTimeout(reveal, 2500);
+
+      try {
+        const waits: Promise<unknown>[] = [document.fonts.ready];
+        if (photo) waits.push(waitImage(photo));
+        await Promise.all(waits);
+
+        home.querySelector(".glass-home__content")?.getBoundingClientRect();
+        await nextFrames(3);
+      } finally {
+        window.clearTimeout(safety);
+        reveal();
+      }
+    }
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    void revealGlassScene();
+  });
 </script>
