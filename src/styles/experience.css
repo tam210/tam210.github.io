@@ -38,14 +38,21 @@
 .exp-html,
 .exp-body {
   margin: 0;
-  min-height: 100%;
+  height: 100%;
   color: var(--exp-ink);
   font-family: var(--exp-font);
-  overflow-x: clip;
+}
+
+.exp-html {
+  height: 100%;
 }
 
 .exp-body {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
   background-color: var(--exp-bg);
   background-image:
     linear-gradient(
@@ -62,18 +69,75 @@
   background-attachment: fixed;
 }
 
-.exp-body--scene-pending .exp-main,
-.exp-body--scene-pending .glass-brand,
-.exp-body--scene-pending .glass-rail,
-.exp-body--scene-pending .exp-nav {
+/* Top brand strip — content scrolls in a sibling below, never through it */
+.exp-brand-bar {
+  flex-shrink: 0;
+  z-index: 60;
+  box-sizing: border-box;
+  padding: var(--glass-brand-top, 1rem) var(--exp-rail-right)
+    0.85rem var(--glass-brand-left, 1.25rem);
+  background: transparent;
+  border-bottom: none;
+}
+
+.exp-brand-bar .glass-brand {
+  position: relative;
+  top: auto;
+  left: auto;
+  z-index: auto;
+  color: var(--exp-ink);
+  font-family: "Outfit", system-ui, sans-serif;
+}
+
+.exp-brand-bar .glass-brand__role {
+  color: var(--exp-muted);
+}
+
+/* Side rails stay pinned over the scroll area */
+.exp-chrome {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.exp-chrome .glass-rail,
+.exp-chrome .exp-nav {
+  pointer-events: auto;
+  position: absolute;
+}
+
+.exp-chrome .glass-rail {
+  z-index: 2;
+}
+
+.exp-chrome .exp-nav {
+  z-index: 1;
+  top: max(calc(var(--glass-brand-clearance, 5rem) + 2rem), 50%);
+}
+
+/* Only this region scrolls */
+.exp-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-x: clip;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.exp-body--scene-pending .exp-brand-bar,
+.exp-body--scene-pending .exp-scroll,
+.exp-body--scene-pending .exp-chrome {
   opacity: 0;
   pointer-events: none;
 }
 
-.exp-body:not(.exp-body--scene-pending) .exp-main,
-.exp-body:not(.exp-body--scene-pending) .glass-brand,
-.exp-body:not(.exp-body--scene-pending) .glass-rail,
-.exp-body:not(.exp-body--scene-pending) .exp-nav {
+.exp-body:not(.exp-body--scene-pending) .exp-brand-bar,
+.exp-body:not(.exp-body--scene-pending) .exp-scroll,
+.exp-body:not(.exp-body--scene-pending) .exp-chrome {
   opacity: 1;
   transition: opacity 0.28s var(--exp-ease, ease);
 }
@@ -157,17 +221,9 @@
 /* Main — shared horizontal rhythm for hero + scenes */
 .exp-main {
   position: relative;
-  padding-top: var(--glass-brand-clearance, 5.75rem);
+  padding-top: 0.5rem;
   padding-left: var(--exp-rail-left);
   padding-right: var(--exp-rail-right);
-}
-
-.exp-body .glass-brand {
-  color: var(--exp-ink);
-}
-
-.exp-body .glass-brand__role {
-  color: var(--exp-muted);
 }
 
 /* River */
@@ -976,7 +1032,7 @@
   }
 
   .exp-main {
-    padding-top: var(--glass-brand-clearance, 5.75rem);
+    padding-top: 0.5rem;
     padding-left: 0;
     padding-right: 4rem;
     padding-bottom: 4.5rem;

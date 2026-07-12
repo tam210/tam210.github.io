@@ -28,21 +28,28 @@ const sceneItems = scenes.map((scene, index) => {
   title="Experiencia — Tamara Ossandón"
   description="Productos, plataformas y automatizaciones diseñadas para operar fuera del prototipo."
 >
-  <GlassHeader current="proyectos" />
+  <header class="exp-brand-bar">
+    <GlassHeader current="proyectos" parts="brand" brandInflow />
+  </header>
 
-  <ExperienceNavigation years={years} />
+  <div class="exp-chrome">
+    <GlassHeader current="proyectos" parts="rail" />
+    <ExperienceNavigation years={years} />
+  </div>
 
-  <main id="main" class="exp-main" data-exp-page>
-    <ExperienceHero />
+  <div class="exp-scroll" data-exp-scroll>
+    <main id="main" class="exp-main" data-exp-page>
+      <ExperienceHero />
 
-    {
-      sceneItems.map(({ scene, index, showYearAnchor }) => (
-        <ExperienceScene scene={scene} index={index} showYearAnchor={showYearAnchor} />
-      ))
-    }
+      {
+        sceneItems.map(({ scene, index, showYearAnchor }) => (
+          <ExperienceScene scene={scene} index={index} showYearAnchor={showYearAnchor} />
+        ))
+      }
 
-    <ExperienceCTA />
-  </main>
+      <ExperienceCTA />
+    </main>
+  </div>
 
   <CaseDetailDrawer cases={cases} />
 
@@ -79,7 +86,9 @@ const sceneItems = scenes.map((scene, index) => {
 
       ScrollTrigger.getAll().forEach((t) => t.kill());
       if (scrollHandler) {
-        window.removeEventListener("scroll", scrollHandler);
+        const prevScroll =
+          document.querySelector<HTMLElement>("[data-exp-scroll]") || window;
+        prevScroll.removeEventListener("scroll", scrollHandler);
         scrollHandler = null;
       }
 
@@ -143,11 +152,15 @@ const sceneItems = scenes.map((scene, index) => {
       const navLinks = document.querySelectorAll<HTMLAnchorElement>("[data-exp-year]");
       const scenes = document.querySelectorAll<HTMLElement>("[data-exp-scene]");
 
+      const scrollRoot =
+        document.querySelector<HTMLElement>("[data-exp-scroll]") || undefined;
+
       scrollHandler = () => {
         let activeYear = navLinks[0]?.dataset.expYear || "";
         scenes.forEach((scene) => {
           const rect = scene.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.45) {
+          const viewH = scrollRoot?.clientHeight ?? window.innerHeight;
+          if (rect.top < viewH * 0.45) {
             activeYear = scene.dataset.year || activeYear;
           }
         });
@@ -156,12 +169,14 @@ const sceneItems = scenes.map((scene, index) => {
         });
       };
 
-      window.addEventListener("scroll", scrollHandler, { passive: true });
+      const scrollTarget: HTMLElement | Window = scrollRoot ?? window;
+      scrollTarget.addEventListener("scroll", scrollHandler, { passive: true });
       scrollHandler();
 
       if (!reduceMotion) {
         gsap.to("[data-exp-river]", {
           scrollTrigger: {
+            scroller: scrollRoot || undefined,
             trigger: "[data-exp-page]",
             start: "top top",
             end: "bottom bottom",
