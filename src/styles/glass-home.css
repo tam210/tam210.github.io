@@ -55,15 +55,31 @@ html.os-html--glass body.glass-body {
 .scene-backdrop__photo {
   position: absolute;
   inset: 0;
-  background-image: var(--scene-image);
-  background-size: cover;
-  background-position: 58% center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% center;
   opacity: 0;
-  transition: opacity 0.4s var(--os-ease);
 }
 
 .scene-backdrop--has-image .scene-backdrop__photo {
   opacity: 1;
+}
+
+.glass-home--scene-pending .glass-home__content {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glass-home:not(.glass-home--scene-pending) .glass-home__content {
+  opacity: 1;
+  transition: opacity 0.28s var(--os-ease, ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-home:not(.glass-home--scene-pending) .glass-home__content {
+    transition: none;
+  }
 }
 
 .scene-backdrop__wash {

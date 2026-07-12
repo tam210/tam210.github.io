@@ -15,9 +15,17 @@ interface Props {
 }
 
 const { current = "inicio", reading = false, sceneImage } = Astro.props;
+const waitsForImage = sceneImage !== false;
 ---
 
-<div class:list={["glass-home", reading && "glass-home--reading"]}>
+<div
+  class:list={[
+    "glass-home",
+    reading && "glass-home--reading",
+    waitsForImage && "glass-home--scene-pending",
+  ]}
+  data-glass-home
+>
   {
     sceneImage === false ? (
       <SceneBackdrop plain />
@@ -33,3 +41,31 @@ const { current = "inicio", reading = false, sceneImage } = Astro.props;
     <slot />
   </div>
 </div>
+
+<script>
+  function revealGlassScene() {
+    const homes = document.querySelectorAll<HTMLElement>("[data-glass-home]");
+    homes.forEach((home) => {
+      if (!home.classList.contains("glass-home--scene-pending")) return;
+
+      const photo = home.querySelector<HTMLImageElement>("[data-scene-photo]");
+      const reveal = () => home.classList.remove("glass-home--scene-pending");
+
+      if (!photo) {
+        reveal();
+        return;
+      }
+
+      if (photo.complete && photo.naturalWidth > 0) {
+        reveal();
+        return;
+      }
+
+      photo.addEventListener("load", reveal, { once: true });
+      photo.addEventListener("error", reveal, { once: true });
+      window.setTimeout(reveal, 2500);
+    });
+  }
+
+  document.addEventListener("astro:page-load", revealGlassScene);
+</script>

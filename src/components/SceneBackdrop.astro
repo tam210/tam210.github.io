@@ -20,11 +20,25 @@ const hasImage = Boolean(resolvedSrc);
 
 <div
   class:list={["scene-backdrop", hasImage && "scene-backdrop--has-image", className]}
-  style={hasImage ? `--scene-image: url("${resolvedSrc}")` : undefined}
+  data-scene-backdrop
+  data-scene-src={hasImage ? resolvedSrc : undefined}
   aria-hidden="true"
 >
   <div class="scene-backdrop__base"></div>
-  <div class="scene-backdrop__photo"></div>
+  {
+    hasImage && (
+      <img
+        class="scene-backdrop__photo"
+        src={resolvedSrc}
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+        data-scene-photo
+      />
+    )
+  }
   <div class="scene-backdrop__wash"></div>
   <div class="scene-backdrop__glow scene-backdrop__glow--a"></div>
   <div class="scene-backdrop__glow scene-backdrop__glow--b"></div>

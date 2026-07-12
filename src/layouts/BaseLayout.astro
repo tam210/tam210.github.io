@@ -7,6 +7,8 @@ interface Props {
   description?: string;
   bodyClass?: string;
   themeColor?: string;
+  /** High-priority background/scene image */
+  preloadImage?: string;
 }
 
 const {
@@ -14,6 +16,7 @@ const {
   description = "Construyo software para problemas reales. Full-stack · Web · Móvil · GCP.",
   bodyClass = "os-body os-body--dark",
   themeColor = "#07101f",
+  preloadImage,
 } = Astro.props;
 ---
 
@@ -43,6 +46,11 @@ const {
     <meta property="og:locale" content="es_CL" />
     <link rel="canonical" href="https://tam210.github.io" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    {
+      preloadImage && (
+        <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />
+      )
+    }
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

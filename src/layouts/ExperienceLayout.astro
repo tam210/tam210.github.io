@@ -24,6 +24,12 @@ const {
     <meta name="author" content="Tamara Ossandón" />
     <link rel="canonical" href="https://tam210.github.io/cases/" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/background_cases.png"
+      fetchpriority="high"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -33,7 +39,7 @@ const {
     <title>{title}</title>
     <ClientRouter />
   </head>
-  <body class="exp-body" transition:animate={pageLayer}>
+  <body class="exp-body exp-body--scene-pending" transition:animate={pageLayer}>
     <a class="skip-link" href="#main">Saltar al contenido</a>
     <div
       id="route-loader"
@@ -47,6 +53,24 @@ const {
       <span class="route-loader__label">Cargando…</span>
     </div>
     <slot />
+    <script>
+      const EXP_BG = "/images/background_cases.png";
+
+      function revealExperienceScene() {
+        const body = document.body;
+        if (!body.classList.contains("exp-body--scene-pending")) return;
+
+        const done = () => body.classList.remove("exp-body--scene-pending");
+        const img = new Image();
+        img.onload = done;
+        img.onerror = done;
+        img.src = EXP_BG;
+        if (img.complete) done();
+        window.setTimeout(done, 2500);
+      }
+
+      document.addEventListener("astro:page-load", revealExperienceScene);
+    </script>
     <script is:inline>
       (() => {
         if (window.__routeLoaderBound) return;

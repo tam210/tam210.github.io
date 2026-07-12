@@ -13,6 +13,8 @@ interface Props {
   sceneImage?: string | false;
 }
 
+const DEFAULT_SCENE = "/images/background_green.png";
+
 const {
   title,
   description,
@@ -20,6 +22,8 @@ const {
   reading = false,
   sceneImage,
 } = Astro.props;
+
+const preloadImage = sceneImage === false ? undefined : (sceneImage ?? DEFAULT_SCENE);
 ---
 
 <BaseLayout
@@ -27,6 +31,7 @@ const {
   description={description}
   bodyClass="glass-body"
   themeColor="#d6e4ff"
+  preloadImage={preloadImage}
 >
   <main id="main">
     <GlassShell current={current} reading={reading} sceneImage={sceneImage}>
