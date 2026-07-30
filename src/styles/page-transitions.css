@@ -62,9 +62,7 @@ html {
   -webkit-backdrop-filter: blur(6px);
 }
 
-.route-loader.is-visible,
-body:has(.glass-home--scene-pending) .route-loader,
-body.exp-body--scene-pending .route-loader {
+.route-loader.is-visible {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;

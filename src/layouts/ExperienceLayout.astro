@@ -47,8 +47,8 @@ const {
       transition:persist="route-loader"
       role="status"
       aria-live="polite"
-      aria-busy="true"
-      aria-hidden="false"
+      aria-busy="false"
+      aria-hidden="true"
     >
       <div class="route-loader__mark" aria-hidden="true">
         <div class="route-loader__spinner"></div>
@@ -79,7 +79,7 @@ const {
         if (window.__routeLoaderBound) return;
         window.__routeLoaderBound = true;
 
-        const DELAY_MS = 120;
+        const DELAY_MS = 280;
         let timer = 0;
         let observer = null;
 
@@ -106,16 +106,22 @@ const {
           }
         };
 
+        const clearArm = () => {
+          window.clearTimeout(timer);
+          timer = 0;
+        };
+
         const watchScene = () => {
           stopWatch();
-          if (!scenePending()) {
-            setBusy(false);
-            return;
-          }
-          setBusy(true);
+          clearArm();
+          setBusy(false);
+
+          if (!scenePending()) return;
+
           observer = new MutationObserver(() => {
             if (!scenePending()) {
               stopWatch();
+              clearArm();
               setBusy(false);
             }
           });
@@ -124,23 +130,21 @@ const {
             subtree: true,
             attributeFilter: ["class"],
           });
+
+          timer = window.setTimeout(() => {
+            if (scenePending()) setBusy(true);
+          }, DELAY_MS);
         };
 
         const arm = () => {
-          window.clearTimeout(timer);
+          clearArm();
           timer = window.setTimeout(() => setBusy(true), DELAY_MS);
         };
 
-        const settle = () => {
-          window.clearTimeout(timer);
-          timer = 0;
-          watchScene();
-        };
-
         document.addEventListener("astro:before-preparation", arm);
-        document.addEventListener("astro:after-swap", settle);
-        document.addEventListener("astro:page-load", settle);
-        settle();
+        document.addEventListener("astro:after-swap", watchScene);
+        document.addEventListener("astro:page-load", watchScene);
+        watchScene();
       })();
     </script>
   </body>
