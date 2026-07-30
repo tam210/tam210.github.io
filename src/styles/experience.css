@@ -62,7 +62,7 @@
       rgba(247, 251, 255, 0.08) 62%,
       transparent 100%
     ),
-    url("/images/background_cases.png");
+    url("/images/background_cases.webp");
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
@@ -835,11 +835,17 @@
 
 /* Closing quote */
 .exp-quote {
-  padding: clamp(2.5rem, 8vh, 4.5rem) var(--exp-content-x) clamp(3rem, 8vh, 5rem);
   max-width: 40rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline: max(var(--exp-content-x), calc((100% - 40rem) / 2));
+  margin-bottom: clamp(2.5rem, 6vh, 4rem);
+  padding: clamp(1.75rem, 4vh, 2.5rem) clamp(1.5rem, 4vw, 2.25rem);
   text-align: center;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: var(--exp-radius);
+  box-shadow: 0 14px 40px rgba(14, 90, 140, 0.1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .exp-quote__text {

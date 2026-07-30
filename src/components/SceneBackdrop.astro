@@ -11,7 +11,7 @@ interface Props {
 }
 
 /** Single switch: path under public/ (served as /images/...). */
-const HERO_SCENE_IMAGE = "/images/background_green.png";
+const HERO_SCENE_IMAGE = "/images/background_green.webp";
 
 const { imageSrc, plain = false, class: className = "" } = Astro.props;
 const resolvedSrc = plain ? "" : (imageSrc ?? HERO_SCENE_IMAGE);

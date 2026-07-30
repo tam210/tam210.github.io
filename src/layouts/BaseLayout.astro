@@ -68,9 +68,12 @@ const {
       transition:persist="route-loader"
       role="status"
       aria-live="polite"
-      aria-hidden="true"
+      aria-busy="true"
+      aria-hidden="false"
     >
-      <div class="route-loader__spinner" aria-hidden="true"></div>
+      <div class="route-loader__mark" aria-hidden="true">
+        <div class="route-loader__spinner"></div>
+      </div>
       <span class="route-loader__label">Cargando…</span>
     </div>
     <slot />
@@ -79,35 +82,68 @@ const {
         if (window.__routeLoaderBound) return;
         window.__routeLoaderBound = true;
 
-        const DELAY_MS = 160;
+        const DELAY_MS = 120;
         let timer = 0;
+        let observer = null;
 
         const el = () => document.getElementById("route-loader");
 
-        const show = () => {
+        const scenePending = () =>
+          Boolean(
+            document.querySelector(".glass-home--scene-pending") ||
+              document.body.classList.contains("exp-body--scene-pending")
+          );
+
+        const setBusy = (busy) => {
           const node = el();
           if (!node) return;
-          node.classList.add("is-visible");
-          node.setAttribute("aria-hidden", "false");
+          node.classList.toggle("is-visible", busy);
+          node.setAttribute("aria-busy", busy ? "true" : "false");
+          node.setAttribute("aria-hidden", busy ? "false" : "true");
         };
 
-        const hide = () => {
-          window.clearTimeout(timer);
-          timer = 0;
-          const node = el();
-          if (!node) return;
-          node.classList.remove("is-visible");
-          node.setAttribute("aria-hidden", "true");
+        const stopWatch = () => {
+          if (observer) {
+            observer.disconnect();
+            observer = null;
+          }
+        };
+
+        const watchScene = () => {
+          stopWatch();
+          if (!scenePending()) {
+            setBusy(false);
+            return;
+          }
+          setBusy(true);
+          observer = new MutationObserver(() => {
+            if (!scenePending()) {
+              stopWatch();
+              setBusy(false);
+            }
+          });
+          observer.observe(document.body, {
+            attributes: true,
+            subtree: true,
+            attributeFilter: ["class"],
+          });
         };
 
         const arm = () => {
           window.clearTimeout(timer);
-          timer = window.setTimeout(show, DELAY_MS);
+          timer = window.setTimeout(() => setBusy(true), DELAY_MS);
+        };
+
+        const settle = () => {
+          window.clearTimeout(timer);
+          timer = 0;
+          watchScene();
         };
 
         document.addEventListener("astro:before-preparation", arm);
-        document.addEventListener("astro:page-load", hide);
-        document.addEventListener("astro:after-swap", hide);
+        document.addEventListener("astro:after-swap", settle);
+        document.addEventListener("astro:page-load", settle);
+        settle();
       })();
     </script>
   </body>
